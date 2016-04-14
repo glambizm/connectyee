@@ -1,21 +1,24 @@
 -- Project Name : connectyee_ver2.0
--- Date/Time    : 2015/10/21 17:48:42
+-- Date/Time    : 2016/04/14 19:24:20
 -- Author       : Y.Yamada
 -- RDBMS Type   : MySQL
 -- Application  : A5:SQL Mk-2
+
 drop table if exists outing_informations cascade;
 
 create table outing_informations (
   id INT not null auto_increment
   , attendances_id INT not null
-  , out_from_office TIME
-  , return_to_office TIME
-  , memo TEXT
+  , out_from_office TIME default NULL
+  , return_to_office TIME default NULL
+  , memo TEXT default NULL
   , constraint outing_informations_PKC primary key (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 create index outing_informations_IX1
   on outing_informations(id,attendances_id);
+
+drop table if exists attendances cascade;
 
 create table attendances (
   id INT not null auto_increment

@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src:    url('../fonts/icomoon.eot?s7xh4k');
-    src:    url('../fonts/icomoon.eot?s7xh4k#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?s7xh4k') format('truetype'),
-        url('../fonts/icomoon.woff?s7xh4k') format('woff'),
-        url('../fonts/icomoon.svg?s7xh4k#icomoon') format('svg');
+    src:    url('../fonts/icomoon.eot?oub83e');
+    src:    url('../fonts/icomoon.eot?oub83e#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?oub83e') format('truetype'),
+        url('../fonts/icomoon.woff?oub83e') format('woff'),
+        url('../fonts/icomoon.svg?oub83e#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -24,11 +24,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-interface:before {
+.icon-file:before {
     content: "\e902";
 }
-.icon-email-edit:before {
+.icon-grid:before {
     content: "\eaf0";
+}
+.icon-interface:before {
+    content: "\eaf1";
+}
+.icon-email-edit:before {
+    content: "\eaf2";
 }
 .icon-email-inbox:before {
     content: "\e903";

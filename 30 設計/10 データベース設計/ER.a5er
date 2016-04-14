@@ -69,21 +69,21 @@ PName=outing_informations
 LName=外出情報
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=3250
 Top=1050
 Field="ID","id","@INT","NOT NULL",0,"","",$FFFFFFFF,"auto_increment"
 Field="勤怠ID","attendances_id","@INT","NOT NULL",,"","",$FFFFFFFF,""
-Field="外出時間","out_from_office","@TIME",,,"","",$FFFFFFFF,""
-Field="帰社時間","return_to_office","@TIME",,,"","",$FFFFFFFF,""
-Field="外出情報備考","memo","TEXT",,,"","",$FFFFFFFF,""
+Field="外出時間","out_from_office","@TIME",,,"NULL","",$FFFFFFFF,""
+Field="帰社時間","return_to_office","@TIME",,,"NULL","",$FFFFFFFF,""
+Field="外出情報備考","memo","TEXT",,,"NULL","",$FFFFFFFF,""
 Index==0,id,attendances_id
 EffectMode=None
 Tag=T
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20160319115122
-Position="Main",3250,1050
+ModifiedDateTime=20160414192043
+Position="MAIN",3250,1050
 
 [Relation]
 Entity1=users
@@ -393,7 +393,7 @@ TableOption=
 Page=MAIN
 Left=100
 Top=150
-Field="ID","id","@INT","NOT NULL",0,"","",$FFFFFFFF,""
+Field="ID","id","@INT","NOT NULL",0,"","",$FFFFFFFF,"auto_increment"
 Field="投稿ユーザーID","user_id","@INT","NOT NULL",,"","",$FFFFFFFF,""
 Field="題名","title","TINYTEXT",,,"NULL","",$FFFFFFFF,""
 Field="本文","body","LONGTEXT",,,"NULL","",$FFFFFFFF,""
@@ -403,7 +403,7 @@ EffectMode=None
 Tag=T
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20160109070935
+ModifiedDateTime=20160414192408
 Position="MAIN",100,150
 
 [Entity]

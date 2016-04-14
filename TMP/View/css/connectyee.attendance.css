@@ -1,0 +1,14 @@
+/*
+ * attendance-list
+ */
+.attendance-list-wrapper{
+    margin-right: 10px;
+}
+
+.attendance-list-header {
+    background-color: rgb(217, 237, 247);
+    color: #666;
+    border-color: #bce8f1;
+    font-size: 16px;
+    padding: 0 15px 0 15px;
+}
