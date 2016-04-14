@@ -1,0 +1,371 @@
+/*
+ * mail-common
+ */
+.container-fluid
+{
+    padding-right: 0;
+}
+
+.row
+{
+    width: 100%;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.initial
+{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 40px;
+
+    display: inline-block;
+
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+
+    color: #fff;
+    border-radius: 20px;
+}
+
+#mail-wrapper
+{
+    margin-right: 10px;
+    padding: 0 0 10px 10px;
+}
+
+/*
+ * mail-list
+ */
+
+.mail-list-item div
+{
+    font-size: 14px;
+
+    min-height: 60px;
+    margin-top: 5px;
+
+    color: #666;
+}
+
+.mail-list-item .full-name
+{
+    display: inline-block;
+
+    padding-top: 12px;
+}
+
+div.col-date
+{
+    font-size: 12px;
+
+    text-align: right;
+}
+
+.list-unread
+{
+    font-size: 14px;
+    font-weight: 900;
+}
+
+/*
+ * mail
+ */
+#mail-container .row
+{
+    border-bottom: none;
+}
+
+div[class*='mail-']
+{
+    font-size: 14px;
+
+    padding: 5px 0 5px 15px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+div[class*='mail-subject']
+{
+    font-size: 18px;
+}
+
+div[class*='mail-name']
+{
+    line-height: 60px;
+
+    height: 45px;
+    padding: 0 0 0 15px;
+
+    border-bottom: none;
+}
+
+div[class*='mail-body']
+{
+    border-bottom: none;
+}
+
+div[class*='mail-receiving-users']
+{
+    font-size: 12px;
+}
+
+div[class*='mail-receiving-mail-receiving-users']
+{
+    padding: 0 0 0 65px;
+}
+
+div[class*='mail-date']
+{
+    font-size: 12px;
+
+    padding-top: 11px;
+    padding-bottom: 10px;
+
+    text-align: right;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.full-name
+{
+    font-size: 14px;
+
+    position: absolute;
+
+    margin-left: 10px;
+}
+
+/*
+ * make_mail
+ */
+#receiving-user-wrapper
+{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+#select-receiving-users-wrapper
+{
+    float: left;
+}
+
+.select-receiving-users
+{
+    height: 30px;
+
+    border-radius: 0;
+    box-shadow: none;
+}
+#label-receiving-user-list
+{
+    font-size: 14px;
+
+    margin: 0 10px 0 110px;
+    padding-left: 10px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+#input-wrapper
+{
+    padding: 0 10px 0 10px;
+}
+
+#subject
+{
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+#body
+{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+
+    border: 1px solid #ddd;
+}
+
+#btn-send
+{
+    float: right;
+
+    width: 50px;
+    height: 50px;
+    margin: 20px 10px 20px 0;
+    padding: 0;
+
+    border-radius: 25px;
+    -webkit-box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
+            box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
+}
+
+#btn-send span
+{
+    color: #fff;
+}
+
+/*
+ * initial-color
+ */
+.initial.color-a
+{
+    background-color: rgb(26, 230, 189);
+}
+
+.initial.color-b
+{
+    background-color: rgb(108, 230, 26);
+}
+
+.initial.color-c
+{
+    background-color: rgb(148, 230, 26);
+}
+
+.initial.color-d
+{
+    background-color: rgb(189, 230, 26);
+}
+
+.initial.color-e
+{
+    background-color: rgb(230, 230, 26);
+}
+
+.initial.color-f
+{
+    background-color: rgb(230, 189, 26);
+}
+
+.initial.color-g
+{
+    background-color: rgb(230, 148, 26);
+}
+
+.initial.color-h
+{
+    background-color: rgb(230, 108, 26);
+}
+
+.initial.color-i
+{
+    background-color: rgb(230, 67, 26);
+}
+
+.initial.color-j
+{
+    background-color: rgb(230, 26, 26);
+}
+
+.initial.color-k
+{
+    background-color: rgb(230, 26, 67);
+}
+
+.initial.color-l
+{
+    background-color: rgb(230, 26, 108);
+}
+
+.initial.color-m
+{
+    background-color: rgb(230, 26, 148);
+}
+
+.initial.color-n
+{
+    background-color: rgb(230, 26, 189);
+}
+
+.initial.color-o
+{
+    background-color: rgb(150, 150, 243);
+}
+
+.initial.color-p
+{
+    background-color: rgb(101, 229, 203);
+}
+
+.initial.color-q
+{
+    background-color: rgb(152, 229, 101);
+}
+
+.initial.color-r
+{
+    background-color: rgb(178, 229, 101);
+}
+
+.initial.color-s
+{
+    background-color: rgb(203, 229, 101);
+}
+
+.initial.color-t
+{
+    background-color: rgb(229, 203, 101);
+}
+
+.initial.color-u
+{
+    background-color: rgb(229, 178, 101);
+}
+
+.initial.color-v
+{
+    background-color: rgb(229, 152, 101);
+}
+
+.initial.color-w
+{
+    background-color: rgb(229, 127, 101);
+}
+
+.initial.color-x
+{
+    background-color: rgb(229, 101, 101);
+}
+
+.initial.color-y
+{
+    background-color: rgb(229, 101, 127);
+}
+
+.initial.color-z
+{
+    background-color: rgb(130, 130, 243);
+}
+
+.initial.color-none
+{
+    background-color: rgb(33, 150, 243);
+}
+
+/*
+ * media-queries
+ */
+@media (max-width: 479px)
+{
+    div[class*='mail-date']
+    {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .mail-list-item div
+    {
+        min-height: 20px;
+    }
+
+    div.col-date
+    {
+        text-align: left;
+    }
+
+}

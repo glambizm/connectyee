@@ -1,0 +1,108 @@
+/*
+ * General styles
+ */
+body,
+html
+{
+    height: 100%;
+
+    background: rgb(33,150,243);
+    background-repeat: no-repeat;
+}
+
+.card.card-container
+{
+    max-width: 300px;
+    padding: 20px 20px;
+}
+
+.btn
+{
+    height: 30px;
+}
+
+/*
+ * Card component
+ */
+.card
+{
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    padding: 20px 25px 30px;
+
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+       -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+}
+
+.logo-img-card
+{
+    display: block;
+
+    width: 150px;
+    height: 150px;
+    margin: 30px auto 30px;
+}
+
+/*
+ * Form styles
+ */
+
+.error-msg
+{
+    font-size: 13px;
+    line-height: 2;
+
+    display: block;
+    overflow: hidden;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 30px;
+
+    white-space: normal;
+    text-overflow: ellipsis;
+
+    color: #f00;
+}
+
+.form-login #inputAccount,
+.form-login #inputPassword
+{
+    font-size: 16px;
+
+    height: 35px;
+
+    direction: ltr;
+}
+
+.form-login input[type=text],
+.form-login input[type=password],
+.form-login button
+{
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.btn.btn-login
+{
+    font-size: 13px;
+
+    height: 35px;
+    margin-bottom: 70px;
+    padding: 0;
+}
+
