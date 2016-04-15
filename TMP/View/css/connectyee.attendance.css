@@ -1,14 +1,89 @@
 /*
  * attendance-list
  */
-.attendance-list-wrapper{
+
+.attendance-list-wrapper
+{
     margin-right: 10px;
 }
 
-.attendance-list-header {
-    background-color: rgb(217, 237, 247);
+.attendance-list-header
+{
+    font-size: 16px;
+
+    padding: 0 15px 0 15px;
+
     color: #666;
     border-color: #bce8f1;
-    font-size: 16px;
-    padding: 0 15px 0 15px;
+    background-color: rgb(217, 237, 247);
+}
+
+.attendance-list-body
+{
+    overflow: hidden;
+
+    padding: 0;
+}
+
+.attendance-kubun,
+.attendance-memo,
+.attendance-registration-user,
+.attendance-registration-date
+{
+    margin-bottom: -10000px;
+    padding: 12px 0 10012px 10px;
+
+    border-left: 1px solid #ddd;
+}
+
+.attendance-edit-button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    top: 4px;
+    left: 4px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgb( 76, 175, 80);
+    cursor: pointer;
+}
+
+.attendance-edit-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.attendance-kubun {
+    padding-left: 50px;
+}
+
+/*
+ * media-queries
+ */
+
+@media (max-width: 767px)
+{
+    .attendance-kubun,
+    .attendance-memo,
+    .attendance-registration-user,
+    .attendance-registration-date
+    {
+        margin-bottom: 0;
+        padding: 12px 0 10px 12px;
+    }
+    .attendance-registration-user,
+    .attendance-registration-date
+    {
+        border-top: 1px solid #ddd;
+    }
+
+    .attendance-kubun {
+        padding-left: 50px;
+    }
 }
