@@ -29,7 +29,7 @@ $this->Html->css('connectyee.dashboard.css', array('inline' => false));
                             <div class="panel-link">
                                 <p class="webmail-title">&nbsp;</p>
                                 <p class="wemail-from">&nbsp;</p>
-                            <div>
+                            </div>
                         </div>
 <?php endif; ?>
                     </div>

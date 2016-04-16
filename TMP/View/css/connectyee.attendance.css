@@ -36,32 +36,26 @@
     border-left: 1px solid #ddd;
 }
 
-.attendance-edit-button {
+.attendance-edit-button
+{
+    font-size: 16px;
+
     position: absolute;
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    top: 4px;
+    top: 8px;
     left: 4px;
-    line-height: 40px;
+
+    width: 40px;
+    height: 30px;
+    padding: 1px 0 0 0;
+
     text-align: center;
-    font-size: 20px;
-    color: #fff;
-    background-color: rgb( 76, 175, 80);
-    cursor: pointer;
 }
 
-.attendance-edit-button:hover {
-    color: #fff;
-    text-decoration: none;
-}
-
-
-.attendance-kubun {
+.attendance-kubun
+{
     padding-left: 50px;
 }
+
 
 /*
  * media-queries
@@ -70,20 +64,26 @@
 @media (max-width: 767px)
 {
     .attendance-kubun,
-    .attendance-memo,
-    .attendance-registration-user,
-    .attendance-registration-date
+    .attendance-memo
     {
         margin-bottom: 0;
-        padding: 12px 0 10px 12px;
+        padding: 12px 0 12px 10px;
     }
     .attendance-registration-user,
     .attendance-registration-date
     {
         border-top: 1px solid #ddd;
     }
-
-    .attendance-kubun {
+    .attendance-kubun
+    {
         padding-left: 50px;
+    }
+}
+
+@media (max-width: 479px)
+{
+    .attendance-kubun
+    {
+        font-size: 11px;
     }
 }
