@@ -1,10 +1,58 @@
 /*
+ * select date
+ */
+
+#select-date-wrapper
+{
+    position: relative;
+
+    height: 40px;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+#select-date-button
+{
+    font-size: 13px;
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: 100px;
+    height: 30px;
+    padding: 0;
+}
+
+#select-date-label
+{
+    font-size: 18px;
+    font-weight: 100;
+
+    position: absolute;
+    top: 4px;
+    left: 120px;
+
+    width: 150px;
+    height: 30px;
+    padding-top: 2px;
+
+    text-align: center;
+
+    color: #666;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/*
  * attendance-list
  */
 
 .attendance-list-wrapper
 {
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .attendance-list-header
