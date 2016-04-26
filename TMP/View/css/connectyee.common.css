@@ -492,9 +492,13 @@ body
     {
         display: none;
     }
+    #btn-wrapper
+    {
+        height: 64px;
+    }
     #btn-wrapper .btn-group
     {
-        margin: 15px 0 0 5px;
+        margin: 13px 0 0 5px;
     }
     #btn-wrapper .btn
     {

@@ -26,7 +26,7 @@ $(function() {
     });
 
     /*
-     * Calendar MoveButton Click
+     * Calendar MoveButton click
      */
     $('#btn-prev-month, #btn-next-month').on('click', function() {
         var selYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
@@ -62,7 +62,7 @@ $(function() {
 
         if (loading === true) {
             $('div#date-info-wrapper').block({
-                message: '<img src="./img/dashboard.date-info-loading.gif">',
+                message: '<img src="./img/common.loading.gif">',
                 overlayCSS: {
                     backgroundColor: '#fff',
                     opacity: 0.6
