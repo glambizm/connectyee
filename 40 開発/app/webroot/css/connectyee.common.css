@@ -283,7 +283,8 @@ body
     overflow: hidden;
 }
 
-#side-bar-desktop .side-bar-item:hover {
+#side-bar-desktop .side-bar-item:hover
+{
     background: rgb(92, 176, 246);
 }
 
@@ -337,6 +338,17 @@ body
 
 
 /*
+ * List-General
+ */
+
+#page-content-wrapper .list-group-item,
+#page-content-wrapper .panel-heading
+{
+    border-radius: 0;
+}
+
+
+/*
  * hover
  */
 
@@ -381,16 +393,63 @@ body
 
 
 /*
+ * glyphicon
+*/
+
+.header-icon
+{
+    font-size: 20px;
+}
+
+
+/*
  * connectyee icons
  */
 
-[class^="icon-"], [class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-']
+{
     display: inline-block;
 }
 
 .connectyee-icons
 {
     font-size: 18px;
+}
+
+
+/*
+ * toolbar-btn-area
+ */
+
+#btn-wrapper
+{
+    height: 70px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    background-color: rgb(255, 255, 255);
+}
+
+#btn-wrapper .btn-group
+{
+    margin: 15px 0 0 15px;
+}
+
+#btn-wrapper .btn
+{
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.btn .connectyee-icons
+{
+    font-size: 18px;
+
+    margin-top: 11px;
+
+    color: #666;
 }
 
 
@@ -432,6 +491,20 @@ body
     #page-title-container
     {
         display: none;
+    }
+    #btn-wrapper
+    {
+        height: 54px;
+    }
+    #btn-wrapper .btn-group
+    {
+        margin: 8px 0 0 5px;
+    }
+    #btn-wrapper .btn
+    {
+        width: 37px;
+        height: 37px;
+        padding: 0;
     }
 }
 

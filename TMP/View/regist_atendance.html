@@ -36,7 +36,7 @@
                     <span id="menu-btn-bottom" class="menu-btn"></span>
                 </div>
             </div>
-            <div id="page-title-container" class="pull-left"><span class="header-icon glyphicon glyphicon-calendar" aria-hidden="true"></span></span><span id="page-title">AttendanceList</span></div>
+            <div id="page-title-container" class="pull-left"><span class="header-icon glyphicon glyphicon-calendar" aria-hidden="true"></span></span><span id="page-title">RegistAttendance</span></div>
             <div id="logout-container" class="pull-right">
                 <button id="logout-btn" type="button" class="btn btn-default"><a href="#"><span id="logout-img" class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></button>
             </div>
@@ -161,68 +161,69 @@
     <div id="page-content-wrapper">
         <div id="btn-wrapper" class="panel panel-default">
             <div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="新規登録" href="#">
-                    <span class="connectyee-icons icon-interface" aria-hidden="true"></span>
+                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="勤怠予定一覧" href="#">
+                    <span class="connectyee-icons glyphicon glyphicon-list" aria-hidden="true"></span>
                 </a>
             </div>
         </div>
-        <div id="attendance-wrapper">
-            <div id="select-date-wrapper" class="panel panel-default">
-                <button type="button" id="select-date-button" class="btn btn-success">対象日</button>
-                <span id="select-date-label">XXXX/XX/XX</span>
-            </div>
-            <div class="attendance-list-wrapper panel panel-default">
-                <div class="list-group">
-                    <div class="container-fluid">
-                        <div href="#" class="attendance-list-header list-group-item row">
-                            ＸＸＸＸＸ　ＸＸＸＸＸ
-                        </div>
-                        <div href="#" class="attendance-list-body list-group-item row">
-                            <div class="attendance-kubun col-sm-2 col-xs-5">
-                                <a class="attendance-edit-button btn btn-success glyphicon glyphicon-edit" data-toggle="tooltip" data-container="body" data-placement="top" title="編集"></a>ＸＸＸＸ
-                            </div>
-                            <div class="attendance-memo col-sm-6 col-xs-7">ＸＸＸ</div>
-                            <div class="attendance-registration-user col-sm-2 col-xs-7">ＸＸＸＸＸ　ＸＸＸＸＸ</div>
-                            <div class="attendance-registration-date col-sm-2 col-xs-5">XX/XX/XX XX:XX</div>
-                        </div>
-                        <div href="#" class="attendance-list-body list-group-item row">
-                            <div class="attendance-kubun col-sm-2 col-xs-5">
-                                <a class="attendance-edit-button btn btn-success glyphicon glyphicon-edit" data-toggle="tooltip" data-container="body" data-placement="top" title="編集"></a>ＸＸＸＸ
-                            </div>
-                            <div class="attendance-memo col-sm-6 col-xs-7">ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ</div>
-                            <div class="attendance-registration-user col-sm-2 col-xs-7">ＸＸＸＸＸ　ＸＸＸＸＸ</div>
-                            <div class="attendance-registration-date col-sm-2 col-xs-5">XX/XX/XX XX:XX</div>
-                        </div>
-                        <div href="#" class="attendance-list-body list-group-item row">
-                            <div class="attendance-kubun col-sm-2 col-xs-5">ＸＸＸＸ</div>
-                            <div class="attendance-memo col-sm-6 col-xs-7">ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ</div>
-                            <div class="attendance-registration-user col-sm-2 col-xs-7">ＸＸＸＸＸ　ＸＸＸＸＸ</div>
-                            <div class="attendance-registration-date col-sm-2 col-xs-5">XX/XX/XX XX:XX</div>
-                        </div>
+        <div id="regist-attendance-wrapper" class="panel panel-default clearfix">
+            <form>
+                <div id="target-users-wrapper">
+                    <div id="select-target-users-wrapper">
+                        <select id="select-target-users">
+                            <option value="0">　</option>
+                            <option value="1" selected="selected">管理　太郎</option>
+                            <option value="2">利用　次郎</option>
+                            <option value="3">管理　三郎</option>
+                            <option value="4">dummy4</option>
+                            <option value="5">dummy5</option>
+                            <option value="6">dummy6</option>
+                            <option value="7">dummy7</option>
+                        </select>
                     </div>
+                    <span id="label-target-user"></span>
                 </div>
-            </div>
-            <div class="attendance-list-wrapper panel panel-default">
-                <div class="list-group">
-                    <div class="container-fluid">
-                        <div href="#" class="attendance-list-header list-group-item row">
-                            ＸＸＸＸＸ　ＸＸＸＸＸ
-                        </div>
-                        <div href="#" class="attendance-list-body list-group-item row">
-                            <div class="attendance-kubun col-sm-2 col-xs-5">
-                                <a class="attendance-edit-button btn btn-success glyphicon glyphicon-edit" data-toggle="tooltip" data-container="body" data-placement="top" title="編集"></a>ＸＸＸＸ
-                            </div>
-                            <div class="attendance-memo col-sm-6 col-xs-7">ＸＸＸ</div>
-                            <div class="attendance-registration-user col-sm-2 col-xs-7">ＸＸＸＸＸ　ＸＸＸＸＸ</div>
-                            <div class="attendance-registration-date col-sm-2 col-xs-5">XX/XX/XX XX:XX</div>
-                        </div>
-                        <div href="#" class="attendance-list-body list-group-item row">
-                            <div class="attendance-kubun col-sm-2 col-xs-5">ＸＸＸＸ</div>
-                            <div class="attendance-memo col-sm-6 col-xs-7">ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ</div>
-                            <div class="attendance-registration-user col-sm-2 col-xs-7">ＸＸＸＸＸ　ＸＸＸＸＸ</div>
-                            <div class="attendance-registration-date col-sm-2 col-xs-5">XX/XX/XX XX:XX</div>
-                        </div>
+                <div id="target-date-wrapper">
+                    <div id="target-date-button-wrapper">
+                        <button type="button" id="target-date-button" class="btn btn-success">対象日</button>
                     </div>
+                    <span id="label-target-date"></span>
+                    <input type="hidden" id="target-date" name="target_date" readonly="readonly"></input>
+                </div>
+                <div id="attendance-kubun-wrapper">
+                    <div id="select-attendance-kubun-wrapper">
+                        <select id="select-attendance-kubun">
+                            <option value="0">　</option>
+                            <option value="1" selected="selected">休み</option>
+                            <option value="2">現場出社</option>
+                            <option value="3">午前休</option>
+                            <option value="4">午後休</option>
+                            <option value="5">遅刻</option>
+                            <option value="6">早退</option>
+                            <option value="7">その他</option>
+                        </select>
+                    </div>
+                    <span id="label-attendance-kubun"></span>
+                </div>
+                <div id="attendance-memo-wrapper">
+                    <input type="text" id="attendance-memo" class="form-control" name="memo" maxlength="40" placeholder="備考を入力してください。"></input>
+                </div>
+                <div class="clearfix">
+                    <button type="submit" id="btn-regist" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="登録"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="alertModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                 </div>
             </div>
         </div>
@@ -236,7 +237,7 @@
     <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-datepicker.ja.min.js"></script>
     <script type="text/javascript" src="js/connectyee.common.js"></script>
-    <script type="text/javascript" src="js/connectyee.attendance.list.js"></script>
+    <script type="text/javascript" src="js/connectyee.attendance.regist.js"></script>
     <script type="text/javascript" src="js/classie.js"></script>
     <script type="text/javascript" src="js/svgLoader.js"></script>
 </body>

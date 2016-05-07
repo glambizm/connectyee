@@ -494,11 +494,11 @@ body
     }
     #btn-wrapper
     {
-        height: 64px;
+        height: 54px;
     }
     #btn-wrapper .btn-group
     {
-        margin: 13px 0 0 5px;
+        margin: 8px 0 0 5px;
     }
     #btn-wrapper .btn
     {
