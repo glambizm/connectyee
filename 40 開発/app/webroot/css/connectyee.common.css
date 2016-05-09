@@ -417,6 +417,10 @@ body
     font-size: 18px;
 }
 
+button[type="submit"]>.connectyee-icons {
+    font-size: 30px;
+    margin-top: 5px;
+}
 
 /*
  * toolbar-btn-area

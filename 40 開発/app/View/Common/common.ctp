@@ -8,12 +8,14 @@ foreach ($side_bar_info as $val) {
         foreach ($val['child'] as $val_child) {
             if ($val_child['href'] === $this_path) {
                 $this->assign('title', $val_child['sub-title']);
+                $this->assign('icon', str_replace('[icon-class]', 'header-icon', $val_child['icon']));
                 break;
             }
         }
     } else {
         if ($val['href'] === $this_path) {
             $this->assign('title', $val['sub-title']);
+            $this->assign('icon', str_replace('[icon-class]', 'header-icon', $val['icon']));
             break;
         }
     }
@@ -57,7 +59,7 @@ foreach ($side_bar_info as $val) {
 <?php if ($val['display'] !== true) {continue;} ?>
         <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
-            <?php echo $val['icon']; ?>
+            <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
             <h6 class="side-bar-desktop-heading list-group-item-heading"><?php echo $val['title']; ?></h6>
             <p class="side-bar-desktop-text list-group-item-text"><?php echo $val['sub-title']; ?></p>
 <?php if ($val['child'] !== null): ?>
@@ -70,7 +72,7 @@ foreach ($side_bar_info as $val) {
 <?php if ($child_val['display'] !== true) {continue;} ?>
             <a class="side-bar-item side-bar-item-open list-group-item" href="<?php echo $child_val['href']; ?>">
                 <span class="ripple-effect"></span>
-                <?php echo $child_val['icon']; ?>
+                <?php echo str_replace('[icon-class]', 'side-bar-icon', $child_val['icon']); ?>
                 <h6 class="side-bar-desktop-heading list-group-item-heading"><?php echo $child_val['title']; ?></h6>
                 <p class="side-bar-desktop-text list-group-item-text"><?php echo $child_val['sub-title']; ?></p>
 <?php if ($child_val['name'] === 'ReceivingMails'): ?>
@@ -89,7 +91,7 @@ foreach ($side_bar_info as $val) {
 <?php if ($val['display'] !== true) {continue;} ?>
         <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
-            <?php echo $val['icon']; ?>
+            <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
         </a>
 <?php if ($val['child'] !== null): ?>
         <div data-menu-child="<?php echo $val['menu-parent'] ?>">
@@ -97,7 +99,7 @@ foreach ($side_bar_info as $val) {
 <?php if ($child_val['display'] !== true) {continue;} ?>
             <a class="side-bar-item side-bar-item-open list-group-item" href="<?php echo $child_val['href']; ?>">
                 <span class="ripple-effect"></span>
-                <?php echo $child_val['icon']; ?>
+                <?php echo str_replace('[icon-class]', 'side-bar-icon', $child_val['icon']); ?>
             </a>
 <?php endforeach; ?>
         </div>
