@@ -12,6 +12,7 @@ class DashBoardsController extends AppController {
     private $PostList;
     private $ScheduleList;
     private $ReceivingMailList;
+    private $AttendanceList;
     private $loginMsg;
 
     public function index() {
@@ -69,8 +70,35 @@ class DashBoardsController extends AppController {
         $this->redirect(array('controller'=>'DashBoards', 'action'=>'index'));
     }
 
-    public function attendance() {
-        $this->redirect('http://www.takumicorp.jp/TakumiDev/prg/kintai_kanri.php?new_to_old=1&account=' . $this->LoginUser->getAccount());
+    public function getAttendance() {
+        if ($this->request->is('ajax') === true) {
+            $this->autoRender = false;
+
+            $where = array('Attendance.target_date' => $this->request->data['target_date']);
+            $order = '';
+            $count = 0;
+
+            $this->AttendanceList = new OrgAttendanceList($where, $order, $count);
+
+            $Result = $this->AttendanceList->getLatestItems();
+
+            $ReturnJson = array();
+            foreach ($Result as $val) {
+                $ReturnJson[]['TargetUserId']       = $val->TargetUser->getUserId();
+                $ReturnJson[]['TargetUser']         = $val->TargetUser->getFullName();
+                $ReturnJson[]['attendanceKubun']    = $val->getAttendanceKubunName();
+                $ReturnJson[]['memo']               = $val->getMemo(true);
+                $ReturnJson[]['RegistrationUser']   = $val->getRegistrationUser()->getFullName();
+
+                if ($val->getRegistrationDate() instanceof DateTime) {
+                    $ReturnJson[]['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
+                } else {
+                    $ReturnJson[]['RegistrationDate'] = '';
+                }
+            }
+
+            return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));
+        }
     }
 }
 ?>
