@@ -57,6 +57,7 @@ foreach ($side_bar_info as $val) {
     <div id="side-bar-desktop" class="list-group">
 <?php foreach ($side_bar_info as $key=>$val): ?>
 <?php if ($val['display'] !== true) {continue;} ?>
+<?php if ($val['authority'] > $LoginUser->getAuthority()) {continue;} ?>
         <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
             <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
@@ -82,6 +83,7 @@ foreach ($side_bar_info as $val) {
 <?php endforeach; ?>
         </div>
 <?php endif; ?>
+<?php endif; ?>
 <?php endforeach; ?>
     </div>
 </div>
@@ -89,6 +91,7 @@ foreach ($side_bar_info as $val) {
     <div id="side-bar-tablet" class="list-group">
 <?php foreach ($side_bar_info as $key=>$val): ?>
 <?php if ($val['display'] !== true) {continue;} ?>
+<?php if ($val['authority'] > $LoginUser->getAuthority()) {continue;} ?>
         <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
             <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
@@ -103,6 +106,7 @@ foreach ($side_bar_info as $val) {
             </a>
 <?php endforeach; ?>
         </div>
+<?php endif; ?>
 <?php endif; ?>
 <?php endforeach; ?>
     </div>
