@@ -148,6 +148,7 @@
         'W'=>' initial color-w',
         'X'=>' initial color-x',
         'Y'=>' initial color-y',
-        'Z'=>' initial color-z'
+        'Z'=>' initial color-z',
+        '?'=>' initial color-a'
     );
 ?>

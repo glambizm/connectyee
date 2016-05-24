@@ -13,6 +13,7 @@ class OrgUser {
     private $fullName;
     private $fullNameKana;
     private $mailAddress;
+    private $authority;
 
     function __construct($userInfo = null) {
         if ($userInfo !== null) {
@@ -22,6 +23,7 @@ class OrgUser {
             $this->fullName     = $userInfo['User']['full_name'];
             $this->fullNameKana = $userInfo['User']['full_name_kana'];
             $this->mailAddress  = $userInfo['User']['mail_address'];
+            $this->authority    = $userInfo['User']['authority'];
         } else {
             $this->id           = -1;
             $this->account      = '';
@@ -29,6 +31,7 @@ class OrgUser {
             $this->fullName     = '';
             $this->fullNameKana = '';
             $this->mailAddress  = '';
+            $this->authority    = -1;
         }
 
         $this->User = ClassRegistry::init('User');
@@ -110,6 +113,10 @@ class OrgUser {
         }
     }
 
+    public function getAuthority() {
+        return $this->authority;
+    }
+
     public function getInitial() {
         if ((mb_strpos($this->getFullNameKana(), 'ﾞ') === 1) || (mb_strpos($this->getFullNameKana(), 'ﾟ') === 1)) {
             $top_str = mb_substr($this->fullNameKana, 0, 2, 'utf-8');
@@ -162,7 +169,7 @@ class OrgUser {
             case 'x': case 'X':                                     return 'X';
             case 'y': case 'Y':                                     return 'Y';
             case 'z': case 'Z':                                     return 'Z';
-            default:                                                return 'A';
+            default:                                                return '?';
         }
     }
 }
