@@ -22,19 +22,19 @@ $initial_color = Configure::read('initial_color');
 <?php if (count($ReceivingMailList) > 0): ?>
     <div id="mail-wrapper" class="panel panel-default">
         <div class="container-fluid">
-<?php foreach ($ReceivingMailList as $val): ?>
-<?php
-    $SendingUser = $val->getSendingUser();
-    $initial = '&nbsp;';
-    $initial_class = '';
-    $fullName = '&nbsp';
-    if ($SendingUser !== null) {
-        $initial = $SendingUser->getInitial();
-        $initial_class = $initial_color[$SendingUser->getInitial()];
-        $fullName = $SendingUser->getFullName(true);
-    }
-    $SendingTime = $val->getSendingTime();
-?>
+    <?php foreach ($ReceivingMailList as $val): ?>
+        <?php
+            $SendingUser = $val->getSendingUser();
+            $initial = '&nbsp;';
+            $initial_class = '';
+            $fullName = '&nbsp';
+            if ($SendingUser !== null) {
+                $initial = $SendingUser->getInitial();
+                $initial_class = $initial_color[$SendingUser->getInitial()];
+                $fullName = $SendingUser->getFullName(true);
+            }
+            $SendingTime = $val->getSendingTime();
+        ?>
             <a href="<?php echo Router::url(array('controller'=>'WebMails', 'action'=>'displayReceivingMail', $val->getId())); ?>">
                 <div class="mail-list-item<?php if ($val->getUnreadKubun() === 1) {echo ' list-unread';} ?> hvr-shadow row">
                     <div class="col-initial col-md-2 col-sm-12 col-xs-12"><span class="<?php echo $initial_class ?> text-center"><?php echo $initial; ?></span><div class="full-name"><?php echo $fullName; ?></div></div>
@@ -42,7 +42,7 @@ $initial_color = Configure::read('initial_color');
                     <div class="col-date col-md-3 col-sm-3 col-xs-12"><?php echo $SendingTime->format('Y/n/j(D)') ?><br><?php echo $SendingTime->format('G:i')?></div>
                 </div>
             </a>
-<?php endforeach; ?>
+    <?php endforeach; ?>
         </div>
     </div>
 <?php endif; ?>

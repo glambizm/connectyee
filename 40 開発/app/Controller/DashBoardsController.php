@@ -74,7 +74,9 @@ class DashBoardsController extends AppController {
         if ($this->request->is('ajax') === true) {
             $this->autoRender = false;
 
-            $where = array('Attendance.target_date' => $this->request->data['target_date']);
+            $TargetDate = new DateTime($this->request->data['target_date']);
+
+            $where = array('Attendance.target_date' => $TargetDate->format('Y/m/d'));
             $order = '';
             $count = 0;
 

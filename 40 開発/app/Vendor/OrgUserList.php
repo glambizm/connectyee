@@ -1,10 +1,10 @@
 <?php
-
 /*
  * OrgUserList.php
  * History
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
 */
+
 class OrgUserList {
     public $Items;
     private $User;

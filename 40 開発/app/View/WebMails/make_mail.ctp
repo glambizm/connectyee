@@ -22,13 +22,13 @@ $OriginalSendingUser = $OriginalMail->getSendingUser();
                 <div id="select-receiving-users-wrapper">
                     <select id="select-receiving-users" multiple="multiple">
 <?php foreach ($UserList as $val): ?>
-<?php
-    if ($this->action === 'replyMail') {
-        $selected = $OriginalSendingUser->getUserId() === $val->getUserId() ? ' selected' : '';
-    } else {
-        $selected = '';
-    }
-?>
+    <?php
+        if ($this->action === 'replyMail') {
+            $selected = $OriginalSendingUser->getUserId() === $val->getUserId() ? ' selected' : '';
+        } else {
+            $selected = '';
+        }
+    ?>
                         <option value="<?php echo $val->getUserId(); ?>"<?php echo $selected; ?>><?php echo $val->getFullName(); ?></option>
 <?php endforeach; ?>
                     </select>

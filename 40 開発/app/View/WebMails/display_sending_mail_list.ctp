@@ -22,23 +22,23 @@ $initial_color = Configure::read('initial_color');
 <?php if (count($SendingMailList) > 0): ?>
     <div id="mail-wrapper" class="panel panel-default">
         <div class="container-fluid">
-<?php foreach ($SendingMailList as $val): ?>
-<?php
-    $ReceivingUserList = $val->getReceivingUserList();
-    $initial = '&nbsp;';
-    $initial_class = '';
-    $fullName = '&nbsp';
-    if (count($ReceivingUserList) === 1) {
-        $initial = $ReceivingUserList[0]->getInitial();
-        $initial_class = $initial_color[$ReceivingUserList[0]->getInitial()];
-        $fullName = $ReceivingUserList[0]->getFullName(true);
-    } else if (count($ReceivingUserList) > 1) {
-        $initial = $ReceivingUserList[0]->getInitial() . '.';
-        $initial_class = $initial_color[$ReceivingUserList[0]->getInitial()];
-        $fullName = $ReceivingUserList[0]->getFullName(true). '...';
-    }
-    $SendingTime = $val->getSendingTime();
-?>
+    <?php foreach ($SendingMailList as $val): ?>
+        <?php
+            $ReceivingUserList = $val->getReceivingUserList();
+            $initial = '&nbsp;';
+            $initial_class = '';
+            $fullName = '&nbsp';
+            if (count($ReceivingUserList) === 1) {
+                $initial = $ReceivingUserList[0]->getInitial();
+                $initial_class = $initial_color[$ReceivingUserList[0]->getInitial()];
+                $fullName = $ReceivingUserList[0]->getFullName(true);
+            } else if (count($ReceivingUserList) > 1) {
+                $initial = $ReceivingUserList[0]->getInitial() . '.';
+                $initial_class = $initial_color[$ReceivingUserList[0]->getInitial()];
+                $fullName = $ReceivingUserList[0]->getFullName(true). '...';
+            }
+            $SendingTime = $val->getSendingTime();
+        ?>
             <a href="<?php echo Router::url(array('controller'=>'WebMails', 'action'=>'displaySendingMail', $val->getId())); ?>">
                 <div class="mail-list-item hvr-shadow row">
                     <div class="col-initial col-md-2 col-sm-12 col-xs-12"><span class="<?php echo $initial_class ?> text-center"><?php echo $initial; ?></span><div class="full-name"><?php echo $fullName; ?></div></div>
@@ -46,7 +46,7 @@ $initial_color = Configure::read('initial_color');
                     <div class="col-date col-md-3 col-sm-3 col-xs-12"><?php echo $SendingTime->format('Y/n/j(D)') ?><br><?php echo $SendingTime->format('G:i')?></div>
                 </div>
             </a>
-<?php endforeach; ?>
+    <?php endforeach; ?>
         </div>
     </div>
 <?php endif; ?>
