@@ -21,8 +21,8 @@
  */
 
 App::uses('Controller', 'Controller');
-App::uses('Debugger', 'Utility'); 
-App::uses('Security', 'Utility'); 
+App::uses('Debugger', 'Utility');
+App::uses('Security', 'Utility');
 App::uses('CakeEmail', 'Network/Email');
 App::import('Vendor', 'OrgUserList');
 App::import('Vendor', 'OrgUser');
@@ -68,6 +68,37 @@ class AppController extends Controller {
         $this->UserList = new OrgUserList();
 
         $_SESSION['user_list'] = serialize($this->UserList);
+
+        $menu_info = Configure::read('menu-info');
+        $this_path = Router::url(array('controller'=>$this->name, 'action'=>$this->action));
+        $authority = -1;
+        foreach ($menu_info as $val) {
+            if ($val['child'] !== null) {
+                foreach ($val['child'] as $val_child) {
+                    if ($val_child['href'] === $this_path) {
+                        $authority = $val_child['authority'];
+                        break;
+                    }
+                }
+            } else {
+                if ($val['href'] === $this_path) {
+                    $authority = $val['authority'];
+                    break;
+                }
+            }
+
+            if ($authority >= 0) {
+                break;
+            }
+        }
+
+        if ($authority < 0) {
+            return;
+        }
+
+        if ($authority > $this->LoginUser->getAuthority()) {
+            $this->redirect(array('controller'=>'DashBoards', 'action'=>'index'));
+        }
     }
 
     public function beforeRender() {

@@ -1,6 +1,6 @@
 <?php
 Configure::load("connectyee_config.php");
-$side_bar_info = Configure::read('side-bar');
+$side_bar_info = Configure::read('menu-info');
 
 $this_path = Router::url(array('controller'=>$this->name, 'action'=>$this->action));
 foreach ($side_bar_info as $val) {

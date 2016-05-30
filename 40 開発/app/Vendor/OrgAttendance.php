@@ -93,6 +93,10 @@ class OrgAttendance {
         return false;
     }
 
+    public function getId() {
+        return intval($this->id);
+    }
+
     public function getTargetUser() {
         return $this->TargetUser;
     }
@@ -102,7 +106,7 @@ class OrgAttendance {
     }
 
     public function getAttendanceKubun() {
-        return $this->attendanceKubun;
+        return intval($this->attendanceKubun);
     }
 
     public function getAttendanceKubunName() {

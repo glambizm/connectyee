@@ -1,7 +1,7 @@
 <?php
     $config['SecurityKey'] = '9SQHlWZM6hhihq8uQIwJ6is4E0rj9otz';
 
-    $config['side-bar'] = array(
+    $config['menu-info'] = array(
         0=>array(   'display'=>true,
                     'name'=>'DashBoards',
                     'title'=>'ダッシュボード',
