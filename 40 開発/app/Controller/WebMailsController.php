@@ -128,7 +128,7 @@ class WebMailsController extends AppController {
         if ($this->action === 'replyMail') {
             $Mail->setSubject('Re:' . $Mail->getSubject());
             $Mail->setBody( "\n\n\n" . '---------- <以下、元メッセージ> ----------' . "\n" .
-                            '送信者：' . $SendingUser->getFullName() . "\n" .
+                            '送信者：' . $SendingUser->getFullName(true) . "\n" .
                             '送信日時：' . $SendingTime->format('Y/n/j(D) G:i') . "\n" .
                             '件名：' . $subject . "\n\n" .
                             $Mail->getBody()
@@ -136,7 +136,7 @@ class WebMailsController extends AppController {
         } else if ($this->action ==='forwardMail') {
             $Mail->setSubject('Fw:' . $Mail->getSubject());
             $Mail->setBody( "\n\n\n" . '---------- <以下、元メッセージ> ----------' . "\n" .
-                            '送信者：' . $SendingUser->getFullName() . "\n" .
+                            '送信者：' . $SendingUser->getFullName(true) . "\n" .
                             '送信日時：' . $SendingTime->format('Y/n/j(D) G:i') . "\n" .
                             '件名：' . $subject . "\n\n" .
                             $Mail->getBody()

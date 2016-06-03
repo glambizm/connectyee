@@ -89,7 +89,7 @@ class OrgSendingMail extends OrgMail  {
         }
 
         $view_vars = array( 'subject' => $this->subject,
-                            'sending_user_name' => $this->SendingUser->getFullName(),
+                            'sending_user_name' => $this->SendingUser->getFullName(true),
                             'url' => Router::url('/', true));
 
         foreach ($this->ReceivingUserList as $val) {

@@ -43,12 +43,13 @@ class AttendancesController extends AppController {
             $ReturnJson = array();
             $ReturnJson['AttendanceList'] = array();
             foreach ($Result as $val) {
+                $ReturnJson['AttendanceList'][]['id']                 = $val->getId();
                 $ReturnJson['AttendanceList'][]['TargetUserId']       = $val->TargetUser->getUserId();
-                $ReturnJson['AttendanceList'][]['TargetUser']         = $val->TargetUser->getFullName();
+                $ReturnJson['AttendanceList'][]['TargetUser']         = $val->TargetUser->getFullName(true);
                 $ReturnJson['AttendanceList'][]['attendanceKubun']    = $val->getAttendanceKubunName();
                 $ReturnJson['AttendanceList'][]['memo']               = $val->getMemo(true);
                 $ReturnJson['AttendanceList'][]['RegistrationUserId']   = $val->getRegistrationUser()->getUserId();
-                $ReturnJson['AttendanceList'][]['RegistrationUserName']   = $val->getRegistrationUser()->getFullName();
+                $ReturnJson['AttendanceList'][]['RegistrationUserName']   = $val->getRegistrationUser()->getFullName(true);
                 if ($val->getRegistrationDate() instanceof DateTime) {
                     $ReturnJson['AttendanceList'][]['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
                 } else {

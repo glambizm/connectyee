@@ -90,6 +90,16 @@ class OrgAttendanceList {
         $cmp = strnatcmp($a->getTargetUser()->getFullNameKana(), $b->getTargetUser()->getFullNameKana());
 
         if ($cmp === 0) {
+            if ($a->getTargetUser().getUserId() > $b->getTargetUser->getUserId()) {
+                $cmp = 1;
+            } else if ($a->getTargetUser().getUserId() < $b->getTargetUser->getUserId()) {
+                $cmp = -1;
+            } else {
+                $cmp = 0;
+            }
+        }
+
+        if ($cmp === 0) {
             if ($a->getRegistrationDate()->getTimestamp() > $b->getRegistrationDate()->getTimestamp()) {
                 $cmp = -1;
             } else if ($a->getRegistrationDate()->getTimestamp() < $b->getRegistrationDate()->getTimestamp()) {

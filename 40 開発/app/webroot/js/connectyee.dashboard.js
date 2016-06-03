@@ -16,7 +16,7 @@ $(function() {
         todayHighlight: true,
         autoclose: true
     });
-    changeCalendar(new Date(), true, false);
+    changeCalendar(new Date(), true);
 
     /*
      * Datepicker changeDate
@@ -56,20 +56,17 @@ $(function() {
     /*
      * changeCalendar
      */
-    function changeCalendar(selDate, remake, loading) {
+    function changeCalendar(selDate, remake) {
         remake = remake === undefined ? true : remake;
-        loading = loading === undefined ? true : loading;
 
-        if (loading === true) {
-            $('div#date-info-wrapper').block({
-                message: '<img src="./img/common.loading.gif">',
-                overlayCSS: {
-                    backgroundColor: '#fff',
-                    opacity: 0.6
-                }
-            });
-            $('.blockElement').css('border', '').css('background-color', '');
-        }
+        $('div#date-info-wrapper').block({
+            message: '<img src="./img/common.loading.gif">',
+            overlayCSS: {
+                backgroundColor: '#fff',
+                opacity: 0.6
+            }
+        });
+        $('.blockElement').css('border', '').css('background-color', '');
 
         var orgYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
         var orgMonth = $('#display-year-month').text().substr(-2);
@@ -110,9 +107,39 @@ $(function() {
             }
         }
 
-        if (loading === true) {
-            $('div#date-info-wrapper').unblock();
-        }
+        var ajaxParam = {
+            url: location.href + '/getAttendance',
+            type: 'POST',
+            data: {target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2)}
+        };
+
+        ajaxProc(ajaxParam)
+            .done(function(result) {
+                $.each(result, function(i, val){
+                    if ($.isPlainObject(val) === false) {
+                        return ture;
+                    }
+
+                    var attendance_items = $('<div></div>', {
+                        'class': 'attendance-items'
+                    }).appendTo($('#attendance-wrapper'));
+
+                    var attendance_info = $('<p></p>', {
+                        'class': '"attendance-info'
+                    }).text(val.TargetUser + '：' + val.attendanceKubun).appendTo(attendance_items);
+
+                    var attendance_memo = $('<p></p>', {
+                        'class': 'attendance-memo'
+                    }).text(val.memo).appendTo(attendance_items);
+
+                    var attendance_regist_info = $('<p></p>', {
+                        'class': 'attendance-regist-info'
+                    }).text('by:' + $val.RegistrationUser + val.RegistrationDate).appendTo(attendance_items);
+                });
+            })
+            .always(function() {
+                $('div#date-info-wrapper').unblock();
+            });
     }
 
     /*

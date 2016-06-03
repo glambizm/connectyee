@@ -29,7 +29,7 @@ $OriginalSendingUser = $OriginalMail->getSendingUser();
             $selected = '';
         }
 ?>
-                        <option value="<?php echo $val->getUserId(); ?>"<?php echo $selected; ?>><?php echo $val->getFullName(); ?></option>
+                        <option value="<?php echo $val->getUserId(); ?>"<?php echo $selected; ?>><?php echo $val->getFullName(true); ?></option>
 <?php endforeach; ?>
                     </select>
                 </div>
