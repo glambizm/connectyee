@@ -37,7 +37,7 @@ $(function() {
      * init select attendance kubun
      */
     $('#select-attendance-kubun').multiselect({
-        checkboxName: 'attendance-kubun',
+        checkboxName: 'attendance_kubun',
         buttonClass: 'select-attendance-kubun btn btn-success',
         buttonTitle: function(options, select) {
             var labels = [];
