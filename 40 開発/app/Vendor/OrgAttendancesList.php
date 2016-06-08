@@ -61,7 +61,7 @@ class OrgAttendanceList {
             $sortItems[] = clone $val;
         }
 
-        usort($sortItems);
+        usort($sortItems, 'cmp');
 
         $prevId = -1;
         foreach ($sortItems as $val) {
@@ -81,7 +81,7 @@ class OrgAttendanceList {
             $result[] = clone $val;
         }
 
-        usort($result);
+        usort($result, 'cmp');
 
         return $result;
     }

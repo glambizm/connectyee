@@ -62,6 +62,7 @@ class OrgUser {
         $this->fullName     = $result['User']['full_name'];
         $this->fullNameKana = $result['User']['full_name_kana'];
         $this->mailAddress  = $result['User']['mail_address'];
+        $this->authority    = $result['User']['authority'];
 
         session_destroy();
         session_start();

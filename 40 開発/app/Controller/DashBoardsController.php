@@ -86,17 +86,20 @@ class DashBoardsController extends AppController {
 
             $ReturnJson = array();
             foreach ($Result as $val) {
-                $ReturnJson[]['TargetUserId']       = $val->TargetUser->getUserId();
-                $ReturnJson[]['TargetUser']         = $val->TargetUser->getFullName(true);
-                $ReturnJson[]['attendanceKubun']    = $val->getAttendanceKubunName();
-                $ReturnJson[]['memo']               = $val->getMemo(true);
-                $ReturnJson[]['RegistrationUser']   = $val->getRegistrationUser()->getFullName(true);
+                $attendanceInfo = array();
+                $attendanceInfo['TargetUserId']       = $val->TargetUser->getUserId();
+                $attendanceInfo['TargetUser']         = $val->TargetUser->getFullName(true);
+                $attendanceInfo['attendanceKubun']    = $val->getAttendanceKubunName();
+                $attendanceInfo['memo']               = $val->getMemo(true);
+                $attendanceInfo['RegistrationUser']   = $val->getRegistrationUser()->getFullName(true);
 
                 if ($val->getRegistrationDate() instanceof DateTime) {
-                    $ReturnJson[]['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
+                    $attendanceInfo['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
                 } else {
-                    $ReturnJson[]['RegistrationDate'] = '';
+                    $attendanceInfo['RegistrationDate'] = '';
                 }
+
+                $ReturnJson[] = $attendanceInfo;
             }
 
             return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));

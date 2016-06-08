@@ -107,15 +107,4 @@ $(function() {
 
         return false;
     });
-
-    /*
-     * ajax
-     */
-    function ajaxProc(param) {
-        var defer = $.Deferred();
-        var ajaxParam = { dataType: 'json', success: defer.resolve, error: defer.reject };
-        $.extend(ajaxParam, param);
-        $.ajax(ajaxParam);
-        return defer.promise();
-    }
 });

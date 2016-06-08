@@ -16,7 +16,7 @@ $(function() {
 
     var NowDate = new Date();
     $('#select-date-label').datepicker('update', new Date(NowDate.getFullYear(), NowDate.getMonth(), NowDate.getDate()));
-    changeSelectDate(new Date($('#select-date-label').datepicker('getDate')));
+    changeSelectDate(new Date($('#select-date-label').datepicker('getDate')), false);
 
     /*
      * Datepicker changeDate
@@ -35,14 +35,27 @@ $(function() {
     /*
      * changeSelectDate
      */
-     function changeSelectDate(SelDate) {
-        $('div#attendance-wrapper').block({
-            message: '<img src="./img/common.loading.gif">',
-            overlayCSS: {
-                backgroundColor: '#fff',
-                opacity: 0.6
-            }
-        });
+     function changeSelectDate(SelDate, animate_loading) {
+        animate_loading = animate_loading === undefined ? true : animate_loading;
+
+        if (animate_loading === true) {
+            $('div#attendance-wrapper').block({
+                message: '<img src="../img/common.loading.gif">',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        } else {
+            $('div#attendance-wrapper').block({
+                message: '',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        }
+
         $('.blockElement').css('border', '').css('background-color', '');
 
         var selYear = ('0000' + eval(SelDate.getFullYear())).substr(-4);
@@ -63,11 +76,12 @@ $(function() {
 
         var ajaxParam = {
             url: location.href + '/displayAttendanceList',
+            dataType: 'json',
             type: 'POST',
             data: {target_date: selYear + '/' + selMonth + '/' + selDay}
         };
 
-        ajaxProc(ajaxParam)
+        $.ajax(ajaxParam)
             .done(function(result) {
                 if ($.isPlainObject(result) === false) {
                     return ture;
@@ -76,7 +90,7 @@ $(function() {
                 var prevUserId = -1;
                 var attendance_list_wrapper = [];
                 var j = -1;
-                for (var i=0; i<result.AttendanceList.length(); i++) {
+                for (var i=0; i<result.AttendanceList.length; i++) {
                     if ($.isPlainObject(result.AttendanceList[i]) === false) {
                         return true;
                     }
@@ -102,7 +116,7 @@ $(function() {
 
                     if (result.AttendanceList[i].RegistrationUserId === result.LoginUser) {
                         var hrefStr = location.href;
-                            hrefStr = hrefStr.splite('/');
+                            hrefStr = hrefStr.split('/');
                             hrefStr = hrefStr.pop();
                             hrefStr = hrefStr.join('/') + 'editAttendance' + '/' + result.AttendanceList[i].id;
                         $('<a></a>', {'class': 'attendance-edit-button btn btn-success glyphicon glyphicon-edit',

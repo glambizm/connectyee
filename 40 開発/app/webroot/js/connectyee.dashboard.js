@@ -5,7 +5,6 @@
  */
 $(function() {
     'use strict';
-
     /*
      * Calendar init
      */
@@ -16,7 +15,7 @@ $(function() {
         todayHighlight: true,
         autoclose: true
     });
-    changeCalendar(new Date(), true);
+    changeCalendar(new Date(), true, false);
 
     /*
      * Datepicker changeDate
@@ -56,16 +55,28 @@ $(function() {
     /*
      * changeCalendar
      */
-    function changeCalendar(selDate, remake) {
+    function changeCalendar(selDate, remake, animate_loading) {
         remake = remake === undefined ? true : remake;
+        animate_loading = animate_loading === undefined ? true : animate_loading;
 
-        $('div#date-info-wrapper').block({
-            message: '<img src="./img/common.loading.gif">',
-            overlayCSS: {
-                backgroundColor: '#fff',
-                opacity: 0.6
-            }
-        });
+        if (animate_loading === true) {
+            $('div#date-info-wrapper').block({
+                message: '<img src="./img/common.loading.gif">',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        } else {
+            $('div#date-info-wrapper').block({
+                message: '',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        }
+
         $('.blockElement').css('border', '').css('background-color', '');
 
         var orgYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
@@ -109,13 +120,14 @@ $(function() {
 
         var ajaxParam = {
             url: location.href + '/getAttendance',
+            dataType: 'json',
             type: 'POST',
-            data: {target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2)}
+            data: { target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2) }
         };
 
-        ajaxProc(ajaxParam)
+        $.ajax(ajaxParam)
             .done(function(result) {
-                $.each(result, function(i, val){
+                $.each(result, function(i, val) {
                     if ($.isPlainObject(val) === false) {
                         return ture;
                     }
@@ -134,7 +146,7 @@ $(function() {
 
                     var attendance_regist_info = $('<p></p>', {
                         'class': 'attendance-regist-info'
-                    }).text('by:' + $val.RegistrationUser + val.RegistrationDate).appendTo(attendance_items);
+                    }).text('by:' + val.RegistrationUser + ' ' + val.RegistrationDate).appendTo(attendance_items);
                 });
             })
             .always(function() {

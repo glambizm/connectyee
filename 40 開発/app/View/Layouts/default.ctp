@@ -13,6 +13,7 @@
     <?php echo $this->Html->css('bootstrap.min.css'); ?>
     <?php echo $this->Html->css('bootstrap.paper.min.css'); ?>
     <?php echo $this->Html->css('bootstrap-multiselect.css'); ?>
+    <?php echo $this->Html->css('bootstrap-datepicker.min.css'); ?>
     <?php echo $this->Html->css('page-loading-effects.css'); ?>
     <?php echo $this->Html->css('connectyee.icon.css'); ?>
     <?php echo $this->Html->css('connectyee.common.css'); ?>
@@ -34,10 +35,14 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <?php echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', array('inline'=>true)); ?>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <?php echo $this->Html->script('jquery.blockUI.min.js', array('inline'=>true)); ?>
     <?php echo $this->Html->script('bootstrap.min.js', array('inline'=>true)); ?>
     <?php echo $this->Html->script('bootstrap-multiselect.js', array('inline'=>true)); ?>
+    <?php echo $this->Html->script('bootstrap-datepicker.min.js', array('inline'=>true)); ?>
+    <?php echo $this->Html->script('bootstrap-datepicker.ja.min.js', array('inline'=>true)); ?>
     <?php echo $this->Html->script('connectyee.common.js', array('inline'=>true)); ?>
     <?php echo $this->fetch('script');?>
+    <?php echo $this->Html->script('connectyee.calendarmaker.js', array('inline'=>true)); ?>
     <?php echo $this->Html->script('classie.js', array('inline'=>true)); ?>
     <?php echo $this->Html->script('svgLoader.js', array('inline'=>true)); ?>
 </body>

@@ -38,6 +38,12 @@ class User extends AppModel {
             if (isset($val[$this->alias]['mail_address'])) {
                 $results[$key][$this->alias]['mail_address'] = openssl_decrypt($results[$key][$this->alias]['mail_address'], 'aes-256-cbc', Configure::read('SecurityKey'), false, '1234567812345678');
             }
+
+            if (isset($val[$this->alias]['authority'])) {
+                $results[$key][$this->alias]['authority'] = $results[$key][$this->alias]['authority'] === null ? 0 : $results[$key][$this->alias]['authority'];
+            } else {
+                $results[$key][$this->alias]['authority'] = 0;
+            }
         }
         return $results;
     }

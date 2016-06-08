@@ -36,6 +36,9 @@ App::import('Vendor', 'OrgReceivingMailList');
 App::import('Vendor', 'OrgReceivingMail');
 App::import('Vendor', 'OrgSendingMailList');
 App::import('Vendor', 'OrgSendingMail');
+App::import('Vendor', 'OrgAttendancesList');
+App::import('Vendor', 'OrgAttendance');
+
 /**
  * Application Controller
  *

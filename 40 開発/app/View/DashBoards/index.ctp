@@ -15,6 +15,7 @@ $this->Html->script('connectyee.dashboard.js', array('inline'=>false));
                         <span id="btn-next-month" class="glyphicon icon-circle-right" aria-hidden="true"></span>
                     </div>
                     <div id="calendar-body">
+                        <table></table>
                     </div>
                 </div>
                 <div class="col-md-8">

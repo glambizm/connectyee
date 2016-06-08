@@ -43,18 +43,21 @@ class AttendancesController extends AppController {
             $ReturnJson = array();
             $ReturnJson['AttendanceList'] = array();
             foreach ($Result as $val) {
-                $ReturnJson['AttendanceList'][]['id']                 = $val->getId();
-                $ReturnJson['AttendanceList'][]['TargetUserId']       = $val->TargetUser->getUserId();
-                $ReturnJson['AttendanceList'][]['TargetUser']         = $val->TargetUser->getFullName(true);
-                $ReturnJson['AttendanceList'][]['attendanceKubun']    = $val->getAttendanceKubunName();
-                $ReturnJson['AttendanceList'][]['memo']               = $val->getMemo(true);
-                $ReturnJson['AttendanceList'][]['RegistrationUserId']   = $val->getRegistrationUser()->getUserId();
-                $ReturnJson['AttendanceList'][]['RegistrationUserName']   = $val->getRegistrationUser()->getFullName(true);
+                $attendanceInfo = array();
+                $attendanceInfo['id']                 = $val->getId();
+                $attendanceInfo['TargetUserId']       = $val->TargetUser->getUserId();
+                $attendanceInfo['TargetUser']         = $val->TargetUser->getFullName(true);
+                $attendanceInfo['attendanceKubun']    = $val->getAttendanceKubunName();
+                $attendanceInfo['memo']               = $val->getMemo(true);
+                $attendanceInfo['RegistrationUserId']   = $val->getRegistrationUser()->getUserId();
+                $attendanceInfo['RegistrationUserName']   = $val->getRegistrationUser()->getFullName(true);
                 if ($val->getRegistrationDate() instanceof DateTime) {
-                    $ReturnJson['AttendanceList'][]['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
+                    $attendanceInfo['RegistrationDate'] = $val->getRegistrationDate()->format('m/d G:i');
                 } else {
-                    $ReturnJson['AttendanceList'][]['RegistrationDate'] = '';
+                    $attendanceInfo['RegistrationDate'] = '';
                 }
+
+                $ReturnJson['AttendanceList'][] = $attendanceInfo;
             }
             $ReturnJson['LoginUser'] = $this->LoginUser->getUserId();
 

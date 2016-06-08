@@ -97,7 +97,7 @@
                     'sub-title'=>'Attendance',
                     'authority'=>'1',
                     'icon'=>'<span class="[icon-class] glyphicon glyphicon-calendar" aria-hidden="true"></span>',
-                    'href'=>Router::url(array('controller'=>'DashBoards', 'action'=>'attendance')),
+                    'href'=>Router::url(array('controller'=>'Attendances', 'action'=>'displayAttendanceList')),
                     'menu-parent'=>-1,
                     'child'=>null),
         5=>array(   'display'=>true,
