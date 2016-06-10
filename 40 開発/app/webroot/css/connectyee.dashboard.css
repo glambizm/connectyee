@@ -229,6 +229,10 @@
     margin-bottom: 12px;
 }
 
+#attendance-wrapper div:last-child
+{
+    margin-bottom: 0px;
+}
 
 /*
  * Webmail

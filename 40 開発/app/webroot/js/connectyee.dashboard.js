@@ -59,6 +59,18 @@ $(function() {
         remake = remake === undefined ? true : remake;
         animate_loading = animate_loading === undefined ? true : animate_loading;
 
+        var orgYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
+        var orgMonth = $('#display-year-month').text().substr(-2);
+        var orgDay = parseInt($('#cal_selected_day').text(), 10);
+
+        var selYear = parseInt(selDate.getFullYear(), 10);
+        var selMonth = ('00' + eval(selDate.getMonth() + 1)).substr(-2);
+        var selDay = parseInt(selDate.getDate(), 10);
+
+        if ((orgYear === selYear) && (orgMonth === selMonth) && (orgDay === selDay)) {
+            return;
+        }
+
         if (animate_loading === true) {
             $('div#date-info-wrapper').block({
                 message: '<img src="./img/common.loading.gif">',
@@ -78,18 +90,6 @@ $(function() {
         }
 
         $('.blockElement').css('border', '').css('background-color', '');
-
-        var orgYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
-        var orgMonth = $('#display-year-month').text().substr(-2);
-        var orgDay = parseInt($('#cal_selected_day').text(), 10);
-
-        var selYear = parseInt(selDate.getFullYear(), 10);
-        var selMonth = ('00' + eval(selDate.getMonth() + 1)).substr(-2);
-        var selDay = parseInt(selDate.getDate(), 10);
-
-        if ((orgYear === selYear) && (orgMonth === selMonth) && (orgDay === selDay)) {
-            return;
-        }
 
         var nowDate = new Date();
         var nowYear = nowDate.getFullYear();
@@ -127,6 +127,7 @@ $(function() {
 
         $.ajax(ajaxParam)
             .done(function(result) {
+                $('#attendance-wrapper').empty();
                 $.each(result, function(i, val) {
                     if ($.isPlainObject(val) === false) {
                         return ture;

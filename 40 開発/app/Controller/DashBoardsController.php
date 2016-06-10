@@ -87,10 +87,10 @@ class DashBoardsController extends AppController {
             $ReturnJson = array();
             foreach ($Result as $val) {
                 $attendanceInfo = array();
-                $attendanceInfo['TargetUserId']       = $val->TargetUser->getUserId();
-                $attendanceInfo['TargetUser']         = $val->TargetUser->getFullName(true);
+                $attendanceInfo['TargetUserId']       = $val->getTargetUser()->getUserId();
+                $attendanceInfo['TargetUser']         = $val->getTargetUser()->getFullName(true);
                 $attendanceInfo['attendanceKubun']    = $val->getAttendanceKubunName();
-                $attendanceInfo['memo']               = $val->getMemo(true);
+                $attendanceInfo['memo']               = $val->getMemo();
                 $attendanceInfo['RegistrationUser']   = $val->getRegistrationUser()->getFullName(true);
 
                 if ($val->getRegistrationDate() instanceof DateTime) {

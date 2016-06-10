@@ -65,8 +65,8 @@ class OrgAttendanceList {
 
         $prevId = -1;
         foreach ($sortItems as $val) {
-            if ($val->getUserId() !== $prevId) {
-                $prevId = $val->getUserId();
+            if ($val->getTargetUser()->getUserId() !== $prevId) {
+                $prevId = $val->getTargetUser()->getUserId();
                 $result[] = clone $val;
             }
         }
