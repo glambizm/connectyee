@@ -75,7 +75,7 @@ $(function() {
         $('#select-date-label').text(selYear + '/' + selMonth + '/' + selDay);
 
         var ajaxParam = {
-            url: location.href + '/displayAttendanceList',
+            url: location.href,
             dataType: 'json',
             type: 'POST',
             data: {target_date: selYear + '/' + selMonth + '/' + selDay}
@@ -87,29 +87,33 @@ $(function() {
                     return ture;
                 }
 
+                $('.attendance-list-wrapper').remove();
+
                 var prevUserId = -1;
                 var attendance_list_wrapper = [];
                 var j = -1;
+                var list_group;
+                var container_fluid;
                 for (var i=0; i<result.AttendanceList.length; i++) {
                     if ($.isPlainObject(result.AttendanceList[i]) === false) {
                         return true;
                     }
 
                     if (prevUserId !== result.AttendanceList[i].TargetUserId) {
-                        prevUserId = result.AttendanceList[i].TargetUserId;
-                        if (j >= 0) {
-                            $('#attendance-wrapper').append(attendance_list_wrapper[j]);
-                        }
                         j++;
+                        prevUserId = result.AttendanceList[i].TargetUserId;
                         attendance_list_wrapper.push($('<div></div>', {'class': 'attendance-list-wrapper panel panel-default'}));
-                        attendance_list_wrapper[j].append($('<div></div>', {'class': 'list-group'}))
-                                                  .append($('<div></div>', {'class': 'container-fluid'}));
+                        list_group = $('<div></div>', {'class': 'list-group'});
+                        attendance_list_wrapper[j].append(list_group);
+                        container_fluid = $('<div></div>', {'class': 'container-fluid'});
+                        list_group.append(container_fluid);
                         $('<div></div>', {'class': 'attendance-list-header list-group-item row'})
-                            .text(result.AttendanceList[i].TargetUser).appendTo(attendance_list_wrapper[j]);
+                            .text(result.AttendanceList[i].TargetUser).appendTo(container_fluid);
+                        $('#attendance-wrapper').append(attendance_list_wrapper[j]);
                     }
 
                     var attendance_list_body = $('<div></div>', {'class': 'attendance-list-body list-group-item row'})
-                        .appendTo(attendance_list_wrapper[j]);
+                        .appendTo(container_fluid);
 
                     var attendance_kubun = $('<div></div>', {'class': 'attendance-kubun col-sm-2 col-xs-5'})
                         .text(result.AttendanceList[i].attendanceKubun).appendTo(attendance_list_body);
@@ -117,14 +121,14 @@ $(function() {
                     if (result.AttendanceList[i].RegistrationUserId === result.LoginUser) {
                         var hrefStr = location.href;
                             hrefStr = hrefStr.split('/');
-                            hrefStr = hrefStr.pop();
-                            hrefStr = hrefStr.join('/') + 'editAttendance' + '/' + result.AttendanceList[i].id;
+                            hrefStr.pop();
+                            hrefStr = hrefStr.join('/') + '/editAttendance' + '/' + result.AttendanceList[i].id;
                         $('<a></a>', {'class': 'attendance-edit-button btn btn-success glyphicon glyphicon-edit',
                                       'data-toggle': 'tooltip',
                                       'data-container': 'body',
                                       'data-placement': 'top',
                                       'title': '編集',
-                                      'href': hrefStr}).appendTo(attendanceKubun);
+                                      'href': hrefStr}).appendTo(attendance_kubun);
                     }
 
                     $('<div></div>', {'class': 'attendance-memo col-sm-6 col-xs-7'})

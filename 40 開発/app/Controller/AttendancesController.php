@@ -21,6 +21,11 @@ class AttendancesController extends AppController {
         $Attendance = new OrgAttendance();
         $attendance_id = $this->params['pass'][0];
         $Attendance->init($attendance_id);
+
+        if ($Attendance->isExist() === false) {
+            $this->redirect(array('controller'=>'Attendances', 'action'=>'displayAttendanceList'));
+        }
+
         if ($Attendance->checkUser($this->LoginUser->getUserId()) === false) {
             $this->redirect(array('controller'=>'Attendances', 'action'=>'displayAttendanceList'));
         }
@@ -45,10 +50,10 @@ class AttendancesController extends AppController {
             foreach ($Result as $val) {
                 $attendanceInfo = array();
                 $attendanceInfo['id']                 = $val->getId();
-                $attendanceInfo['TargetUserId']       = $val->TargetUser->getUserId();
-                $attendanceInfo['TargetUser']         = $val->TargetUser->getFullName(true);
+                $attendanceInfo['TargetUserId']       = $val->getTargetUser()->getUserId();
+                $attendanceInfo['TargetUser']         = $val->getTargetUser()->getFullName(true);
                 $attendanceInfo['attendanceKubun']    = $val->getAttendanceKubunName();
-                $attendanceInfo['memo']               = $val->getMemo(true);
+                $attendanceInfo['memo']               = $val->getMemo();
                 $attendanceInfo['RegistrationUserId']   = $val->getRegistrationUser()->getUserId();
                 $attendanceInfo['RegistrationUserName']   = $val->getRegistrationUser()->getFullName(true);
                 if ($val->getRegistrationDate() instanceof DateTime) {

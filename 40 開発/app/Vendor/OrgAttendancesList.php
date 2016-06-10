@@ -12,7 +12,7 @@ class OrgAttendanceList {
     private $orderPhrase;
     private $recordCount;
 
-    function __construct($userId = 0, $wherePhrase = null, $orderPhrase = '', $recordCount = 0) {
+    function __construct($wherePhrase = null, $orderPhrase = '', $recordCount = 0) {
         $this->Items = array();
         $this->wherePhrase = $wherePhrase;
         $this->orderPhrase = $orderPhrase;
@@ -27,7 +27,7 @@ class OrgAttendanceList {
         $SQLPara = array();
 
         if ($this->wherePhrase !== null) {
-            $SQLPara['conditions'][] = $wherePhrase;
+            $SQLPara['conditions'] = $this->wherePhrase;
         }
 
         if ($this->orderPhrase !== '') {
@@ -61,7 +61,7 @@ class OrgAttendanceList {
             $sortItems[] = clone $val;
         }
 
-        usort($sortItems, 'cmp');
+        usort($sortItems, 'compareAttendance');
 
         $prevId = -1;
         foreach ($sortItems as $val) {
@@ -81,35 +81,35 @@ class OrgAttendanceList {
             $result[] = clone $val;
         }
 
-        usort($result, 'cmp');
+        usort($result, 'compareAttendance');
 
         return $result;
     }
+}
 
-    private function cmp($a, $b) {
-        $cmp = strnatcmp($a->getTargetUser()->getFullNameKana(), $b->getTargetUser()->getFullNameKana());
+function compareAttendance($a, $b) {
+    $cmp = strnatcmp($a->getTargetUser()->getFullNameKana(), $b->getTargetUser()->getFullNameKana());
 
-        if ($cmp === 0) {
-            if ($a->getTargetUser().getUserId() > $b->getTargetUser->getUserId()) {
-                $cmp = 1;
-            } else if ($a->getTargetUser().getUserId() < $b->getTargetUser->getUserId()) {
-                $cmp = -1;
-            } else {
-                $cmp = 0;
-            }
+    if ($cmp === 0) {
+        if ($a->getTargetUser()->getUserId() > $b->getTargetUser()->getUserId()) {
+            $cmp = 1;
+        } else if ($a->getTargetUser()->getUserId() < $b->getTargetUser()->getUserId()) {
+            $cmp = -1;
+        } else {
+            $cmp = 0;
         }
-
-        if ($cmp === 0) {
-            if ($a->getRegistrationDate()->getTimestamp() > $b->getRegistrationDate()->getTimestamp()) {
-                $cmp = -1;
-            } else if ($a->getRegistrationDate()->getTimestamp() < $b->getRegistrationDate()->getTimestamp()) {
-                $cmp = 1;
-            } else {
-                $cmp = 0;
-            }
-        }
-        return $cmp;
     }
+
+    if ($cmp === 0) {
+        if ($a->getRegistrationDate()->getTimestamp() > $b->getRegistrationDate()->getTimestamp()) {
+            $cmp = -1;
+        } else if ($a->getRegistrationDate()->getTimestamp() < $b->getRegistrationDate()->getTimestamp()) {
+            $cmp = 1;
+        } else {
+            $cmp = 0;
+        }
+    }
+    return $cmp;
 }
 
 ?>

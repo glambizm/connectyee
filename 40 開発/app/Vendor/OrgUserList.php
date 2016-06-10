@@ -31,7 +31,7 @@ class OrgUserList {
             $this->Items[] = new OrgUser($val);
         }
 
-        usort($this->Items, 'cmp');
+        usort($this->Items, 'compareUser');
     }
 
     public function getUserList($id) {
@@ -49,13 +49,13 @@ class OrgUserList {
             $result[] = new OrgUser();
             return $result;
         } else {
-            usort($result, 'cmp');
+            usort($result, 'compareUser');
             return $result;
         }
     }
 }
 
-function cmp($a, $b) {
+function compareUser($a, $b) {
     return strnatcmp($a->getFullNameKana(), $b->getFullNameKana());
 }
 

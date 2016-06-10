@@ -43,11 +43,11 @@ class OrgAttendance {
         }
 
         $result = array();
-        $result = $this->UserList->getUserList($attendanceInfo['Attendance']['target_user']);
+        $result = $this->UserList->getUserList(array(intval($attendanceInfo['Attendance']['target_user'])));
         $this->TargetUser = $result[0];
 
         $result = array();
-        $result = $this->UserList->getUserList($attendanceInfo['Attendance']['registration_user']);
+        $result = $this->UserList->getUserList(array(intval($attendanceInfo['Attendance']['registration_user'])));
         $this->RegistrationUser = $result[0];
     }
 
@@ -76,11 +76,11 @@ class OrgAttendance {
             $this->RegistrationDate = new DateTime($result[0]['Attendance']['registration_date']);
 
             $retUser = array();
-            $retUser = $this->UserList->getUserList($result[0]['Attendance']['target_user']);
+            $retUser = $this->UserList->getUserList(array(intval($result[0]['Attendance']['target_user'])));
             $this->TargetUser = $retUser[0];
 
             $retUser = array();
-            $retUser = $this->UserList->getUserList($result[0]['Attendance']['registration_user']);
+            $retUser = $this->UserList->getUserList(array(intval($result[0]['Attendance']['registration_user'])));
             $this->RegistrationUser = $retUser[0];
         }
     }
@@ -149,7 +149,7 @@ class OrgAttendance {
     }
 
     public function setTargetUser($id) {
-        $result = $this->UserList->getUserList($id);
+        $result = $this->UserList->getUserList(array(intval($id)));
         $this->TargetUser = $result[0];
     }
 
@@ -166,7 +166,7 @@ class OrgAttendance {
     }
 
     public function setRegistrationUser($id) {
-        $result = $this->UserList->getUserList($id);
+        $result = $this->UserList->getUserList(array(intval($id)));
         $this->RegistrationUser = $result[0];
     }
 
@@ -178,13 +178,13 @@ class OrgAttendance {
             return;
         }
 
-        $fields = array('target_user', 'target_date', 'attendance_kubun', 'memo', 'registration_user', 'regstration_date');
+        $fields = array('target_user', 'target_date', 'attendance_kubun', 'memo', 'registration_user', 'registration_date');
         $data = array('Attendance'=>array(  'target_user'=>$this->TargetUser->getUserId(),
                                             'target_date'=>$this->TargetDate->format('Y-m-d'),
                                             'attendance_kubun'=>$this->attendanceKubun,
                                             'memo'=>$this->memo,
                                             'registration_user'=>$this->RegistrationUser->getUserId(),
-                                            'regstration_date'=>DboSource::expression('NOW()')
+                                            'registration_date'=>DboSource::expression('NOW()')
                                             ));
         if ($this->Attendance->validates($data) === true) {
             if ($this->id === -1) {

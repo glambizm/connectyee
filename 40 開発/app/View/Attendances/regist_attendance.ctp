@@ -39,6 +39,7 @@ if ($Attendance->isExist() === true) {
             <div id="target-users-wrapper">
                 <div id="select-target-users-wrapper">
                     <select id="select-target-users" <?php echo $disabled ?>>
+                        <option value="-1"></option>
 <?php foreach ($UserList as $val): ?>
 <?php
         if ($Attendance->isExist() === true) {
