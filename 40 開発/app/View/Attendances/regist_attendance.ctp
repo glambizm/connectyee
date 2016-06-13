@@ -3,19 +3,20 @@ $this->extend('/Common/common');
 $this->Html->css('connectyee.attendance.css', array('inline' => false));
 $this->Html->script('connectyee.attendance.regist.js', array('inline'=>false));
 
+$attendance_id = -1;
+$disabled = '';
+$target_date = '';
 $attendance_kubun = array('', '', '', '', '', '', '', '');
+$attendance_kubun_name = '';
+$memo = '';
 
 if ($Attendance->isExist() === true) {
+    $attendance_id = $Attendance->getId();
     $disabled = 'disabled="disabled"';
     $target_date = $Attendance->getTargetDate()->format('Y/m/d');
     $attendance_kubun[$Attendance->getAttendanceKubun()] = 'selected="selected"';
     $attendance_kubun_name = $Attendance->getAttendanceKubunName();
     $memo = $Attendance->getMemo(true);
-} else {
-    $disabled = '';
-    $target_date = '';
-    $attendance_kubun_name = '';
-    $memo = '';
 }
 ?>
 
@@ -36,6 +37,7 @@ if ($Attendance->isExist() === true) {
     </div>
     <div id="regist-attendance-wrapper" class="panel panel-default clearfix">
 <?php echo $this->Form->create('Attendances', array('action'=>'registAttendance')); ?>
+            <input type="hidden" name="attendance_id" readonly="readonly" value="<?php echo $attendance_id ?>"></input>
             <div id="target-users-wrapper">
                 <div id="select-target-users-wrapper">
                     <select id="select-target-users" <?php echo $disabled ?>>

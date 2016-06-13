@@ -81,6 +81,7 @@ class AttendancesController extends AppController {
             }
 
             $Attendance = new OrgAttendance();
+            $Attendance->init($this->request->data['attendance_id']);
             $Attendance->setTargetDate($this->request->data['target_date']);
             $Attendance->setTargetUser($this->request->data['target_user']);
             $Attendance->setAttendanceKubun($this->request->data['attendance_kubun']);
