@@ -23,7 +23,10 @@ $(function() {
     }
 
     $('form').on('submit', function() {
-        $('[data-toggle="tooltip"]').tooltip('hide');
+        var agent = navigator.userAgent;
+        if (agent.search(/iPhone/) === -1 && agent.search(/iPad/) === -1 && agent.search(/iPod/) === -1 && agent.search(/Android/) === -1) {
+	        $('[data-toggle="tooltip"]').tooltip('hide');
+        }
         preLoad();
     });
 
@@ -31,14 +34,21 @@ $(function() {
         if (($(this).attr('href') === '#') || ($(this).attr('href') === '')) {
             return false;
         }
-        $('[data-toggle="tooltip"]').tooltip('hide');
+
+        var agent = navigator.userAgent;
+        if (agent.search(/iPhone/) === -1 && agent.search(/iPad/) === -1 && agent.search(/iPod/) === -1 && agent.search(/Android/) === -1) {
+	        $('[data-toggle="tooltip"]').tooltip('hide');
+        }
         preLoad();
     });
 
     /*
      * tooltip
      */
-    $('[data-toggle="tooltip"]').tooltip();
+    var agent = navigator.userAgent;
+    if (agent.search(/iPhone/) === -1 && agent.search(/iPad/) === -1 && agent.search(/iPod/) === -1 && agent.search(/Android/) === -1) {
+	    $('[data-toggle="tooltip"]').tooltip();
+    }
 
     /*
      * menu open/close

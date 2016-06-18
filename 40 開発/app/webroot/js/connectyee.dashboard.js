@@ -127,7 +127,17 @@ $(function() {
 
         $.ajax(ajaxParam)
             .done(function(result) {
-                $('#attendance-wrapper').empty();
+                $('#attendance-wrapper').parents('.col-md-8').hide();
+
+                var dateNameEmpty = true;
+                $('#date-name').empty().addClass('empty-element');
+
+                var scheduleEmpty = true;
+                $('#schedule-wrapper').empty().addClass('empty-element');
+
+                var attendanceEmpty = true;
+                $('#attendance-wrapper').addClass('empty-element').empty();
+
                 $.each(result, function(i, val) {
                     if ($.isPlainObject(val) === false) {
                         return ture;
@@ -148,7 +158,26 @@ $(function() {
                     var attendance_regist_info = $('<p></p>', {
                         'class': 'attendance-regist-info'
                     }).text('by:' + val.RegistrationUser + ' ' + val.RegistrationDate).appendTo(attendance_items);
+                    attendanceEmpty = false;
                 });
+
+                if (dateNameEmpty === false) {
+                    $('#date-name').removeClass('empty-element');
+                }
+
+                if (scheduleEmpty === false) {
+                    $('#schedule-wrapper').removeClass('empty-element');
+                }
+
+                if (attendanceEmpty === false) {
+                    $('#attendance-wrapper').removeClass('empty-element');
+                }
+
+                if ((dateNameEmpty === false) ||
+                   (scheduleEmpty === false) ||
+                   (attendanceEmpty === false)) {
+                    $('#attendance-wrapper').parents('.col-md-8').show();
+                }
             })
             .always(function() {
                 $('div#date-info-wrapper').unblock();

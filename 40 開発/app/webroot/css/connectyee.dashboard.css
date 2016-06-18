@@ -268,6 +268,24 @@
 /*
  * media-queries
  */
+@media (max-width: 479px)
+{
+    #calendar-body th,
+    #calendar-body td
+    {
+        height: 25px;
+    }
+
+    #calendar-body td:not(:empty)
+    {
+        font-size: 13px;
+    }
+
+    .empty-element
+    {
+        display: none;
+    }
+}
 
 @media (min-width: 768px)
 {
