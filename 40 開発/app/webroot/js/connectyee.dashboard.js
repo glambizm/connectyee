@@ -127,7 +127,7 @@ $(function() {
 
         $.ajax(ajaxParam)
             .done(function(result) {
-                $('#attendance-wrapper').parents('.col-md-8').hide();
+                $('#attendance-wrapper').parents('.col-md-8').addClass('empty-element');
 
                 var dateNameEmpty = true;
                 $('#date-name').empty().addClass('empty-element');
@@ -176,7 +176,7 @@ $(function() {
                 if ((dateNameEmpty === false) ||
                    (scheduleEmpty === false) ||
                    (attendanceEmpty === false)) {
-                    $('#attendance-wrapper').parents('.col-md-8').show();
+                    $('#attendance-wrapper').parents('.col-md-8').removeClass('empty-element');
                 }
             })
             .always(function() {
