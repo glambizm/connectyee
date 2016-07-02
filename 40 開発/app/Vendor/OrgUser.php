@@ -14,6 +14,7 @@ class OrgUser {
     private $fullNameKana;
     private $mailAddress;
     private $authority;
+    private $deleteKubun;
 
     function __construct($userInfo = null) {
         if ($userInfo !== null) {
@@ -24,6 +25,7 @@ class OrgUser {
             $this->fullNameKana = $userInfo['User']['full_name_kana'];
             $this->mailAddress  = $userInfo['User']['mail_address'];
             $this->authority    = $userInfo['User']['authority'];
+            $this->deleteKubun  = $userInfo['User']['delete_kubun'];
         } else {
             $this->id           = -1;
             $this->account      = '';
@@ -32,6 +34,7 @@ class OrgUser {
             $this->fullNameKana = '';
             $this->mailAddress  = '';
             $this->authority    = -1;
+            $this->deleteKubun  = -1;
         }
 
         $this->User = ClassRegistry::init('User');
@@ -63,6 +66,7 @@ class OrgUser {
         $this->fullNameKana = $result['User']['full_name_kana'];
         $this->mailAddress  = $result['User']['mail_address'];
         $this->authority    = $result['User']['authority'];
+        $this->deleteKubun  = $result['User']['delete_kubun'];
 
         session_destroy();
         session_start();
@@ -116,6 +120,10 @@ class OrgUser {
 
     public function getAuthority() {
         return $this->authority;
+    }
+
+    public function getDeleteKubun() {
+        return $this->deleteKubun;
     }
 
     public function getInitial() {

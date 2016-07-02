@@ -53,6 +53,24 @@ class OrgUserList {
             return $result;
         }
     }
+
+    public function getActiveUserList() {
+        $result = array();
+        foreach ($this->Items as $val) {
+            if (intval($val->getDeleteKubun()) === 0) {
+                $result[] = clone $User;
+                break;
+            }
+        }
+
+        if (count($result) === 0) {
+            $result[] = new OrgUser();
+            return $result;
+        } else {
+            usort($result, 'compareUser');
+            return $result;
+        }
+    }
 }
 
 function compareUser($a, $b) {

@@ -18,6 +18,8 @@ if ($Attendance->isExist() === true) {
     $attendance_kubun_name = $Attendance->getAttendanceKubunName();
     $memo = $Attendance->getMemo(true);
 }
+
+$ActiveUserList = $UserList->getActiveUserList();
 ?>
 
 <div id="page-content-wrapper">
@@ -42,7 +44,7 @@ if ($Attendance->isExist() === true) {
                 <div id="select-target-users-wrapper">
                     <select id="select-target-users" <?php echo $disabled ?>>
                         <option value="-1"></option>
-<?php foreach ($UserList as $val): ?>
+<?php foreach ($ActiveUserList as $val): ?>
 <?php
         if ($Attendance->isExist() === true) {
             $selected = $Attendance->getTargetUser()->getUserId() === $val->getUserId() ? ' selected' : '';

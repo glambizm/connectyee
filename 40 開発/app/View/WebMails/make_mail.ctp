@@ -3,6 +3,7 @@ $this->extend('/Common/common');
 $this->Html->css('connectyee.web_mail.css', array('inline' => false));
 $this->Html->script('connectyee.web_mail.js', array('inline'=>false));
 $OriginalSendingUser = $OriginalMail->getSendingUser();
+$ActiveUserList = $UserList->getActiveUserList();
 ?>
 
 <div id="page-content-wrapper">
@@ -21,7 +22,7 @@ $OriginalSendingUser = $OriginalMail->getSendingUser();
             <div id="receiving-user-wrapper" class="clearfix">
                 <div id="select-receiving-users-wrapper">
                     <select id="select-receiving-users" multiple="multiple">
-<?php foreach ($UserList as $val): ?>
+<?php foreach ($ActiveUserList as $val): ?>
 <?php
         if ($this->action === 'replyMail') {
             $selected = $OriginalSendingUser->getUserId() === $val->getUserId() ? ' selected' : '';

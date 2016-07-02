@@ -116,7 +116,7 @@ class AppController extends Controller {
 
         $this->set('unreadMailCount', $unreadMailCount);
         $this->set('LoginUser', $this->LoginUser);
-        $this->set('UserList', $this->UserList->Items);
+        $this->set('UserList', $this->UserList);
     }
 
     public function logout() {
