@@ -1,5 +1,5 @@
 /*
- * connectyee.dashboard.js
+ * connectyee.attendance.regist.js
  * History
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
  */

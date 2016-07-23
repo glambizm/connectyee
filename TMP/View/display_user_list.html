@@ -36,7 +36,7 @@
                     <span id="menu-btn-bottom" class="menu-btn"></span>
                 </div>
             </div>
-            <div id="page-title-container" class="pull-left"><span class="header-icon glyphicon glyphicon-calendar" aria-hidden="true"></span></span><span id="page-title">RegistAttendance</span></div>
+            <div id="page-title-container" class="pull-left"><span class="header-icon icon-social-1" aria-hidden="true"></span><span id="page-title">AdministrateUser</span></div>
             <div id="logout-container" class="pull-right">
                 <button id="logout-btn" type="button" class="btn btn-default"><a href="#"><span id="logout-img" class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></button>
             </div>
@@ -159,41 +159,46 @@
         </div>
     </div>
     <div id="page-content-wrapper">
-        <div id="input-user-info-wrapper" class="panel panel-default">
-            <form>
-                <div class="container-fluid">
-                    <div id="full-name-wrapper" class="row">
-                        <div id="full-name-header" class="col-xxs-12 col-xs-3 col-sm-2">氏名</div>
-                        <div id="full-name-body" class="col-xxs-12 col-xs-9 col-sm-10">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-                    </div>
-                    <div id="full-name-kana-wrapper" class="row">
-                        <div id="full-name-kana-header" class="col-xxs-12 col-xs-3 col-sm-2">氏名カナ</div>
-                        <div id="full-name-kana-body" class="col-xxs-12 col-xs-9 col-sm-10">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-                    </div>
-                    <div id="account-wrapper" class="row">
-                        <div id="account-header" class="col-xxs-12 col-xs-3 col-sm-2">アカウント</div>
-                        <div id="account-body" class="col-xxs-12 col-xs-9 col-sm-10">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-                    </div>
-                    <div id="mailaddress-wrapper" class="row">
-                        <div id="mailaddress-header" class="col-xxs-12 col-xs-3 col-sm-2">メールアドレス</div>
-                        <div id="mailaddress-body" class="col-xxs-12 col-xs-9 col-sm-10">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-                    </div>
-                    <div id="submit-wrapper" class="row">
-                    </div>
-                </div>
-            </form>
+        <div id="btn-wrapper" class="panel panel-default">
+            <div class="btn-group" role="group" aria-label="...">
+                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="ユーザー追加" href="#">
+                    <span class="connectyee-icons-larger icon-social" aria-hidden="true"></span>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="modal fade" id="alertModal" tabindex="-1">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+        <div id="user-list-wrapper" class="panel panel-default">
+            <div class="list-group">
+                <div class="container-fluid">
+                    <div class="user-list-header list-group-item row">
+                        <div class="full-name-kana col-xs-7">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="authority col-xs-5">XXXXXX</div>
+                        <div class="full-name col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="account col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="mail-address col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-header list-group-item row">
+                        <div class="full-name-kana col-xs-7">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="authority col-xs-5">XXXXXX</div>
+                        <div class="full-name col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="account col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="mail-address col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-header list-group-item row">
+                        <div class="full-name-kana col-xs-7">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="authority col-xs-5">XXXXXX</div>
+                        <div class="full-name col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="account col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
+                    <div class="user-list-body list-group-item row">
+                        <div class="mail-address col-xs-12">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+                    </div>
                 </div>
             </div>
         </div>

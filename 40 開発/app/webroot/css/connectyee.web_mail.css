@@ -104,6 +104,7 @@ div[class*='mail-name']
 div[class*='mail-body']
 {
     border-bottom: none;
+    word-break: break-all;
 }
 
 div[class*='mail-receiving-users']

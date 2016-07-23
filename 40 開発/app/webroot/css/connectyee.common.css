@@ -498,7 +498,7 @@ button[type="submit"]>.connectyee-icons {
     }
     #btn-wrapper
     {
-        height: 54px;
+        height: 52px;
     }
     #btn-wrapper .btn-group
     {
@@ -506,8 +506,8 @@ button[type="submit"]>.connectyee-icons {
     }
     #btn-wrapper .btn
     {
-        width: 37px;
-        height: 37px;
+        width: 35px;
+        height: 35px;
         padding: 0;
     }
 }
