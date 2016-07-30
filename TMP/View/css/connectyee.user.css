@@ -2,10 +2,8 @@
  * input-user-info
  */
 
-#input-user-info-wrapper
-{
+#input-user-info-wrapper {
     margin-right: 10px;
-
     border: 1px solid #ddd;
     border-width: 1px 1px 0 1px;
     border-style: solid;
@@ -13,24 +11,20 @@
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .3);
 }
 
-#input-user-info-wrapper .row
-{
+#input-user-info-wrapper .row {
     font-size: 14px;
-
     word-break: break-all;
 }
 
 #input-user-info-wrapper input,
-#input-user-info-wrapper select
-{
+#input-user-info-wrapper select {
     padding-left: 10px;
     border: 1px solid #ddd;
     box-shadow: none;
 }
 
 #input-user-info-wrapper input:focus,
-#input-user-info-wrapper select:focus
-{
+#input-user-info-wrapper select:focus {
     border: 1px solid #ddd;
     box-shadow: inset 0 -2px 0 #2196f3;
 }
@@ -40,45 +34,36 @@
 }
 
 .input-user-info-header,
-.input-user-info-body
-{
+.input-user-info-body {
     min-height: 50px;
-
     border-bottom: 1px solid #ddd;
 }
 
-.input-user-info-header
-{
+.input-user-info-header {
     padding-top: 13px;
-
     border-right: 1px solid #ddd;
     background-color: rgb(217, 237, 247);
 }
 
-.input-user-info-body
-{
+.input-user-info-body {
     padding-top: 6px;
 }
 
-#btn-regist
-{
+#btn-regist {
     float: right;
-
     width: 50px;
     height: 50px;
     margin: 10px 20px 10px 0;
     padding-top: 10px;
-
     border-radius: 25px;
     box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
 }
 
-#btn-regist span
-{
+#btn-regist span {
     font-size: 20px;
-
     color: #fff;
 }
+
 
 /*
  * input-user-info-completed
@@ -91,29 +76,35 @@
     font-size: 14px;
 }
 
-.input-user-info-body.completed
-{
+.input-user-info-body.completed {
     padding-top: 13px;
 }
+
 
 /*
  * user-list
  */
+
 #user-list-wrapper {
     margin-right: 10px;
 }
 
-#user-list-wrapper .row {
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
 #user-list-wrapper div {
     word-break: break-all;
+    color: #666;
+}
+
+#user-list-wrapper .panel {
+    margin-bottom: 0px
+}
+
+#user-list-wrapper .hvr-shadow {
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .user-list-header {
-    background-color: rgb(217,237,247);
+    background-color: rgb(217, 237, 247);
 }
 
 .user-list-header .full-name-kana {
@@ -135,14 +126,13 @@
     text-align: right;
 }
 
+
 /*
  * media-queries
  */
 
-@media (max-width: 480px)
-{
-    .input-user-info-header
-    {
+@media (max-width: 480px) {
+    .input-user-info-header {
         border-right: none;
     }
 }
