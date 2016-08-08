@@ -1,5 +1,5 @@
 /*
- * connectyee.dashboard.js
+ * connectyee.attendance.list.js
  * History
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
  */
@@ -127,7 +127,7 @@ $(function() {
                                       'data-toggle': 'tooltip',
                                       'data-container': 'body',
                                       'data-placement': 'top',
-                                      'title': 'ç·¨é›†',
+                                      'title': 'ç·¡¦Õæ',
                                       'href': hrefStr}).appendTo(attendance_kubun);
                     }
 
