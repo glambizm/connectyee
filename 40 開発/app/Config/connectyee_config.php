@@ -127,7 +127,7 @@
                     'authority'=>'0',
                     'sub-title'=>'UserProfile',
                     'icon'=>'<span class="[icon-class] glyphicon glyphicon-user" aria-hidden="true"></span>',
-//                  'href'=>Router::url(array('controller'=>'Users', 'action'=>'index')),
+                    'href'=>Router::url(array('controller'=>'Users', 'action'=>'changeUserProfile')),
                     'href'=>'',
                     'menu-parent'=>-1,
                     'child'=>null),
@@ -137,10 +137,20 @@
                     'sub-title'=>'Administration',
                     'authority'=>'1',
                     'icon'=>'<span class="[icon-class] glyphicon glyphicon-wrench" aria-hidden="true"></span>',
-//                  'href'=>Router::url(array('controller'=>'Administrations', 'action'=>'index')),
                     'href'=>'',
-                    'menu-parent'=>-1,
-                    'child'=>null)
+                    'menu-parent'=>3,
+                    'child'=> array(
+                        0=>array(   'display'=>true,
+                                    'name'=>'Users',
+                                    'title'=>'ユーザー管理',
+                                    'sub-title'=>'AdministrateUser',
+                                    'authority'=>'1',
+                                    'icon'=>'<span class="[icon-class] icon-social-1" aria-hidden="true"></span>',
+                                    'href'=>Router::url(array('controller'=>'Users', 'action'=>'displayUserList')),
+                                    'menu-parent'=>-1,
+                                    'child'=>null
+                        )
+                    ))
     );
 
     $config['initial_color'] = array(

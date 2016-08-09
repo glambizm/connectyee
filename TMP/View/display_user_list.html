@@ -103,13 +103,21 @@
                 <h6 class="side-bar-desktop-heading list-group-item-heading">ユーザー情報</h6>
                 <p class="side-bar-desktop-text list-group-item-text">UserProfile</p>
             </a>
-            <a class="side-bar-item list-group-item" href="#">
+            <a class="side-bar-item list-group-item" href="#" data-menu-parent="2">
                 <span class="ripple-effect"></span>
                 <span class="side-bar-icon glyphicon glyphicon-wrench" aria-hidden="true"></span>
                 <h6 class="side-bar-desktop-heading list-group-item-heading">管理</h6>
                 <p class="side-bar-desktop-text list-group-item-text">Administration</p>
                 <span class="side-bar-collapse-icon glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
             </a>
+            <div data-menu-child="2">
+                <a class="side-bar-item side-bar-item-open list-group-item" href="#">
+                    <span class="ripple-effect"></span>
+                    <span class="side-bar-icon icon-social-1" aria-hidden="true"></span>
+                    <h6 class="side-bar-desktop-heading list-group-item-heading">ユーザー管理</h6>
+                    <p class="side-bar-desktop-text list-group-item-text">AdministrateUser</p>
+                </a>
+            </div>
         </div>
     </div>
     <div id="side-bar-tablet-wrapper" class="visible-sm-block">
@@ -152,10 +160,16 @@
                 <span class="ripple-effect"></span>
                 <span class="side-bar-icon glyphicon glyphicon-user" aria-hidden="true"></span>
             </a>
-            <a class="side-bar-item list-group-item" href="#">
+            <a class="side-bar-item list-group-item" href="#" data-menu-parent="2">
                 <span class="ripple-effect"></span>
                 <span class="side-bar-icon glyphicon glyphicon-wrench" aria-hidden="true"></span>
             </a>
+            <div data-menu-child="2">
+                <a class="side-bar-item side-bar-item-open list-group-item" href="#">
+                    <span class="ripple-effect"></span>
+                    <span class="side-bar-icon icon-social-1" aria-hidden="true"></span>
+                </a>
+            </div>
         </div>
     </div>
     <div id="page-content-wrapper">

@@ -91,7 +91,11 @@ class OrgUser {
     }
 
     public function getAccount() {
-        return $this->account;
+        if ($escape === true) {
+            return htmlentities($this->account, ENT_QUOTES, 'utf-8');
+        } else {
+            return $this->account;
+        }
     }
 
     public function getFullName($escape = false) {
