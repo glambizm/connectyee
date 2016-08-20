@@ -58,7 +58,14 @@ foreach ($side_bar_info as $val) {
 <?php foreach ($side_bar_info as $key=>$val): ?>
     <?php if ($val['display'] !== true) {continue;} ?>
     <?php if ($val['authority'] > $LoginUser->getAuthority()) {continue;} ?>
-        <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
+<?php
+    if ($val['name'] === 'Schedules' || $val['name'] === 'Posts') {
+        $href = $val['href'] . '?' . 'connectyee_user_id=' . $LoginUser->getAccount();
+    } else {
+        $href = $val['href'];
+    }
+?>
+        <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $href; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
             <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
             <h6 class="side-bar-desktop-heading list-group-item-heading"><?php echo $val['title']; ?></h6>
@@ -91,7 +98,14 @@ foreach ($side_bar_info as $val) {
 <?php foreach ($side_bar_info as $key=>$val): ?>
     <?php if ($val['display'] !== true) {continue;} ?>
     <?php if ($val['authority'] > $LoginUser->getAuthority()) {continue;} ?>
-        <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $val['href']; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
+<?php
+    if ($val['name'] === 'Schedules' || $val['name'] === 'Posts') {
+        $href = $val['href'] . '?' . 'connectyee_user_id=' . $LoginUser->getAccount();
+    } else {
+        $href = $val['href'];
+    }
+?>
+        <a class="<?php echo $key===0 ? 'side-bar-top ' : ''; ?>side-bar-item list-group-item" href="<?php echo $href; ?>"<?php echo $val['menu-parent']>0 ? ' data-menu-parent="' . $val['menu-parent'] . '"' : ''; ?>>
             <span class="ripple-effect"></span>
             <?php echo str_replace('[icon-class]', 'side-bar-icon', $val['icon']); ?>
         </a>

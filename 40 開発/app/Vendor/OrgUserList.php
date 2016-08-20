@@ -58,8 +58,7 @@ class OrgUserList {
         $result = array();
         foreach ($this->Items as $val) {
             if (intval($val->getDeleteKubun()) === 0) {
-                $result[] = clone $User;
-                break;
+                $result[] = clone $val;
             }
         }
 

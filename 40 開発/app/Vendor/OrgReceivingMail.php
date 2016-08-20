@@ -77,8 +77,8 @@ class OrgReceivingMail extends OrgMail  {
     public function deleteReceivingMail() {
         $this->ReceivingUser->id = $this->receivingMailId;
 
-		try {
-        	$this->ReceivingUser->saveField('delete_kubun', 1);
+        try {
+            $this->ReceivingUser->saveField('delete_kubun', 1);
         } catch (PDOException $e) {
             Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
         } catch (Exception $e) {
@@ -89,8 +89,8 @@ class OrgReceivingMail extends OrgMail  {
     public function deleteUnReadKubun() {
         $this->ReceivingUser->id = $this->receivingMailId;
 
-		try {
-	        $this->ReceivingUser->saveField('unread_kubun', 0);
+        try {
+            $this->ReceivingUser->saveField('unread_kubun', 0);
         } catch (PDOException $e) {
             Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
         } catch (Exception $e) {

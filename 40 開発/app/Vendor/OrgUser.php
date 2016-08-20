@@ -90,12 +90,16 @@ class OrgUser {
         return $this->id;
     }
 
-    public function getAccount() {
+    public function getAccount($escape = false) {
         if ($escape === true) {
             return htmlentities($this->account, ENT_QUOTES, 'utf-8');
         } else {
             return $this->account;
         }
+    }
+
+    public function getPassword() {
+        return $this->password;
     }
 
     public function getFullName($escape = false) {
@@ -183,6 +187,110 @@ class OrgUser {
             case 'y': case 'Y':                                     return 'Y';
             case 'z': case 'Z':                                     return 'Z';
             default:                                                return '?';
+        }
+    }
+
+    public function setAccount($account) {
+        $this->account = $account;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+    }
+
+    public function setFullName($name) {
+        $this->fullName = $name;
+    }
+
+    public function setFullNameKana($nameKana) {
+        $this->fullNameKana = $nameKana;
+    }
+
+    public function setMailAddress($mailAddress) {
+        $this->mailAddress = $mailAddress;
+    }
+
+    public function setAuthority($authority) {
+        $this->authority = intval($authority);
+    }
+
+    public function registUserInfo() {
+        $fields = array();
+        $fields[] = 'account';
+        $fields[] = 'full_name';
+        $fields[] = 'full_name_kana';
+        $fields[] = 'mail_address';
+        $fields[] = 'authority';
+        $fields[] = 'delete_kubun';
+
+        $data = array();
+        $data['User']['account'] = $this->account;
+        $data['User']['full_name'] = $this->fullName;
+        $data['User']['full_name_kana'] = $this->fullNameKana;
+        $data['User']['mail_address'] = $this->mailAddress;
+        $data['User']['authority'] = $this->authority;
+        $data['User']['delete_kubun'] = 0;
+
+        $changePassword = true;
+        if ($this->isExist() === true) {
+            try {
+                $orgData = $this->User-find('all', array('conditions'=>array('User.id' => $this->id)));
+            } catch (PDOException $e) {
+                Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
+                return;
+            } catch (Exception $e) {
+                Debugger::log($e->getMessage(), LOG_DEBUG);
+                return;
+            }
+
+            if (count($orgData) === 0) {
+                return;
+            }
+
+            if ($this->password === $orgData[0]['User']['password']) {
+                $changePassword = false;
+            }
+        }
+
+        if ($changePassword === true) {
+            $fields[] = 'password';
+            $data['User']['password'] = $this->password;
+        }
+
+        if ($this->User->validates($data) === true) {
+            if ($this->isExist() === true) {
+                $this->User->id = $this->id;
+            } else {
+                $this->User->create();
+            }
+
+            try {
+                $this->User->save($data, false, $fields);
+            } catch (PDOException $e) {
+                Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
+                return;
+            } catch (Exception $e) {
+                Debugger::log($e->getMessage(), LOG_DEBUG);
+                return;
+            }
+        } else {
+            Debugger::log(var_export($this->User->validationErrors, true), LOG_DEBUG);
+            return;
+        }
+    }
+
+    public function deleteUser() {
+        if ($this->isExist() === false) {
+            return;
+        }
+
+        $this->User->id = $this->id;
+        try {
+            $this->User->saveField('delete_kubun', 1);
+        } catch (PDOException $e) {
+            Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
+        } catch (Exception $e) {
+            Debugger::log($e->getMessage(), LOG_DEBUG);
         }
     }
 }
