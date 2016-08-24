@@ -66,6 +66,7 @@ class AppController extends Controller {
 
         if ($this->action !== 'login') {
             $this->LoginUser = unserialize($this->Session->read('login_user'));
+            $this->LoginUser->setUserModel();
         }
 
         $this->UserList = new OrgUserList();

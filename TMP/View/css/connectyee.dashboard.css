@@ -1,6 +1,7 @@
 /*
  * Panel-General
  */
+
 #page-content-wrapper div[id*='-heading']
 {
     font-size: 15px;
@@ -34,6 +35,7 @@
     text-decoration: none;
 }
 
+
 /*
  * date-info
  */
@@ -42,8 +44,8 @@
 {
     margin: 0 15px 20px 15px;
 
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.3);
-            box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
 }
 
 #date-info-wrapper div[class*='col-md']
@@ -79,13 +81,15 @@
     margin: 0;
 }
 
+
 /*
  * Calendar
  */
+
 #calendar-header,
 #calendar-body
 {
-    background-color: rgb(23,102,166);
+    background-color: rgb(23, 102, 166);
 }
 
 #calendar-header
@@ -136,7 +140,7 @@
 #calendar-body #cal_today:hover,
 #calendar-body #cal_selected_day
 {
-    color: rgb(23,102,166);
+    color: rgb(23, 102, 166);
     border-radius: 10%;
     background-color: #fff;
 }
@@ -170,13 +174,14 @@
 
     color: #fff;
     border: 0;
-    background-color: rgb(23,102,166);
+    background-color: rgb(23, 102, 166);
 }
 
 #btn-next-month
 {
     float: right;
 }
+
 
 /*
  * date-name
@@ -188,12 +193,15 @@
     padding-top: 8px;
 }
 
+
 /*
  * schedule
  */
+
 #schedule-wrapper
 {
-    padding-bottom: 5px;
+    min-height: 130px;
+    padding: 10px;
 }
 
 .schedule-items
@@ -203,29 +211,37 @@
     margin-bottom: 5px;
 }
 
+
 /*
  * attendance
  */
+
 #attendance-wrapper
 {
-    padding-bottom: 5px;
+    min-height: 130px;
+    padding: 10px;
 }
 
 .attendance-items
 {
     line-height: 1.3em;
 
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+}
+
+#attendance-wrapper div:last-child
+{
+    margin-bottom: 0px;
 }
 
 /*
  * Webmail
  */
+
 #webmail-heading
 {
-    background-color: rgb(76,175,80);
+    background-color: rgb(76, 175, 80);
 }
-
 
 #page-content-wrapper .webmail-body a[data-unread='true']
 {
@@ -238,31 +254,49 @@
     margin-top: -1px;
 }
 
+
 /*
  * BBS
  */
+
 #bbs-heading
 {
-    background-color: rgb(156,39,176);
+    background-color: rgb(156, 39, 176);
 }
+
 
 /*
  * media-queries
  */
+@media (max-width: 479px)
+{
+    #calendar-body th,
+    #calendar-body td
+    {
+        height: 25px;
+    }
+
+    #calendar-body td:not(:empty)
+    {
+        font-size: 13px;
+    }
+
+    .empty-element
+    {
+        display: none;
+    }
+}
 
 @media (min-width: 768px)
 {
     #schedule-wrapper
     {
-        overflow-y: scroll;
-
         height: 130px;
+        overflow-y: scroll;
     }
-
     #attendance-wrapper
     {
-        overflow-y: scroll;
-
         height: 130px;
+        overflow-y: scroll;
     }
 }

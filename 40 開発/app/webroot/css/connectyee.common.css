@@ -456,6 +456,11 @@ button[type="submit"]>.connectyee-icons {
     color: #666;
 }
 
+.btn .connectyee-icons-larger {
+    font-size: 22px;
+
+    margin-top: 10px;
+}
 
 /*
  * media-queries
@@ -498,7 +503,7 @@ button[type="submit"]>.connectyee-icons {
     }
     #btn-wrapper
     {
-        height: 52px;
+        height: 54px;
     }
     #btn-wrapper .btn-group
     {
@@ -506,8 +511,8 @@ button[type="submit"]>.connectyee-icons {
     }
     #btn-wrapper .btn
     {
-        width: 35px;
-        height: 35px;
+        width: 37px;
+        height: 37px;
         padding: 0;
     }
 }

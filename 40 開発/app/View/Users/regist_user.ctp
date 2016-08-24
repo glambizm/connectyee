@@ -15,11 +15,6 @@ if (intval($User->getAuthority()) === 1) {
                 <span class="connectyee-icons-larger icon-folder2" aria-hidden="true"></span>
             </a>
         </div>
-        <div class="btn-group" role="group" aria-label="...">
-            <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="ユーザー追加" href="<?php echo Router::url(array('controller'=>'Users', 'action'=>'registUser')); ?>">
-                <span class="connectyee-icons-larger icon-social" aria-hidden="true"></span>
-            </a>
-        </div>
 <?php if ($User->isExist() === true): ?>
         <div class="btn-group" role="group" aria-label="...">
             <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="ユーザー削除" href="<?php echo Router::url(array('controller'=>'Users', 'action'=>'deleteUser', $User->getUserId())); ?>">
@@ -70,7 +65,7 @@ if (intval($User->getAuthority()) === 1) {
                     </select>
                 </div>
             </div>
-            <input type="hidden" name="id">
+            <input type="hidden" name="id" value="<?php echo $User->getUserId(); ?>">
             <div id="submit-wrapper" class="row">
                 <button type="submit" id="btn-regist" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="登録"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
             </div>

@@ -103,12 +103,16 @@
     margin-bottom: 10px;
 }
 
+#user-list-wrapper .list-group-item {
+    padding: 5px;
+}
+
 .user-list-header {
     background-color: rgb(217, 237, 247);
 }
 
 .user-list-header .full-name-kana {
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .user-list-header .full-name {
@@ -116,8 +120,8 @@
     line-height: 16px;
 }
 
-.user-list-header .account,
-.user-list-header .mail-address,
+.user-list-body .account,
+.user-list-body .mail-address,
 .user-list-header .authority {
     font-size: 14px;
 }

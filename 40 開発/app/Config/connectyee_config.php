@@ -49,26 +49,6 @@
                                     'href'=>Router::url(array('controller'=>'WebMails', 'action'=>'displaySendingMailList')),
                                     'menu-parent'=>-1,
                                     'child'=>null
-                        ),
-                        3=>array(   'display'=>false,
-                                    'name'=>'',
-                                    'title'=>'',
-                                    'sub-title'=>'ReceivingMail',
-                                    'authority'=>'0',
-                                    'icon'=>'<span class="[icon-class] glyphicon icon-email-inbox" aria-hidden="true"></span>',
-                                    'href'=>Router::url(array('controller'=>'WebMails', 'action'=>'displayReceivingMail')),
-                                    'menu-parent'=>-1,
-                                    'child'=>null
-                        ),
-                        4=>array(   'display'=>false,
-                                    'name'=>'',
-                                    'title'=>'',
-                                    'sub-title'=>'SendingMail',
-                                    'authority'=>'0',
-                                    'icon'=>'<span class="[icon-class] glyphicon icon-email-outbox" aria-hidden="true"></span>',
-                                    'href'=>Router::url(array('controller'=>'WebMails', 'action'=>'displaySendingMail')),
-                                    'menu-parent'=>-1,
-                                    'child'=>null
                         )
                     )),
         2=>array(   'display'=>true,
@@ -126,9 +106,9 @@
                     'sub-title'=>'UserProfile',
                     'icon'=>'<span class="[icon-class] glyphicon glyphicon-user" aria-hidden="true"></span>',
                     'href'=>Router::url(array('controller'=>'Users', 'action'=>'changeUserProfile')),
-                    'href'=>'',
                     'menu-parent'=>-1,
-                    'child'=>null),
+                    'child'=>null
+                    ),
         6=>array(   'display'=>true,
                     'name'=>'Administrations',
                     'title'=>'管理',
@@ -143,12 +123,62 @@
                                     'title'=>'ユーザー管理',
                                     'sub-title'=>'AdministrateUser',
                                     'authority'=>'1',
-                                    'icon'=>'<span class="[icon-class] icon-social-1" aria-hidden="true"></span>',
+                                    'icon'=>'<span class="[icon-class] icon-folder2" aria-hidden="true"></span>',
                                     'href'=>Router::url(array('controller'=>'Users', 'action'=>'displayUserList')),
                                     'menu-parent'=>-1,
                                     'child'=>null
                         )
-                    ))
+                    )),
+        7=>array(   'display'=>false,
+                    'name'=>'',
+                    'title'=>'',
+                    'sub-title'=>'ReceivingMail',
+                    'authority'=>'0',
+                    'icon'=>'<span class="[icon-class] glyphicon icon-email-inbox" aria-hidden="true"></span>',
+                    'href'=>Router::url(array('controller'=>'WebMails', 'action'=>'displayReceivingMail')),
+                    'menu-parent'=>-1,
+                    'child'=>null
+                    ),
+        8=>array(   'display'=>false,
+                    'name'=>'',
+                    'title'=>'',
+                    'sub-title'=>'SendingMail',
+                    'authority'=>'0',
+                    'icon'=>'<span class="[icon-class] glyphicon icon-email-outbox" aria-hidden="true"></span>',
+                    'href'=>Router::url(array('controller'=>'WebMails', 'action'=>'displaySendingMail')),
+                    'menu-parent'=>-1,
+                    'child'=>null
+                    ),
+        9=>array(   'display'=>false,
+                    'name'=>'',
+                    'title'=>'',
+                    'sub-title'=>'UserProfile',
+                    'authority'=>'0',
+                    'icon'=>'<span class="[icon-class] glyphicon glyphicon-user" aria-hidden="true"></span>',
+                    'href'=>Router::url(array('controller'=>'Users', 'action'=>'changeUserProfileCompleted')),
+                    'menu-parent'=>-1,
+                    'child'=>null
+        ),
+        10=>array(  'display'=>false,
+                    'name'=>'',
+                    'title'=>'',
+                    'sub-title'=>'AdministrateUser',
+                    'authority'=>'0',
+                    'icon'=>'<span class="[icon-class] icon-social" aria-hidden="true"></span>',
+                    'href'=>Router::url(array('controller'=>'Users', 'action'=>'registUser')),
+                    'menu-parent'=>-1,
+                    'child'=>null
+                    ),
+        11=>array(  'display'=>false,
+                    'name'=>'',
+                    'title'=>'',
+                    'sub-title'=>'AdministrateUser',
+                    'authority'=>'0',
+                    'icon'=>'<span class="[icon-class] icon-social-1" aria-hidden="true"></span>',
+                    'href'=>Router::url(array('controller'=>'Users', 'action'=>'editUserInfo')),
+                    'menu-parent'=>-1,
+                    'child'=>null
+                    )
     );
 
     $config['initial_color'] = array(

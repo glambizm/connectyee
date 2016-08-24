@@ -24,8 +24,9 @@ class UsersController extends AppController {
         $this->LoginUser->setAccount($this->request->data['account']);
         $this->LoginUser->setMailAddress($this->request->data['mail_address']);
         $this->LoginUser->registUserInfo();
+        $this->LoginUser->setLoginUser();
 
-        $this->redirect(array('controller'=>'Users', 'action'=>'changeUserInfoCompleted'));
+        $this->redirect(array('controller'=>'Users', 'action'=>'changeUserProfileCompleted'));
     }
 
     public function changeUserProfileCompleted() {
@@ -46,8 +47,8 @@ class UsersController extends AppController {
                 (empty($this->request->data['account']) === true) ||
                 (empty($this->request->data['password']) === true) ||
                 (empty($this->request->data['mail_address']) === true) ||
-                (empty($this->request->data['authority']) === true)) {
-                return;
+                (isset($this->request->data['authority']) === false)) {
+                $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
             }
 
             $User = new OrgUser();
@@ -74,10 +75,11 @@ class UsersController extends AppController {
                 (empty($this->request->data['password']) === true) ||
                 (empty($this->request->data['mail_address']) === true) ||
                 (empty($this->request->data['authority']) === true)) {
-                return;
+                $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
             }
 
-            $User = new OrgUser();
+            $UserList = $this->UserList->getUserList(array($this->request->data['id']));
+            $User = $UserList[0];
             $User->setFullName($this->request->data['full_name']);
             $User->setFullNameKana($this->request->data['full_name_kana']);
             $User->setAccount($this->request->data['account']);
@@ -86,8 +88,14 @@ class UsersController extends AppController {
             $User->setAuthority($this->request->data['authority']);
             $User->registUserInfo();
 
+            if ($User->getUserId() === $this->LoginUser->getUserId()) {
+                $User->setLoginUser();
+            }
+
             $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
         }
+
+        $this->render('RegistUser');
     }
 
     public function deleteUser($id) {

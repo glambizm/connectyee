@@ -42,7 +42,7 @@ class OrgUser {
 
     public function login($account, $password) {
         $conditions = array(
-            'and'=>array('account'=>$account, 'password'=>Security::hash($password, 'sha1', true))
+            'and'=>array('account'=>$account, 'password'=>Security::hash($password, 'sha1', true), 'delete_kubun'=>0)
         );
 
 		try {
@@ -71,6 +71,10 @@ class OrgUser {
         session_destroy();
         session_start();
 
+        $_SESSION['login_user'] = serialize($this);
+    }
+
+    public function setLoginUser() {
         $_SESSION['login_user'] = serialize($this);
     }
 
@@ -214,6 +218,10 @@ class OrgUser {
         $this->authority = intval($authority);
     }
 
+    public function setUserModel() {
+        $this->User = ClassRegistry::init('User');
+    }
+
     public function registUserInfo() {
         $fields = array();
         $fields[] = 'account';
@@ -234,7 +242,7 @@ class OrgUser {
         $changePassword = true;
         if ($this->isExist() === true) {
             try {
-                $orgData = $this->User-find('all', array('conditions'=>array('User.id' => $this->id)));
+                $orgData = $this->User->find('all', array('conditions'=>array('User.id' => $this->id)));
             } catch (PDOException $e) {
                 Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
                 return;
