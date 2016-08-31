@@ -70,6 +70,17 @@ class OrgUserList {
             return $result;
         }
     }
+
+    public function isExistSameAccountUser($Target) {
+        foreach($this->Items as $User) {
+            if ((intval($Target->getUserId()) !== intval($User->getUserId())) &&
+                ($Target->getAccount() === $User->getAccount()) &&
+                (intval($User->getDeleteKubun()) === 0)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 function compareUser($a, $b) {

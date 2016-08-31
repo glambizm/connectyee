@@ -7,6 +7,23 @@
 App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
+    private $errorMsg;
+    private $inputtedAccount;
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+
+        $this->errorMsg = '';
+        $this->inputtedAccount = '';
+    }
+
+    public function beforeRender() {
+        parent::beforeRender();
+
+        $this->set('errorMsg', $this->errorMsg);
+        $this->set('inputtedAccount', $this->inputtedAccount);
+    }
+
     public function changeUserProfile() {
         if ($this->request->is('post') === false) {
             return;
@@ -23,6 +40,13 @@ class UsersController extends AppController {
         $this->LoginUser->setFullNameKana($this->request->data['full_name_kana']);
         $this->LoginUser->setAccount($this->request->data['account']);
         $this->LoginUser->setMailAddress($this->request->data['mail_address']);
+
+        $ret = $this->_isExistSameAccountUser($this->LoginUser);
+
+        if ($ret === true) {
+            return;
+        }
+
         $this->LoginUser->registUserInfo();
         $this->LoginUser->setLoginUser();
 
@@ -58,6 +82,14 @@ class UsersController extends AppController {
             $User->setPassword($this->request->data['password']);
             $User->setMailAddress($this->request->data['mail_address']);
             $User->setAuthority($this->request->data['authority']);
+
+            $ret = $this->_isExistSameAccountUser($User);
+
+            if ($ret === true) {
+                $this->set('User', $User);
+                return;
+            }
+
             $User->registUserInfo();
 
             $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
@@ -86,6 +118,15 @@ class UsersController extends AppController {
             $User->setPassword($this->request->data['password']);
             $User->setMailAddress($this->request->data['mail_address']);
             $User->setAuthority($this->request->data['authority']);
+
+            $ret = $this->_isExistSameAccountUser($User);
+
+            if ($ret === true) {
+                $this->set('User', $User);
+                $this->render('RegistUser');
+                return;
+            }
+
             $User->registUserInfo();
 
             if ($User->getUserId() === $this->LoginUser->getUserId()) {
@@ -103,6 +144,17 @@ class UsersController extends AppController {
         $User[0]->deleteUser();
 
         $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
+    }
+
+    private function _isExistSameAccountUser($Target) {
+        $ret = $this->UserList->isExistSameAccountUser($Target);
+
+        if ($ret === true) {
+            $this->errorMsg = '入力されたアカウントは他ユーザーにより使用されています。';
+            return true;
+        }
+
+        return false;
     }
 }
 

@@ -49,6 +49,13 @@
     padding-top: 6px;
 }
 
+#input-user-error-msg {
+    font-size: 14px;
+    display: inline-block;
+    margin: 25px 0 0 30px;
+    color: red;
+}
+
 #btn-regist {
     float: right;
     width: 50px;
@@ -70,10 +77,10 @@
  */
 
 #completed-msg {
-    min-height: 50px;
-    padding: 11px 0 10px 10px;
-    margin-right: 10px;
     font-size: 14px;
+    min-height: 50px;
+    margin-right: 10px;
+    padding: 11px 0 10px 10px;
 }
 
 .input-user-info-body.completed {
@@ -95,7 +102,7 @@
 }
 
 #user-list-wrapper .panel {
-    margin-bottom: 0px
+    margin-bottom: 0;
 }
 
 #user-list-wrapper .hvr-shadow {

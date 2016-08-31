@@ -13,7 +13,7 @@ $this->Html->script('connectyee.user.js', array('inline'=>false));
             <div class="container-fluid">
                 <div id="full-name-wrapper" class="row">
                     <div id="full-name-header" class="input-user-info-header col-xxs-12 col-xs-3 col-sm-2">氏名</div>
-                    <div id="full-name-body" class="input-user-info-body col-xxs-12 col-xs-9 col-sm-10">
+                    <div id="full-name-body" class="input-user-info-body completed col-xxs-12 col-xs-9 col-sm-10">
                         <?php echo $LoginUser->getFullName(true); ?>
                     </div>
                 </div>

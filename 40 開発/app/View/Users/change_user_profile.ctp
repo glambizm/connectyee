@@ -2,6 +2,12 @@
 $this->extend('/Common/common');
 $this->Html->css('connectyee.user.css', array('inline' => false));
 $this->Html->script('connectyee.user.js', array('inline'=>false));
+
+if ($inputtedAccount !== '') {
+    $account = $inputtedAccount;
+} else {
+    $account = $LoginUser->getAccount();
+}
 ?>
 
 <div id="page-content-wrapper">
@@ -23,7 +29,7 @@ $this->Html->script('connectyee.user.js', array('inline'=>false));
             <div id="account-wrapper" class="row">
                 <div id="account-header" class="input-user-info-header col-xxs-12 col-xs-3 col-sm-2">アカウント</div>
                 <div id="account-body" class="input-user-info-body col-xxs-12 col-xs-9 col-sm-10">
-                    <input type="text" id="account" class="form-control" name="account" maxlength="30" value="<?php echo $LoginUser->getAccount(); ?>" />
+                    <input type="text" id="account" class="form-control" name="account" maxlength="30" value="<?php echo $account; ?>" />
                 </div>
             </div>
             <div id="mailaddress-wrapper" class="row">
@@ -33,6 +39,7 @@ $this->Html->script('connectyee.user.js', array('inline'=>false));
                 </div>
             </div>
             <div id="submit-wrapper" class="row">
+                <div id="input-user-error-msg"><?php echo $errorMsg; ?></div>
                 <button type="submit" id="btn-regist" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="登録"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
             </div>
         </div>
