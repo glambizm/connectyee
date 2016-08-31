@@ -96,7 +96,7 @@ class UsersController extends AppController {
         }
     }
 
-    public function editUserInfo($id) {
+    public function editUserInfo($id = null) {
         if ($this->request->is('post') === false) {
             $User = $this->UserList->getUserList(array($id));
             $this->set('User', $User[0]);
@@ -106,7 +106,7 @@ class UsersController extends AppController {
                 (empty($this->request->data['account']) === true) ||
                 (empty($this->request->data['password']) === true) ||
                 (empty($this->request->data['mail_address']) === true) ||
-                (empty($this->request->data['authority']) === true)) {
+                (isset($this->request->data['authority']) === false)) {
                 $this->redirect(array('controller'=>'Users', 'action'=>'displayUserList'));
             }
 

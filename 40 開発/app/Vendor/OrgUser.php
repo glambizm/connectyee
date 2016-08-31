@@ -42,7 +42,11 @@ class OrgUser {
 
     public function login($account, $password) {
         $conditions = array(
-            'and'=>array('account'=>$account, 'password'=>Security::hash($password, 'sha1', true), 'delete_kubun'=>0)
+            'and'=>array(   'account'=>$account,
+                            'password'=>Security::hash($password, 'sha1', true),
+                            'or'=>array(array('delete_kubun'=>0),
+                                        array('delete_kubun'=>null))
+                        )
         );
 
 		try {

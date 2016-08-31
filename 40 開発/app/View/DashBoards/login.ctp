@@ -43,7 +43,6 @@
             <?php echo $this->Form->end(); ?>
         </div>
     </div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <?php echo $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', array('inline'=>true)); ?>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
