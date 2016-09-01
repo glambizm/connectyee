@@ -84,7 +84,7 @@ class OrgUserList {
 }
 
 function compareUser($a, $b) {
-    return strnatcmp($a->getFullNameKana(), $b->getFullNameKana());
+    return strnatcasecmp(preg_replace("/( |@)/", "",$a->getFullNameKana()), preg_replace("/( |@)/", "",$b->getFullNameKana()));
 }
 
 ?>
