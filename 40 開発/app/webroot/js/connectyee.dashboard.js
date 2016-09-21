@@ -44,12 +44,12 @@ $(function() {
      * td click
      */
     $(document).on('click', '#calendar-body td', function() {
-        if (typeof parseInt($(this).text(), 10) === 'number') {
-            var selYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
-            var selMonth = parseInt($('#display-year-month').text().substr(-2), 10) - 1;
-            var selDay = parseInt($(this).text(), 10);
-            changeCalendar(new Date(selYear, selMonth, selDay), false);
-        }
+        if ($(this).text() === '') return;
+
+        var selYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
+        var selMonth = parseInt($('#display-year-month').text().substr(-2), 10) - 1;
+        var selDay = parseInt($(this).text(), 10);
+        changeCalendar(new Date(selYear, selMonth, selDay), false);
     });
 
     /*
