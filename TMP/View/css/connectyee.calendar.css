@@ -1,0 +1,126 @@
+/*
+ * Calendar
+ */
+
+#page-content-wrapper.calendar-wrapper {
+    padding-right: 10px;
+}
+
+.container.calendar-container
+{
+    max-width: 700px;
+}
+
+#calendar-header,
+#calendar-body
+{
+    background-color: rgb(23, 102, 166);
+}
+
+#calendar-header
+{
+    height: 10%;
+    padding: 10px 10px 0 10px;
+
+    text-align: center;
+}
+
+#calendar-body
+{
+    height: 90%;
+    padding: 0 10px 9px 10px;
+}
+
+#calendar-body table
+{
+    width: 100%;
+
+    table-layout: fixed;
+}
+
+#calendar-body th,
+#calendar-body td
+{
+    height: 35px;
+
+    text-align: center;
+
+    color: #fff;
+}
+
+#calendar-body th
+{
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+#calendar-body td:not(:empty)
+{
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+#calendar-body td.cal_named_day {
+    font-size: 15px;
+    line-height: 15px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+}
+
+
+#calendar-body td.cal_named_day p {
+    font-size: 10px;
+    line-height: 10px;
+}
+
+#calendar-body td:not(:empty):hover,
+#calendar-body #cal_today:hover,
+#calendar-body #cal_selected_day
+{
+    color: rgb(23, 102, 166);
+    border-radius: 10%;
+    background-color: #fff;
+}
+
+#calendar-body #cal_selected_day.cal_named_day {
+    border: none;
+    font-weight: bold;
+}
+
+#calendar-body #cal_today
+{
+    border: 1px solid #fff;
+    background-color: rgb(141, 195, 239);
+}
+
+#calendar-header span[id*='btn-']
+{
+    font-size: 30px;
+
+    cursor: pointer;
+
+    color: #fff;
+}
+
+#btn-prev-month
+{
+    float: left;
+}
+
+#display-year-month
+{
+    font-size: 18px;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: #fff;
+    border: 0;
+    background-color: rgb(23, 102, 166);
+}
+
+#btn-next-month
+{
+    float: right;
+}

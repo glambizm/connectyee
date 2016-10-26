@@ -16,7 +16,6 @@
     <link href="css/page-loading-effects.css" rel="stylesheet">
     <link href="css/connectyee.icon.css" rel="stylesheet">
     <link href="css/connectyee.common.css" rel="stylesheet">
-    <link href="css/connectyee.dashboard.css" rel="stylesheet">
     <link href="css/connectyee.calendar.css" rel="stylesheet">
     <script type="text/javascript" src="js/snap.svg-min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -159,157 +158,80 @@
             </a>
         </div>
     </div>
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div id="date-info-wrapper" class="clearfix">
-                    <div class="col-md-4">
-                        <div id="calendar-header" class="clearfix">
-                            <span id="btn-prev-month" class="glyphicon icon-circle-left" aria-hidden="true"></span>
-                            <span id="display-year-month">2016/03</span>
-                            <span id="btn-next-month" class="glyphicon icon-circle-right" aria-hidden="true"></span>
-                        </div>
-                        <div id="calendar-body">
-                            <table>
-                                <tr>
-                                    <th>SUN</th>
-                                    <th>MON</th>
-                                    <th>TUE</th>
-                                    <th>WED</th>
-                                    <th>THU</th>
-                                    <th>FRI</th>
-                                    <th>SAT</th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>7</td>
-                                    <td>8</td>
-                                    <td id="cal_selected_day">9</td>
-                                    <td>10</td>
-                                    <td id="cal_today">11</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>14</td>
-                                    <td>15</td>
-                                    <td>16</td>
-                                    <td>17</td>
-                                    <td>18</td>
-                                    <td>19</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                    <td>21</td>
-                                    <td>22</td>
-                                    <td>23</td>
-                                    <td>24</td>
-                                    <td>25</td>
-                                    <td>26</td>
-                                </tr>
-                                <tr>
-                                    <td>27</td>
-                                    <td>28</td>
-                                    <td>29</td>
-                                    <td>30</td>
-                                    <td>31</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="list-group">
-                            <div id="date-name" class="list-group-item">
-                                aaa
-                            </div>
-                            <div id="schedule-wrapper" class="list-group-item">
-                                <div class="schedule-items">
-                                    <p class="schedule-memo">ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ</p>
-                                    <p class="schedule-time">XX:XX～XX:XX</p>
-                                </div>
-                                <div class="schedule-items">
-                                    <p class="schedule-memo">ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ</p>
-                                    <p class="schedule-time">XX:XX～XX:XX</p>
-                                </div>
-                            </div>
-                            <div id="attendance-wrapper" class="list-group-item">
-                                <div class="attendance-items">
-                                    <p class="attendance-info">ＸＸＸ　ＸＸＸ：ＸＸＸＸ</p>
-                                    <p class="attendance-memo">ＸＸＸＸＸＸＸＸＸＸ</p>
-                                    <p class="attendance-regist-info">by:ＸＸＸ　ＸＸＸ XX/XX XX:XX</p>
-                                </div>
-                                <div class="attendance-items">
-                                    <p class="attendance-info">ＸＸＸ　ＸＸＸ：ＸＸＸＸ</p>
-                                    <p class="attendance-memo">ＸＸＸＸＸＸＸＸＸＸ</p>
-                                    <p class="attendance-regist-info">by:ＸＸＸ　ＸＸＸ XX/XX XX:XX</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div id="page-content-wrapper" class="calendar-wrapper">
+        <div class="container calendar-container">
+            <div class="row panel panel-default">
+                <div id="calendar-header" class="clearfix">
+                    <span id="btn-prev-month" class="glyphicon icon-circle-left" aria-hidden="true"></span>
+                    <span id="display-year-month">2016/03</span>
+                    <span id="btn-next-month" class="glyphicon icon-circle-right" aria-hidden="true"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div id="webmail-heading" class="panel-heading">
-                            WebMail
-                        </div>
-                        <div class="list-group">
-                            <div class="webmail-body hvr-shadow list-group-item">
-                                <a href="#" class="panel-link">
-                                    <p class="webmail-title">Re:タクミコーポレーション　新ポータルメール機能テスト</p>
-                                    <p class="wemail-from">from:吉水 学</p>
-                                </a>
-                            </div>
-                            <div class="webmail-body hvr-shadow list-group-item">
-                                <a href="#" class="panel-link">
-                                    <p class="webmail-title">XXXXXXXXXX</p>
-                                    <p class="wemail-from">from:XXX XXX</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div id="bbs-heading" class="panel-heading">
-                            BBS
-                        </div>
-                        <div class="list-group">
-                            <div class="bbs-body hvr-shadow list-group-item">
-                                <a href="#" class="panel-link">
-                                    <p class="bbs-title">XXXXXXXXXX</p>
-                                    <p class="bbs-post-info">@XXX XXX:XX/XX/XX</p>
-                                </a>
-                            </div>
-                            <div class="bbs-body hvr-shadow list-group-item">
-                                <a href="#" class="panel-link">
-                                    <p class="bbs-title">XXXXXXXXXX</p>
-                                    <p class="bbs-post-info">@XXX XXX:XX/XX/XX</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div id="calendar-body">
+                    <table>
+                        <tr>
+                            <th>SUN</th>
+                            <th>MON</th>
+                            <th>TUE</th>
+                            <th>WED</th>
+                            <th>THU</th>
+                            <th>FRI</th>
+                            <th>SAT</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td id="cal_selected_day">9</td>
+                            <td>10</td>
+                            <td id="cal_today">11</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -323,7 +245,6 @@
     <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-datepicker.ja.min.js"></script>
     <script type="text/javascript" src="js/connectyee.common.js"></script>
-    <script type="text/javascript" src="js/connectyee.dashboard.js"></script>
     <script type="text/javascript" src="js/connectyee.calendarmaker.js"></script>
     <script type="text/javascript" src="js/classie.js"></script>
     <script type="text/javascript" src="js/svgLoader.js"></script>

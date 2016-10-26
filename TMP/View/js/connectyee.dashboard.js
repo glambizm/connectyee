@@ -50,7 +50,6 @@ $(function() {
         var selYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
         var selMonth = parseInt($('#display-year-month').text().substr(-2), 10) - 1;
         var selDay = parseInt($(this).text(), 10);
-        alert('AAA');
         changeCalendar(new Date(selYear, selMonth, selDay), false);
     });
 
@@ -109,6 +108,15 @@ $(function() {
             if (today !== null) {
                 today.attr('id', 'cal_today');
             }
+        }
+
+        if (remake === true) {
+            $('td:contains("1")').attr('class', 'cal_named_day');
+            $('td:contains("15")').attr('class', 'cal_named_day');
+
+            var cal_day_kbn = $('<p>').text('出社日');
+
+            $('.cal_named_day').append(cal_day_kbn);
         }
 
         if (loading === true) {
