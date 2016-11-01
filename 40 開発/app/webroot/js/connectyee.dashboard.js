@@ -180,7 +180,63 @@ $(function() {
                 }
             })
             .always(function() {
-                $('div#date-info-wrapper').unblock();
+                if (remake === true) {
+                    var ajaxParam = {
+                        url: location.href + '/getDateInfo',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: { target_date: selYear + '/' + selMonth }
+                    };
+
+                    $.ajax(ajaxParam)
+                        .done(function(result) {
+                            $('.cal_named_day').removeClass('cal_named_day');
+                            $.each(result, function(i, val) {
+                                var TargetObj = getTargetDateElement(i);
+                                if (TargetObj === null) {
+                                    return true;
+                                }
+
+                                TargetObj.attr('data-day-kubun', '0');
+                                TargetObj.attr('data-day-name', '');
+
+                                if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
+                                    return true;
+                                }
+
+                                TargetObj.addClass('cal_named_day');
+                                TargetObj.attr('data-day-kubun', val.dateKubun);
+
+                                var CalDayKbnObj = null;
+                                if (parseInt(val.dateKubun, 10) === 1) {
+                                    TargetObj.attr('data-day-name', '出社日');
+                                    CalDayKbnObj = $('<p>').text('出社日');
+                                    TargetObj.append(CalDayKbnObj);
+                                } else if (parseInt(val.dateKubun, 10) === 2) {
+                                    TargetObj.attr('data-day-name', 'その他');
+                                    CalDayKbnObj = $('<p>').text('その他');
+                                    TargetObj.append(CalDayKbnObj);
+                                }
+
+                                if (val.dateName !== '') {
+                                    var wkDateName = TargetObj.attr('data-day-name');
+                                    if (wkDateName !== '') {
+                                        wkDateName = wkDateName + ':';
+                                    }
+
+                                    wkDateName = wkDateName + val.dateName;
+                                    TargetObj.attr('data-day-name', wkDateName);
+                                }
+                            });
+                        })
+                        .always(function() {
+                            $('#date-name').text($('#cal_selected_day').attr('data-day-name'));
+                            $('div#date-info-wrapper').unblock();
+                        });
+                    } else {
+                        $('#date-name').text($('#cal_selected_day').attr('data-day-name'));
+                        $('div#date-info-wrapper').unblock();
+                    }
             });
     }
 

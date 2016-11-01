@@ -13,6 +13,7 @@ class DashBoardsController extends AppController {
     private $ScheduleList;
     private $ReceivingMailList;
     private $AttendanceList;
+    private $Calendar;
     private $loginMsg;
 
     public function index() {
@@ -105,5 +106,29 @@ class DashBoardsController extends AppController {
             return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));
         }
     }
+
+    public function getDateInfo() {
+        if ($this->request->is('ajax') === true) {
+            $this->autoRender = false;
+
+            $TargetDate = explode('/' ,$this->request->data['target_date']);
+            $startDate = new DateTime('Y-m-d', mktime(0, 0, 0, intval($TargetDate[1]), 1, intval($TargetDate[0])));
+            $endDate = new DateTime('Y-m-d', mktime(0, 0, 0, intval($TargetDate[1])+1, 0, intval($TargetDate[0])));
+
+            $this->Calendar = new OrgCalendar($startDate, $endDate);
+
+            $ReturnJson = array();
+            foreach ($this->Calendar->getCalendarItems as $value) {
+                $dateInfo = array();
+                $dateInfo['dateKubun'] = $value->getDateKubun();
+                $dateInfo['dateName'] = $value->getDateName(true);
+
+                $ReturnJson[] = $dateInfo;
+            }
+
+            return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));
+        }
+    }
 }
+
 ?>

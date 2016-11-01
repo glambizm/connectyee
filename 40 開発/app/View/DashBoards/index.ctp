@@ -1,6 +1,7 @@
 <?php
 $this->extend('/Common/common');
 $this->Html->css('connectyee.dashboard.css', array('inline' => false));
+$this->Html->css('connectyee.calendar.css', array('inline' => false));
 $this->Html->script('connectyee.dashboard.js', array('inline'=>false));
 ?>
 
