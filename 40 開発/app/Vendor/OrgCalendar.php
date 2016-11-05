@@ -9,7 +9,7 @@ class OrgCalendar {
     public $Items;
     private $Calendar;
 
-    function __construct($startDate, $endDate) {
+    function __construct($startDate = null, $endDate = null) {
         $this->Calendar = ClassRegistry::init('Calendar');
         $this->Items = array();
 
@@ -57,57 +57,12 @@ class OrgCalendar {
         }
     }
 
-    public function getUserList($id) {
+    public function getCalendarItems() {
         $result = array();
-        foreach ($id as $val) {
-            foreach($this->Items as $User) {
-                if (intval($val) === intval($User->getUserId())) {
-                    $result[] = clone $User;
-                    break;
-                }
-            }
+        foreach($this->Items as $item) {
+            $result[] = clone $item;
         }
-
-        if (count($result) === 0) {
-            $result[] = new OrgUser();
-            return $result;
-        } else {
-            usort($result, 'compareUser');
-            return $result;
-        }
-    }
-
-    public function getActiveUserList() {
-        $result = array();
-        foreach ($this->Items as $val) {
-            if (intval($val->getDeleteKubun()) === 0) {
-                $result[] = clone $val;
-            }
-        }
-
-        if (count($result) === 0) {
-            $result[] = new OrgUser();
-            return $result;
-        } else {
-            usort($result, 'compareUser');
-            return $result;
-        }
-    }
-
-    public function isExistSameAccountUser($Target) {
-        foreach($this->Items as $User) {
-            if ((intval($Target->getUserId()) !== intval($User->getUserId())) &&
-                ($Target->getAccount() === $User->getAccount()) &&
-                (intval($User->getDeleteKubun()) === 0)) {
-                return true;
-            }
-        }
-        return false;
+        return $result;
     }
 }
-
-function compareUser($a, $b) {
-    return strnatcasecmp(preg_replace("/( |@)/", "",$a->getFullNameKana()), preg_replace("/( |@)/", "",$b->getFullNameKana()));
-}
-
 ?>

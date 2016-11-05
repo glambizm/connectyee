@@ -1,5 +1,5 @@
 /*
- * connectyee.web_mail.js
+ * connectyee.common.js
  * History
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
 */

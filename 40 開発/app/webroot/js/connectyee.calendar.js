@@ -65,6 +65,29 @@ $(function() {
     });
 
     /*
+     *  regist button click
+     */
+    $(document).on('click', '#btn-regist', function() {
+        $('div#date-info-wrapper').block({
+            message: '<img src="./img/common.loading.gif">',
+            overlayCSS: {
+                backgroundColor: '#fff',
+                opacity: 0.6
+            }
+        });
+
+        var ajaxParam = {
+            url: location.href + '/registDateInfo',
+            dataType: 'json',
+            type: 'POST',
+            data: { target_date: $('#select-target-date').text(),
+                    date_kubun: $('#select-date-kubun').val(),
+                    date_name: $('#input-date-name').val() }
+        };
+        ajaxCalendar(selYear, selMonth, selDay);
+    });
+
+    /*
      * changeCalendar
      */
    /*
@@ -141,44 +164,7 @@ $(function() {
                 type: 'POST',
                 data: { target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2) }
             };
-
-            $.ajax(ajaxParam)
-                .done(function(result) {
-                    $('.cal_named_day').removeClass('cal_named_day');
-                    $.each(result, function(i, val) {
-                        var TargetObj = getTargetDateElement(i);
-                        if (TargetObj === null) {
-                            return true;
-                        }
-
-                        TargetObj.attr('data-day-kubun', '0');
-                        TargetObj.attr('data-day-name', '');
-
-                        if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
-                            return true;
-                        }
-
-                        TargetObj.addClass('cal_named_day');
-                        TargetObj.attr('data-day-kubun', val.dateKubun);
-                        TargetObj.attr('data-day-name', val.dateName);
-
-                        var CalDayKbnObj = null;
-                        if (parseInt(val.dateKubun, 10) === 1) {
-                            TargetObj.attr('data-day-name', '出社日');
-                            CalDayKbnObj = $('<p>').text('出社日');
-                            TargetObj.append(CalDayKbnObj);
-                        } else if (parseInt(val.dateKubun, 10) === 2) {
-                            TargetObj.attr('data-day-name', 'その他');
-                            CalDayKbnObj = $('<p>').text('その他');
-                            TargetObj.append(CalDayKbnObj);
-                        }
-                    });
-                })
-                .always(function() {
-                    $('#select-date-kubun').val($('#cal_selected_day').attr('data-day-kubun'));
-                    $('#input-date-name').val($('#cal_selected_day').attr('data-day-name'));
-                    $('div#date-info-wrapper').unblock();
-                });
+            ajaxCalendar(selYear, selMonth, selDay);
         } else {
             $('#select-date-kubun').val($('#cal_selected_day').attr('data-day-kubun'));
             $('#input-date-name').val($('#cal_selected_day').attr('data-day-name'));
@@ -199,5 +185,45 @@ $(function() {
             }
         });
         return returnObj;
+    }
+
+    function ajaxCalendar(ajaxParam, selYear, selMonth, selDay) {
+        $.ajax(ajaxParam)
+            .done(function(result) {
+                $('.cal_named_day').removeClass('cal_named_day');
+                $.each(result, function(i, val) {
+                    var TargetObj = getTargetDateElement(i);
+                    if (TargetObj === null) {
+                        return true;
+                    }
+
+                    TargetObj.attr('data-day-kubun', '0');
+                    TargetObj.attr('data-day-name', '');
+
+                    if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
+                        return true;
+                    }
+
+                    TargetObj.addClass('cal_named_day');
+                    TargetObj.attr('data-day-kubun', val.dateKubun);
+                    TargetObj.attr('data-day-name', val.dateName);
+
+                    var CalDayKbnObj = null;
+                    if (parseInt(val.dateKubun, 10) === 1) {
+                        TargetObj.attr('data-day-name', '出社日');
+                        CalDayKbnObj = $('<p>').text('出社日');
+                        TargetObj.append(CalDayKbnObj);
+                    } else if (parseInt(val.dateKubun, 10) === 2) {
+                        TargetObj.attr('data-day-name', 'その他');
+                        CalDayKbnObj = $('<p>').text('その他');
+                        TargetObj.append(CalDayKbnObj);
+                    }
+                });
+            })
+            .always(function() {
+                $('#select-date-kubun').val($('#cal_selected_day').attr('data-day-kubun'));
+                $('#input-date-name').val($('#cal_selected_day').attr('data-day-name'));
+                $('div#date-info-wrapper').unblock();
+            });
     }
 });

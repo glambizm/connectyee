@@ -37,7 +37,7 @@ $(function() {
      * init select attendance kubun
      */
     $('#select-attendance-kubun').multiselect({
-        checkboxName: 'attendance-kubun',
+        checkboxName: 'attendance_kubun',
         buttonClass: 'select-attendance-kubun btn btn-success',
         buttonTitle: function(options, select) {
             var labels = [];
@@ -70,7 +70,7 @@ $(function() {
 
     var NowDate = new Date();
     $('#target-date-button').datepicker('update', new Date(NowDate.getFullYear(), NowDate.getMonth(), NowDate.getDate()));
-    changeSelectDate(new Date($('#target-date-button').datepicker('getDate')));
+    changeSelectDate(new Date($('#target-date-button').datepicker('getDate')), true);
 
     /*
      * Datepicker changeDate
@@ -89,8 +89,12 @@ $(function() {
     $('#btn-regist').on('click', function() {
         var error = false;
         $('.modal-body').empty();
-        if (Number($('#select-target-users').val()) === 0) {
+        if (Number($('#select-target-users').val()) === -1) {
             $('.modal-body').append($('<h6 id="modal-body-text">「対象者」を選択してください。</h6>'));
+            error = true;
+        }
+        if ($('#target-date').val() === '') {
+            $('.modal-body').append($('<h6 id="modal-body-text">「対象日」を選択してください。</h6>'));
             error = true;
         }
         if (Number($('#select-attendance-kubun').val()) === 0) {
@@ -107,7 +111,9 @@ $(function() {
     /*
      * changeSelectDate
      */
-    function changeSelectDate(SelDate) {
+    function changeSelectDate(SelDate, init) {
+        init = init === undefined ? false : init;
+
         var selYear = ('0000' + eval(SelDate.getFullYear())).substr(-4);
         var selMonth = ('00' + eval(SelDate.getMonth() + 1)).substr(-2);
         var selDay = ('00' + eval(SelDate.getDate())).substr(-2);
@@ -122,7 +128,9 @@ $(function() {
             return;
         }
 
-        $('#label-target-date').text(selYear + '/' + selMonth + '/' + selDay);
-        $('#target-date').val($('#label-target-date').text());
+        if (init === false) {
+            $('#label-target-date').text(selYear + '/' + selMonth + '/' + selDay);
+            $('#target-date').val($('#label-target-date').text());
+        }
     }
 });

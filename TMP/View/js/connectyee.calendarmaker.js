@@ -19,7 +19,7 @@
 
         var trHeader = $('<tr>');
         for (var i = 1; i <= 7; i++) {
-            var thObj = $('<th>');
+            var thObj = $('<th></th>');
             thObj.text(thStr[i]);
             trHeader.append(thObj);
         }
@@ -29,9 +29,9 @@
         var endDayObj = new Date(TargetDate.getFullYear(), TargetDate.getMonth() + 1, 0);
         var endDay = endDayObj.getDate();
         for (var j = 1; j <= 6; j++) {
-            var trBody = $('<tr>');
+            var trBody = $('<tr></tr>');
             for (var k = 0; k <= 6; k++) {
-                var tdObj = $('<td>');
+                var tdObj = $('<td></td>');
                 if (endDay >= i) {
                     var tmpDate = new Date(TargetDate.getFullYear(), TargetDate.getMonth(), i);
                     if (tmpDate.getDay() === k) {

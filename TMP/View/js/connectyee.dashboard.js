@@ -5,7 +5,6 @@
  */
 $(function() {
     'use strict';
-
     /*
      * Calendar init
      */
@@ -56,20 +55,9 @@ $(function() {
     /*
      * changeCalendar
      */
-    function changeCalendar(selDate, remake, loading) {
+    function changeCalendar(selDate, remake, animate_loading) {
         remake = remake === undefined ? true : remake;
-        loading = loading === undefined ? true : loading;
-
-        if (loading === true) {
-            $('div#date-info-wrapper').block({
-                message: '<img src="./img/common.loading.gif">',
-                overlayCSS: {
-                    backgroundColor: '#fff',
-                    opacity: 0.6
-                }
-            });
-            $('.blockElement').css('border', '').css('background-color', '');
-        }
+        animate_loading = animate_loading === undefined ? true : animate_loading;
 
         var orgYear = parseInt($('#display-year-month').text().substr(0, 4), 10);
         var orgMonth = $('#display-year-month').text().substr(-2);
@@ -82,6 +70,26 @@ $(function() {
         if ((orgYear === selYear) && (orgMonth === selMonth) && (orgDay === selDay)) {
             return;
         }
+
+        if (animate_loading === true) {
+            $('div#date-info-wrapper').block({
+                message: '<img src="./img/common.loading.gif">',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        } else {
+            $('div#date-info-wrapper').block({
+                message: '',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.6
+                }
+            });
+        }
+
+        $('.blockElement').css('border', '').css('background-color', '');
 
         var nowDate = new Date();
         var nowYear = nowDate.getFullYear();
@@ -110,18 +118,126 @@ $(function() {
             }
         }
 
-        if (remake === true) {
-            $('td:contains("1")').attr('class', 'cal_named_day');
-            $('td:contains("15")').attr('class', 'cal_named_day');
+        var ajaxParam = {
+            url: location.href + '/getAttendance',
+            dataType: 'json',
+            type: 'POST',
+            data: { target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2) }
+        };
 
-            var cal_day_kbn = $('<p>').text('出社日');
+        $.ajax(ajaxParam)
+            .done(function(result) {
+                $('#attendance-wrapper').parents('.col-md-8').addClass('empty-element');
 
-            $('.cal_named_day').append(cal_day_kbn);
-        }
+                var dateNameEmpty = true;
+                $('#date-name').empty().addClass('empty-element');
 
-        if (loading === true) {
-            $('div#date-info-wrapper').unblock();
-        }
+                var scheduleEmpty = true;
+                $('#schedule-wrapper').empty().addClass('empty-element');
+
+                var attendanceEmpty = true;
+                $('#attendance-wrapper').addClass('empty-element').empty();
+
+                $.each(result, function(i, val) {
+                    if ($.isPlainObject(val) === false) {
+                        return ture;
+                    }
+
+                    var attendance_items = $('<div></div>', {
+                        'class': 'attendance-items'
+                    }).appendTo($('#attendance-wrapper'));
+
+                    var attendance_info = $('<p></p>', {
+                        'class': '"attendance-info'
+                    }).text(val.TargetUser + '：' + val.attendanceKubun).appendTo(attendance_items);
+
+                    var attendance_memo = $('<p></p>', {
+                        'class': 'attendance-memo'
+                    }).text(val.memo).appendTo(attendance_items);
+
+                    var attendance_regist_info = $('<p></p>', {
+                        'class': 'attendance-regist-info'
+                    }).text('by:' + val.RegistrationUser + ' ' + val.RegistrationDate).appendTo(attendance_items);
+                    attendanceEmpty = false;
+                });
+
+                if (dateNameEmpty === false) {
+                    $('#date-name').removeClass('empty-element');
+                }
+
+                if (scheduleEmpty === false) {
+                    $('#schedule-wrapper').removeClass('empty-element');
+                }
+
+                if (attendanceEmpty === false) {
+                    $('#attendance-wrapper').removeClass('empty-element');
+                }
+
+                if ((dateNameEmpty === false) ||
+                   (scheduleEmpty === false) ||
+                   (attendanceEmpty === false)) {
+                    $('#attendance-wrapper').parents('.col-md-8').removeClass('empty-element');
+                }
+            })
+            .always(function() {
+                if (remake === true) {
+                    var ajaxParam = {
+                        url: location.href + '/getDateInfo',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: { target_date: selYear + '/' + selMonth }
+                    };
+
+                    $.ajax(ajaxParam)
+                        .done(function(result) {
+                            $('.cal_named_day').removeClass('cal_named_day');
+                            $.each(result, function(i, val) {
+                                var TargetObj = getTargetDateElement(i);
+                                if (TargetObj === null) {
+                                    return true;
+                                }
+
+                                TargetObj.attr('data-day-kubun', '0');
+                                TargetObj.attr('data-day-name', '');
+
+                                if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
+                                    return true;
+                                }
+
+                                TargetObj.addClass('cal_named_day');
+                                TargetObj.attr('data-day-kubun', val.dateKubun);
+
+                                var CalDayKbnObj = null;
+                                if (parseInt(val.dateKubun, 10) === 1) {
+                                    TargetObj.attr('data-day-name', '出社日');
+                                    CalDayKbnObj = $('<p>').text('出社日');
+                                    TargetObj.append(CalDayKbnObj);
+                                } else if (parseInt(val.dateKubun, 10) === 2) {
+                                    TargetObj.attr('data-day-name', 'その他');
+                                    CalDayKbnObj = $('<p>').text('その他');
+                                    TargetObj.append(CalDayKbnObj);
+                                }
+
+                                if (val.dateName !== '') {
+                                    var wkDateName = TargetObj.attr('data-day-name');
+                                    if (wkDateName !== '') {
+                                        wkDateName = wkDateName + ':';
+                                    }
+
+                                    wkDateName = wkDateName + val.dateName;
+                                    TargetObj.attr('data-day-name', wkDateName);
+                                }
+                            });
+                        })
+                        .always(function() {
+                            $('#date-name').text($('#cal_selected_day').attr('data-day-name'));
+                            $('div#date-info-wrapper').unblock();
+                        });
+                    } else {
+                        $('#date-name').text($('#cal_selected_day').attr('data-day-name'));
+                        $('div#date-info-wrapper').unblock();
+                    }
+            });
     }
 
     /*
