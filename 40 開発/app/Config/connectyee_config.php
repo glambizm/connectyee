@@ -127,6 +127,16 @@
                                     'href'=>Router::url(array('controller'=>'Users', 'action'=>'displayUserList')),
                                     'menu-parent'=>-1,
                                     'child'=>null
+                        ),
+                        1=>array(   'display'=>true,
+                                    'name'=>'Calendars',
+                                    'title'=>'カレンダー編集',
+                                    'sub-title'=>'Calendar',
+                                    'authority'=>'1',
+                                    'icon'=>'<span class="[icon-class] icon-time" aria-hidden="true"></span>',
+                                    'href'=>Router::url(array('controller'=>'Calendars', 'action'=>'displayCalendar')),
+                                    'menu-parent'=>-1,
+                                    'child'=>null
                         )
                     )),
         7=>array(   'display'=>false,

@@ -112,8 +112,8 @@ class DashBoardsController extends AppController {
             $this->autoRender = false;
 
             $TargetDate = explode('/' ,$this->request->data['target_date']);
-            $startDate = new DateTime('Y-m-d', mktime(0, 0, 0, intval($TargetDate[1]), 1, intval($TargetDate[0])));
-            $endDate = new DateTime('Y-m-d', mktime(0, 0, 0, intval($TargetDate[1])+1, 0, intval($TargetDate[0])));
+            $startDate = new DateTime($this->request->data['target_date'] . '/1');
+            $endDate = new DateTime('last day of ' . $TargetDate[0] . '-' . $TargetDate[1]);
 
             $this->Calendar = new OrgCalendar($startDate, $endDate);
 
