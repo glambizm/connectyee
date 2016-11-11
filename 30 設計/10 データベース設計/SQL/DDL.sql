@@ -39,14 +39,15 @@ create index attendances_IX1
 drop table if exists calendars cascade;
 
 create table calendars (
-  calendar_date DATE not null
+  id INT not null auto_increment
+  , calendar_date DATE not null
   , date_kubun INT default NULL
   , date_name TINYTEXT default NULL
-  , constraint calendars_PKC primary key (calendar_date)
+  , constraint calendars_PKC primary key (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 create index calendars_IX1
-  on calendars(calendar_date);
+  on calendars(id,calendar_date);
 
 drop table if exists receiving_users cascade;
 

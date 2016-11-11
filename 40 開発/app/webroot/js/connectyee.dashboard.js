@@ -73,7 +73,7 @@ $(function() {
 
         if (animate_loading === true) {
             $('div#date-info-wrapper').block({
-                message: '<img src="./img/common.loading.gif">',
+                message: '<img src="/img/common.loading.gif">',
                 overlayCSS: {
                     backgroundColor: '#fff',
                     opacity: 0.6
@@ -88,8 +88,6 @@ $(function() {
                 }
             });
         }
-
-        $('.blockElement').css('border', '').css('background-color', '');
 
         var nowDate = new Date();
         var nowYear = nowDate.getFullYear();
@@ -192,7 +190,7 @@ $(function() {
                         .done(function(result) {
                             $('.cal_named_day').removeClass('cal_named_day');
                             $.each(result, function(i, val) {
-                                var TargetObj = getTargetDateElement(i);
+                                var TargetObj = getTargetDateElement(i+1);
                                 if (TargetObj === null) {
                                     return true;
                                 }

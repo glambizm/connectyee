@@ -118,7 +118,7 @@ class DashBoardsController extends AppController {
             $this->Calendar = new OrgCalendar($startDate, $endDate);
 
             $ReturnJson = array();
-            foreach ($this->Calendar->getCalendarItems as $value) {
+            foreach ($this->Calendar->getCalendarItems() as $value) {
                 $dateInfo = array();
                 $dateInfo['dateKubun'] = $value->getDateKubun();
                 $dateInfo['dateName'] = $value->getDateName(true);

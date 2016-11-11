@@ -6,7 +6,7 @@ $this->Html->script('connectyee.calendar.js', array('inline'=>false));
 
 <div id="page-content-wrapper" class="calendar-wrapper">
     <div class="container calendar-container">
-        <div class="row panel panel-default">
+        <div id="calendar-wrapper" class="row panel panel-default">
             <div id="calendar-header" class="clearfix">
                 <span id="btn-prev-month" class="glyphicon icon-circle-left" aria-hidden="true"></span>
                 <span id="display-year-month"></span>

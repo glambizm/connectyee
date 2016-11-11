@@ -81,9 +81,9 @@ class OrgCalendarItem {
 
         if (count($result) > 0) {
             if (($this->dateKubun === 0) && ($this->dateName === '')) {
-                $this->Calendar->delete(intval($result['Calendar']['id']));
+                $this->Calendar->delete(intval($result[0]['Calendar']['id']));
             } else {
-                $this->Calendar->id = intval($result['Calendar']['id']);
+                $this->Calendar->id = intval($result[0]['Calendar']['id']);
 
                 if ($this->Calendar->validates($data) === true) {
                     try {

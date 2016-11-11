@@ -15,13 +15,13 @@ class CalendarsController extends AppController {
             $this->autoRender = false;
 
             $TargetDate = explode('/' ,$this->request->data['target_date']);
-            $startDate = new DateTime($this->request->data['target_date'] . '/1');
+            $startDate = new DateTime($TargetDate[0] . '/' . $TargetDate[1] . '/1');
             $endDate = new DateTime('last day of ' . $TargetDate[0] . '-' . $TargetDate[1]);
 
-            $this->Calendar = new OrgCalendar($startDate, $endDate);
+            $this->CalendarObj = new OrgCalendar($startDate, $endDate);
 
             $ReturnJson = array();
-            foreach ($this->Calendar->getCalendarItems as $value) {
+            foreach ($this->CalendarObj->getCalendarItems() as $value) {
                 $dateInfo = array();
                 $dateInfo['dateKubun'] = $value->getDateKubun();
                 $dateInfo['dateName'] = $value->getDateName(true);
@@ -50,19 +50,19 @@ class CalendarsController extends AppController {
 
             $CalendarItem = new OrgCalendarItem();
 
-            $CalendarItem->setCalendarDate(strtotime($this->request->data['target_date']));
-            $CalendarItem->setDateKubun(intval($this->Calendar->data['date_kubun']));
+            $CalendarItem->setCalendarDate(new DateTime($this->request->data['target_date']));
+            $CalendarItem->setDateKubun(intval($this->request->data['date_kubun']));
             $CalendarItem->setDateName($this->request->data['date_name']);
             $CalendarItem->registDateInfo();
 
             $TargetDate = explode('/' ,$this->request->data['target_date']);
-            $startDate = new DateTime($this->request->data['target_date'] . '/1');
+            $startDate = new DateTime($TargetDate[0] . '-' . $TargetDate[1] . '-1');
             $endDate = new DateTime('last day of ' . $TargetDate[0] . '-' . $TargetDate[1]);
 
-            $this->Calendar = new OrgCalendar($startDate, $endDate);
+            $this->CalendarObj = new OrgCalendar($startDate, $endDate);
 
             $ReturnJson = array();
-            foreach ($this->Calendar->getCalendarItems as $value) {
+            foreach ($this->CalendarObj->getCalendarItems() as $value) {
                 $dateInfo = array();
                 $dateInfo['dateKubun'] = $value->getDateKubun();
                 $dateInfo['dateName'] = $value->getDateName(true);

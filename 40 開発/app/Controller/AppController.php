@@ -38,6 +38,8 @@ App::import('Vendor', 'OrgSendingMailList');
 App::import('Vendor', 'OrgSendingMail');
 App::import('Vendor', 'OrgAttendancesList');
 App::import('Vendor', 'OrgAttendance');
+App::import('Vendor', 'OrgCalendar');
+App::import('Vendor', 'OrgCalendarItem');
 
 /**
  * Application Controller

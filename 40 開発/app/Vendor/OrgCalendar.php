@@ -21,11 +21,11 @@ class OrgCalendar {
             return;
         }
 
-        $dayCount = ($endDate - $startDate) / (60 * 60 * 24);
+        $dayCount = $startDate->diff($endDate);
 
-        for ($count=0; $count <= $dayCount; $count++) {
+        for ($count=0; $count <= $dayCount->days; $count++) {
             $param = array();
-            $param['Calendar']['calendar_date'] = strtotime($startDate->format('Y/m/d') . ' +' . $count .' day');
+            $param['Calendar']['calendar_date'] = new DateTime($startDate->format('Y/m/d') . ' +' . $count .' day');
             $param['Calendar']['date_kubun']    = 0;
             $param['Calendar']['date_name']     = '';
 
@@ -33,7 +33,7 @@ class OrgCalendar {
         }
 
         $SQLPara = array();
-        $SQLPara['conditions'] = array( array('Calendar.calendar_date'=>'>='.$starDate->format('Y/m/d')),
+        $SQLPara['conditions'] = array( array('Calendar.calendar_date'=>'>='.$startDate->format('Y/m/d')),
                                         array('Calendar.calendar_date'=>'<='.$endDate->format('Y/m/d')));
         $SQLPara['order'] = 'Calendar.calendar_date';
         try {

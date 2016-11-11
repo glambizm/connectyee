@@ -68,29 +68,36 @@ $(function() {
      *  regist button click
      */
     $(document).on('click', '#btn-regist', function() {
-        $('div#date-info-wrapper').block({
-            message: '<img src="./img/common.loading.gif">',
+        $('div#calendar-wrapper').block({
+            message: '<img src="/img/common.loading.gif">',
             overlayCSS: {
                 backgroundColor: '#fff',
                 opacity: 0.6
             }
         });
 
+        var href = location.href;
+        var hrefArr = href.split('/');
+        hrefArr.pop();
+        hrefArr.push('registDateInfo');
+        var urlStr = hrefArr[0];
+        for (var i=1; i<=hrefArr.length-1; i++) {
+            urlStr = urlStr + '/' + hrefArr[i];
+        }
+
         var ajaxParam = {
-            url: location.href + '/registDateInfo',
+            url: urlStr,
             dataType: 'json',
             type: 'POST',
             data: { target_date: $('#select-target-date').text(),
                     date_kubun: $('#select-date-kubun').val(),
                     date_name: $('#input-date-name').val() }
         };
-        ajaxCalendar(selYear, selMonth, selDay);
+        var targetDate = $('#select-target-date').text().split('/');
+        ajaxCalendar(ajaxParam, targetDate[0], targetDate[1], targetDate[2]);
     });
 
     /*
-     * changeCalendar
-     */
-   /*
      * changeCalendar
      */
     function changeCalendar(selDate, remake, animate_loading) {
@@ -110,15 +117,15 @@ $(function() {
         }
 
         if (animate_loading === true) {
-            $('div#date-info-wrapper').block({
-                message: '<img src="./img/common.loading.gif">',
+            $('div#calendar-wrapper').block({
+                message: '<img src="/img/common.loading.gif">',
                 overlayCSS: {
                     backgroundColor: '#fff',
                     opacity: 0.6
                 }
             });
         } else {
-            $('div#date-info-wrapper').block({
+            $('div#calendar-wrapper').block({
                 message: '',
                 overlayCSS: {
                     backgroundColor: '#fff',
@@ -135,7 +142,7 @@ $(function() {
         var nowDay = parseInt(nowDate.getDate(), 10);
 
         $('#display-year-month').text(selYear + '/' + selMonth).datepicker('update', new Date(selYear, selMonth - 1, selDay));
-        $('#select-target-date').text(selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2)).datepicker('update', new Date(selYear, selMonth - 1, selDay));;
+        $('#select-target-date').text(selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2)).datepicker('update', new Date(selYear, selMonth - 1, selDay));
 
         if (remake === true) {
             $('#calendar-body table').calendarmaker(selDate);
@@ -164,11 +171,11 @@ $(function() {
                 type: 'POST',
                 data: { target_date: selYear + '/' + selMonth + '/' + ('00' + selDay).substr(-2) }
             };
-            ajaxCalendar(selYear, selMonth, selDay);
+            ajaxCalendar(ajaxParam, selYear, selMonth, selDay);
         } else {
             $('#select-date-kubun').val($('#cal_selected_day').attr('data-day-kubun'));
             $('#input-date-name').val($('#cal_selected_day').attr('data-day-name'));
-            $('div#date-info-wrapper').unblock();
+            $('div#calendar-wrapper').unblock();
         }
     }
 
@@ -192,7 +199,7 @@ $(function() {
             .done(function(result) {
                 $('.cal_named_day').removeClass('cal_named_day');
                 $.each(result, function(i, val) {
-                    var TargetObj = getTargetDateElement(i);
+                    var TargetObj = getTargetDateElement(i+1);
                     if (TargetObj === null) {
                         return true;
                     }
@@ -223,7 +230,7 @@ $(function() {
             .always(function() {
                 $('#select-date-kubun').val($('#cal_selected_day').attr('data-day-kubun'));
                 $('#input-date-name').val($('#cal_selected_day').attr('data-day-name'));
-                $('div#date-info-wrapper').unblock();
+                $('div#calendar-wrapper').unblock();
             });
     }
 });

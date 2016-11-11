@@ -160,7 +160,8 @@ TableOption=
 Page=MAIN
 Left=100
 Top=1150
-Field="カレンダー日付","calendar_date","@DATE","NOT NULL",0,"","",$FFFFFFFF,""
+Field="ID","id","@INT","NOT NULL",0,"","",$FFFFFFFF,"auto_increment"
+Field="カレンダー日付","calendar_date","@DATE","NOT NULL",,"","",$FFFFFFFF,""
 Field="日付区分","date_kubun","@INT",,,"NULL","",$FFFFFFFF,""
 Field="日付名称","date_name","TINYTEXT",,,"NULL","",$FFFFFFFF,""
 Index==0,calendar_date
@@ -168,7 +169,7 @@ EffectMode=None
 Tag=M
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20151014161925
+ModifiedDateTime=20161111163917
 Position="MAIN",100,1150
 
 [Relation]
