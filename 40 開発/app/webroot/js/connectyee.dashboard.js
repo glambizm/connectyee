@@ -188,15 +188,16 @@ $(function() {
 
                     $.ajax(ajaxParam)
                         .done(function(result) {
-                            $('.cal_named_day').removeClass('cal_named_day');
+                            $('.cal_named_day').attr('data-day-kubun', '0')
+                                            .attr('data-day-name', '')
+                                            .removeData('data-day-kubun')
+                                            .removeData('data-day-name')
+                                            .removeClass('cal_named_day');
                             $.each(result, function(i, val) {
                                 var TargetObj = getTargetDateElement(i+1);
                                 if (TargetObj === null) {
                                     return true;
                                 }
-
-                                TargetObj.attr('data-day-kubun', '0');
-                                TargetObj.attr('data-day-name', '');
 
                                 if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
                                     return true;
