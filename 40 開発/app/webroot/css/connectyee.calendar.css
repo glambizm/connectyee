@@ -67,6 +67,7 @@
 #calendar-body td.cal_named_day p {
     font-size: 10px;
     line-height: 10px;
+    margin: 0px 1px 0px 1px;
 }
 
 #calendar-body td:not(:empty):hover,

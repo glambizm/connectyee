@@ -33,8 +33,8 @@ class OrgCalendar {
         }
 
         $SQLPara = array();
-        $SQLPara['conditions'] = array( array('Calendar.calendar_date'=>'>='.$startDate->format('Y/m/d')),
-                                        array('Calendar.calendar_date'=>'<='.$endDate->format('Y/m/d')));
+        $SQLPara['conditions'] = array( array('Calendar.calendar_date >='=>$startDate->format('Y/m/d')),
+                                        array('Calendar.calendar_date <='=>$endDate->format('Y/m/d')));
         $SQLPara['order'] = 'Calendar.calendar_date';
         try {
             $result = $this->Calendar->find('all', $SQLPara);
@@ -48,7 +48,7 @@ class OrgCalendar {
 
         foreach ($result as $val) {
             foreach($this->Items as $key=>$item) {
-                if (strtotime($val['Calendar']['calendar_date']) === $item->getCalendarDate()) {
+                if ($item->getCalendarDate()->diff(new DateTime($val['Calendar']['calendar_date']))->days === 0) {
                     $this->Items[$key]->setDateKubun(intval($val['Calendar']['date_kubun']));
                     $this->Items[$key]->setDateName($val['Calendar']['date_name']);
                     break;

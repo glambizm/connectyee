@@ -116,6 +116,10 @@ $(function() {
             return;
         }
 
+        if ((orgYear === selYear) && (orgMonth === selMonth)) {
+            remake = false;
+        }
+
         if (animate_loading === true) {
             $('div#calendar-wrapper').block({
                 message: '<img src="/img/common.loading.gif">',
@@ -197,15 +201,17 @@ $(function() {
     function ajaxCalendar(ajaxParam, selYear, selMonth, selDay) {
         $.ajax(ajaxParam)
             .done(function(result) {
-                $('.cal_named_day').removeClass('cal_named_day');
+                $('.cal_named_day').attr('data-day-kubun', '')
+                                    .attr('data-day-name', '')
+                                    .removeData('data-day-kubun')
+                                    .removeData('data-day-name')
+                                    .removeClass('cal_named_day')
+                                    .children().remove();
                 $.each(result, function(i, val) {
                     var TargetObj = getTargetDateElement(i+1);
                     if (TargetObj === null) {
                         return true;
                     }
-
-                    TargetObj.attr('data-day-kubun', '0');
-                    TargetObj.attr('data-day-name', '');
 
                     if ((parseInt(val.dateKubun, 10) === 0) && (val.dateName === '')) {
                         return true;
@@ -217,11 +223,9 @@ $(function() {
 
                     var CalDayKbnObj = null;
                     if (parseInt(val.dateKubun, 10) === 1) {
-                        TargetObj.attr('data-day-name', '出社日');
                         CalDayKbnObj = $('<p>').text('出社日');
                         TargetObj.append(CalDayKbnObj);
                     } else if (parseInt(val.dateKubun, 10) === 2) {
-                        TargetObj.attr('data-day-name', 'その他');
                         CalDayKbnObj = $('<p>').text('その他');
                         TargetObj.append(CalDayKbnObj);
                     }
