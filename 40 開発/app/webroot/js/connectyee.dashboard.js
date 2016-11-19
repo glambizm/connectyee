@@ -73,7 +73,7 @@ $(function() {
 
         if (animate_loading === true) {
             $('div#date-info-wrapper').block({
-                message: '<img src="/img/common.loading.gif">',
+                message: '<img src="./img/common.loading.gif">',
                 overlayCSS: {
                     backgroundColor: '#fff',
                     opacity: 0.6
