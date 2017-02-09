@@ -1,6 +1,7 @@
 /*
  * post-common
  */
+
 .container-fluid
 {
     padding-right: 0;
@@ -34,6 +35,7 @@
     margin-right: 10px;
     padding: 0 0 10px 10px;
 }
+
 
 /*
  * post-list
@@ -69,52 +71,66 @@ div.col-date
     font-weight: 900;
 }
 
+
 /*
  * post
  */
+
 #post-container .row
 {
     border-bottom: none;
 }
 
-.comment-wrapper {
+.comment-wrapper
+{
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-.comment-main {
+.comment-main
+{
+    padding-left: 0;
+
     border-left: 1px solid #ddd;
-    padding-left: 0px;
 }
 
-.comment-wrapper .row {
-    margin: 0px;
+.comment-wrapper .row
+{
     min-height: 70px;
+    margin: 0;
 }
 
-.comment-main .row {
+.comment-main .row
+{
     border: none;
 }
 
-.comment-name {
+.comment-name
+{
     margin-top: 5px;
 }
 
-.comment-name .full-name {
+.comment-name .full-name
+{
     margin-top: 15px;
 }
 
 .comment-title,
-.comment-body {
+.comment-body
+{
     font-size: 14px;
 }
 
-.comment-date {
+.comment-date
+{
     text-align: right;
 }
 
-.comment-delete {
-    text-align: center;
+.comment-delete
+{
     margin-top: 20px;
+
+    text-align: center;
 }
 
 .comment-delete-button
@@ -130,9 +146,10 @@ div.col-date
 
 #comment-input-container
 {
-    border: 1px solid #ddd;
-    margin: 10px 10px 20px 0px;
+    margin: 10px 10px 20px 0;
     padding: 10px;
+
+    border: 1px solid #ddd;
 }
 
 #comment-title-input,
@@ -156,13 +173,13 @@ div.col-date
     padding: 0;
 
     border-radius: 25px;
-    -webkit-box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
-            box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
+    box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
 }
 
 #btn-comment-regist span
 {
     font-size: 20px;
+
     color: #fff;
 }
 
@@ -224,45 +241,24 @@ div[class*='post-date']
     margin-left: 10px;
 }
 
+
 /*
  * submission_post
  */
-#receiving-user-wrapper
+
+#post-submission-wrapper
 {
-    padding-top: 20px;
-    padding-left: 10px;
-}
-
-#select-receiving-users-wrapper
-{
-    float: left;
-}
-
-.select-receiving-users
-{
-    height: 30px;
-
-    border-radius: 0;
-    box-shadow: none;
-}
-#label-receiving-user-list
-{
-    font-size: 14px;
-
-    margin: 0 10px 0 110px;
-    padding-left: 10px;
-
-    border-bottom: 1px solid #ddd;
+    margin-right: 10px;
 }
 
 #input-wrapper
 {
-    padding: 0 10px 0 10px;
+    margin-top: 20px;
+    padding: 20px 10px 0 10px;
 }
 
-#subject
+#title
 {
-    margin-top: 20px;
     padding-left: 10px;
 }
 
@@ -275,9 +271,31 @@ div[class*='post-date']
     border: 1px solid #ddd;
 }
 
+#btn-submission
+{
+    float: right;
+
+    width: 50px;
+    height: 50px;
+    margin: 20px 10px 20px 0;
+    padding: 0;
+
+    border-radius: 25px;
+    box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, .3);
+}
+
+#btn-submission span
+{
+    font-size: 20px;
+
+    color: #fff;
+}
+
+
 /*
  * initial-color
  */
+
 .initial.color-a
 {
     background-color: rgb(26, 230, 189);
@@ -413,43 +431,47 @@ div[class*='post-date']
     background-color: rgb(33, 150, 243);
 }
 
+
 /*
  * media-queries
  */
+
 @media (max-width: 767px)
 {
     .post-list-item div
     {
         min-height: 20px;
     }
-
     div[class*='post-date']
     {
         text-align: left;
+
         border-bottom: none;
     }
-
     .comment-title,
-    .comment-body {
+    .comment-body
+    {
         border-left: none;
     }
-
-    .comment-name {
+    .comment-name
+    {
         border-bottom: 1px solid #ddd;
     }
-
-    .comment-name span {
+    .comment-name span
+    {
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
-    .comment-date {
+    .comment-date
+    {
         text-align: left;
     }
 }
 
-@media (max-width: 400px) {
-    .comment-delete-button {
+@media (max-width: 400px)
+{
+    .comment-delete-button
+    {
         margin-top: -130px;
         margin-left: -30px;
     }

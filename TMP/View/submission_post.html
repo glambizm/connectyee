@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Post</title>
+    <title>NewMail</title>
     <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="css/bootstrap.paper.min.css" rel="stylesheet">
-    <link href="css/connectyee.icon.css" rel="stylesheet">
     <link href="css/connectyee.common.css" rel="stylesheet">
     <link href="css/connectyee.post.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -32,7 +32,7 @@
                     <span id="menu-btn-bottom" class="menu-btn"></span>
                 </div>
             </div>
-            <div id="page-title-container" class="pull-left"><span class="header-icon glyphicon glyphicon-list-alt" aria-hidden="true"></span><span id="page-title">Post</span></div>
+            <div id="page-title-container" class="pull-left"><span id="page-title">NewMail</span></div>
             <div id="logout-container" class="pull-right">
                 <button id="logout-btn" type="button" class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="left" title="ログアウト"><a href="#"><span id="logout-img" class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></button>
             </div>
@@ -161,123 +161,18 @@
                     <span class="connectyee-icons glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                 </a>
             </div>
-            <div class="btn-group" role="group" aria-label="...">
-                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="記事追加" href="#">
-                    <span class="connectyee-icons icon-interface" aria-hidden="true"></span>
-                </a>
-                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="記事編集" href="#">
-                    <span class="connectyee-icons icon-edit" aria-hidden="true"></span>
-                </a>
-                <a class="btn btn-default" data-toggle="tooltip" data-container="body" data-placement="top" title="記事削除" href="#">
-                    <span class="connectyee-icons icon-delete-button" aria-hidden="true"></span>
-                </a>
-            </div>
         </div>
-        <div id="post-wrapper" class="panel panel-default">
-            <div id="post-container" class="container-fluid">
-                <div class="row">
-                    <div class="post-name col-xs-12">
-                        <span class="initial color-b text-center">B</span><span class="full-name">ＸＸＸ　ＸＸＸ<span>
-                    </div>
+        <div id="post-submission-wrapper" class="panel panel-default">
+            <form>
+                <div id="input-wrapper">
+                    <input type="hidden" id="id" name="id">
+                    <input type="text" id="title" name="title" maxlength="50" class="form-control" placeholder="タイトルを入力してください。">
+                    <textarea id="body" name="body" rows="10" class="form-control" placeholder="本文を入力してください。"></textarea>
                 </div>
-                <div class="row">
-                    <div class="post-date col-sm-5 col-sm-push-7">
-                        XXXX/XX/XX(XXX) XX:XX
-                    </div>
-                    <div class="post-title col-sm-7 col-sm-pull-5">
-                        ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ
-                    </div>
+                <div class="clearfix">
+                    <button type="submit" id="btn-submission" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="投稿"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
-                <div class="row">
-                    <div class="post-body col-xs-12">
-                        お疲れ様です<br />
-                        届きました。<br />
-                        <br />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="comment-wrapper panel panel-default">
-            <div class="row">
-                <div class="comment-name col-sm-2 col-xs-12">
-                    <span class="initial color-b text-center">B</span><span class="full-name">ＸＸＸ　ＸＸＸ</span>
-                </div>
-                <div class="comment-main col-sm-8 col-xs-10">
-                    <div class="row">
-                        <div class="comment-date col-sm-5 col-sm-push-7">
-                            XXXX/XX/XX(XXX) XX:XX
-                        </div>
-                        <div class="comment-body-title col-sm-7 col-sm-pull-5">
-                            <div class="comment-title">
-                                ＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                            <div class="comment-body">
-                                ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-delete col-sm-2 col-xs-2">
-                    <a class="comment-delete-button btn btn-success glyphicon glyphicon-remove" data-toggle="tooltip"data-container="body" data-placement="top" title="削除"></a>
-                </div>
-            </div>
-        </div>
-        <div class="comment-wrapper panel panel-default">
-            <div class="row">
-                <div class="comment-name col-sm-2 col-xs-12">
-                    <span class="initial color-b text-center">B</span><span class="full-name">ＸＸＸ　ＸＸＸ</span>
-                </div>
-                <div class="comment-main col-sm-8 col-xs-10">
-                    <div class="row">
-                        <div class="comment-date col-sm-5 col-sm-push-7">
-                            XXXX/XX/XX(XXX) XX:XX
-                        </div>
-                        <div class="comment-body-title col-sm-7 col-sm-pull-5">
-                            <div class="comment-title">
-                                ＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                            <div class="comment-body">
-                                ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-delete col-sm-2 col-xs-2">
-                    <a class="comment-delete-button btn btn-success glyphicon glyphicon-remove" data-toggle="tooltip"data-container="body" data-placement="top" title="削除"></a>
-                </div>
-            </div>
-        </div>
-        <div class="comment-wrapper panel panel-default">
-            <div class="row">
-                <div class="comment-name col-sm-2 col-xs-12">
-                    <span class="initial color-b text-center">B</span><span class="full-name">ＸＸＸ　ＸＸＸ</span>
-                </div>
-                <div class="comment-main col-sm-8 col-xs-10">
-                    <div class="row">
-                        <div class="comment-date col-sm-5 col-sm-push-7">
-                            XXXX/XX/XX(XXX) XX:XX
-                        </div>
-                        <div class="comment-body-title col-sm-7 col-sm-pull-5">
-                            <div class="comment-title">
-                                ＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                            <div class="comment-body">
-                                ＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸＸ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-delete col-sm-2 col-xs-2">
-                    <a class="comment-delete-button btn btn-success glyphicon glyphicon-remove" data-toggle="tooltip"data-container="body" data-placement="top" title="削除"></a>
-                </div>
-            </div>
-        </div>
-        <div id="comment-input-container" class="panel panel-default">
-            <input type="text" id="comment-title-input" maxlength="50" class="form-control" placeholder="コメントタイトルを入力してください。">
-            <textarea id="comment-body-input" rows="1" class="form-control" placeholder="コメント本文を入力してください。"></textarea>
-            <div class="clearfix">
-                <button id="btn-comment-regist" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="登録"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
-            </div>
+            </form>
         </div>
     </div>
     <div class="modal fade" id="alertModal" tabindex="-1">
@@ -299,6 +194,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-multiselect.js"></script>
     <script src="js/connectyee.common.js"></script>
     <script src="js/connectyee.post.js"></script>
 </body>
