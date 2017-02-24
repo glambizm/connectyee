@@ -23,12 +23,6 @@ class DashBoardsController extends AppController {
         $this->PostList = new OrgPostList($where, $order, $count);
         $this->set('PostList', $this->PostList->Items);
 
-        $where  = array('Schedule.user_id' => $this->LoginUser->getUserId(), 'Schedule.target_date'=>date('Y-m-d'));
-        $order = 'Schedule.start_time';
-        $count = 5;
-        $this->ScheduleList = new OrgScheduleList($where, $order, $count);
-        $this->set('ScheduleList', $this->ScheduleList->Items);
-
         $where  = array('ReceivingUser.delete_kubun' => '0');
         $order = 'WebMail.sending_time DESC';
         $count = 5;
