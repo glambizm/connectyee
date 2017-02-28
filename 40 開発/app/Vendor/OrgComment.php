@@ -1,46 +1,44 @@
 <?php
 
 /*
- * OrgPost.php
+ * OrgComment.php
  * History
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
 */
 class OrgPost {
-    private $Comments;
     private $id;
     private $SubmissionUser;
+    private $parentId;
     private $title;
     private $body;
     private $PostDate;
-    private $Post;
+    private $Comment;
     private $UserList;
 
-    function __construct($postInfo = null) {
-        $this->Comments         = array();
+    function __construct($commentInfo = null) {
         $this->id               = -1;
         $this->SubmissionUser   = null;
+        $this->parentId         = -1;
         $this->title            = '';
         $this->body             = '';
         $this->PostDate         = null;
-        $this->Post             = ClassRegistry::init('Post');
+        $this->Comment          = ClassRegistry::init('Comment');
         $this->UserList         = unserialize(CakeSession::read('user_list'));
 
         if ($this->checkProperty() === false) {
             return;
         }
 
-        if ($postInfo === null) {
+        if ($commentInfo === null) {
             return;
         }
 
-        foreach ($postInfo['Comment'] as $val) {
-            $this->Comments[] = new OrgComment($val);
-        }
-        $this->id               = $postInfo['Post']['id'];
-        $this->SubmissionUser   = $this->UserList->getUserList(array($postInfo['Post']['user_id']))[0];
-        $this->title            = $postInfo['Post']['title'];
-        $this->body             = $postInfo['Post']['body'];
-        $this->PostDate         = new DateTime($postInfo['Post']['post_date']);
+        $this->id               = $commentInfo['id'];
+        $this->SubmissionUser   = $this->UserList->getUserList(array($commentInfo['user_id']))[0];
+        $this->parentId         = $commentInfo['post_id'];
+        $this->title            = $commentInfo['title'];
+        $this->body             = $commentInfo['body'];
+        $this->PostDate         = new DateTime($commentInfo['post_date']);
     }
 
     public function init($id) {
@@ -49,8 +47,7 @@ class OrgPost {
         }
 
         try {
-            $this->Post->hasMany['Comment']['order'] = 'post_date asc';
-            $result = $this->Post->find('all', array('conditions'=>array('Post.id'=>$id)));
+            $result = $this->Comment->find('all', array('conditions'=>array('Comment.id'=>$id)));
         } catch (PDOException $e) {
             Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
             return;
@@ -60,31 +57,30 @@ class OrgPost {
         }
 
         if (count($result) > 0) {
-            foreach ($result[0]['Comment'] as $val) {
-                $this->Comments[] = new OrgComment($val);
-            }
-            $this->id               = $result[0]['Post']['id'];
-            $this->SubmissionUser   = $this->UserList->getUserList(array($result[0]['Post']['user_id']))[0];
-            $this->title            = $result[0]['Post']['title'];
-            $this->body             = $result[0]['Post']['body'];
-            $this->PostDate         = new DateTime($result[0]['Post']['post_date']);
+            $this->id               = $result[0]['Comment']['id'];
+            $this->SubmissionUser   = $this->UserList->getUserList(array($result[0]['Comment']['user_id']))[0];
+            $this->parentId         = $result[0]['Comment']['post_id'];
+            $this->title            = $result[0]['Comment']['title'];
+            $this->body             = $result[0]['Comment']['body'];
+            $this->PostDate         = new DateTime($result[0]['Comment']['post_date']);
         }
     }
 
-    public function registPost() {
+    public function registComment() {
         if ($this->checkProperty() === false) {
             return;
         }
 
-        $fields = array('user_id', 'title', 'body', 'post_date');
-        $data = array('Post'=>array('user_id'=>$this->SubmissionUser->getUserId(),
-                                    'title'=>$this->title,
-                                    'body'=>$this->body,
-                                    'post_date'=>DboSource::expression('NOW()')
-                                    ));
-        if ($this->Post->validates($data) === true) {
+        $fields = array('user_id', 'post_id', 'title', 'body', 'post_date');
+        $data = array('Comment'=>array( 'user_id'=>$this->SubmissionUser->getUserId(),
+                                        'post_id'=>$this->parentId,
+                                        'title'=>$this->title,
+                                        'body'=>$this->body,
+                                        'post_date'=>DboSource::expression('NOW()')
+                                        ));
+        if ($this->Comment->validates($data) === true) {
             try {
-                $result = $this->Post->find('all', array('conditions'=>array('Post.id'=>$this->id)));
+                $result = $this->Comment->find('all', array('conditions'=>array('Comment.id'=>$this->id)));
             } catch (PDOException $e) {
                 Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
                 return;
@@ -94,20 +90,20 @@ class OrgPost {
             }
 
             if (count($result) > 0) {
-                $this->Post->id = $this->id;
+                $this->Comment->id = $this->id;
             } else {
-                $this->Post->create();
+                $this->Comment->create();
             }
 
             try {
-                $this->Post->save($data, false, $fields);
+                $this->Comment->save($data, false, $fields);
             } catch (PDOException $e) {
                 Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
             } catch (Exception $e) {
                 Debugger::log($e->getMessage(), LOG_DEBUG);
             }
         } else {
-            Debugger::log(var_export($this->Post->validationErrors, true), LOG_DEBUG);
+            Debugger::log(var_export($this->Comment->validationErrors, true), LOG_DEBUG);
         }
     }
 
@@ -116,7 +112,7 @@ class OrgPost {
             return;
         }
 
-        $this->Post->delete($this->id);
+        $this->Comment->delete($this->id);
     }
 
     public function checkUser($id) {
@@ -127,8 +123,16 @@ class OrgPost {
         }
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function getSubmissionUser() {
         return $this->SubmissionUser;
+    }
+
+    public function getParentId() {
+        return $this->parentId;
     }
 
     public function getTitle($escape = false) {
@@ -158,6 +162,10 @@ class OrgPost {
         $this->SubmissionUser = $this->UserList->getUserList(array($id))[0];
     }
 
+    public function setParentId($id) {
+        $this->parentId = $id;
+    }
+
     public function setTitle($title) {
         $this->title = $title;
     }
@@ -167,7 +175,7 @@ class OrgPost {
     }
 
     private function checkProperty() {
-      if (($this->Post instanceof Post) === false) {
+      if (($this->Comment instanceof Comment) === false) {
             return false;
         }
         return true;

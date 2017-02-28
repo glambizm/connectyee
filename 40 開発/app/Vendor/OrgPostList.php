@@ -38,6 +38,7 @@ class OrgPostList {
         }
 
 		try {
+            $this->Post->hasMany['Comment']['order'] = 'post_date asc';
 	        $result = $this->Post->find('all', $SQLPara);
         } catch (PDOException $e) {
             Debugger::log($e->getMessage() . "\n" . $e->queryString, LOG_DEBUG);
