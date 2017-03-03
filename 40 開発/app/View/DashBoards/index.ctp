@@ -68,7 +68,7 @@ $this->Html->script('connectyee.dashboard.js', array('inline'=>false));
                     <div class="list-group">
 <?php if (count($PostList) > 0): ?>
     <?php foreach ($PostList as $key=>$val): ?>
-        <?php $postsUser = $val->getPostsUser(); $postDate = $val->getPostDate(); ?>
+        <?php $postsUser = $val->getSubmissionUser(); $postDate = $val->getPostDate(); ?>
                         <div class="bbs-body hvr-shadow list-group-item">
                             <a href="#" class="panel-link">
                                 <p class="bbs-title"><?php echo $val->getTitle(true); ?></p>

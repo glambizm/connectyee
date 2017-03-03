@@ -66,7 +66,7 @@
                     'sub-title'=>'BBS',
                     'authority'=>'0',
                     'icon'=>'<span class="[icon-class] glyphicon glyphicon-list-alt" aria-hidden="true"></span>',
-                    'href'=>'http://www.takumicorp.jp/TakumiDev/prg/bbssmart.php',
+                    'href'=>Router::url(array('controller'=>'Posts', 'action'=>'displayPostList')),
                     'menu-parent'=>-1,
                     'child'=>null),
         4=>array(   'display'=>true,

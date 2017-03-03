@@ -6,7 +6,7 @@
  * <#XX> XXXX/XX/XX X.XXXXXX XXXXXXXXXX
 */
 class OrgPost {
-    private $Comments;
+    public  $Comments;
     private $id;
     private $SubmissionUser;
     private $title;
