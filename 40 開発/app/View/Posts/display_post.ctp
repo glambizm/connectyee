@@ -103,6 +103,13 @@ $initial_color = Configure::read('initial_color');
         </div>
     </div>
 <?php endforeach; ?>
+    <div id="comment-input-container" class="panel panel-default">
+        <input type="text" id="comment-title-input" maxlength="50" class="form-control" placeholder="コメントタイトルを入力してください。">
+        <textarea id="comment-body-input" rows="1" class="form-control" placeholder="コメント本文を入力してください。"></textarea>
+        <div class="clearfix">
+            <button id="btn-comment-regist" class="btn btn-danger" data-toggle="tooltip" data-container="body" data-placement="top" title="登録"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="alertModal" tabindex="-1">
     <div class="modal-dialog modal-sm">
@@ -111,6 +118,7 @@ $initial_color = Configure::read('initial_color');
                 <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
             </div>
             <div class="modal-body">
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
             </div>
