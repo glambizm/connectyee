@@ -40,5 +40,41 @@ $(function() {
             $('#alertModal').modal();
             return false;
         }
+
+        var ajaxParam = {
+            url: location.href + '/submissionComment',
+            dataType: 'json',
+            type: 'POST',
+            data: { parent_id: $('#post-id').val(),
+                    comment_title:$('#comment-title-input').val(),
+                    comment_body: $('#comment-body-input').val()}
+        };
+
+        ajaxComment(ajaxParam);
     });
+
+    $('.comment-delete-button').on('click', function() {
+        var ajaxParam = {
+            url: location.href + '/deleteComment',
+            dataType: 'json',
+            type: 'POST',
+            data: { id: $(this).attr('data-comment-id'),
+                    parent_id: $('#post-id').val()}
+        };
+
+        ajaxComment(ajaxParam);
+    });
+
+    function ajaxComment(ajaxParam) {
+        $.ajax(ajaxParam).done(function(result) {
+            $('#comment-wrapper').remove();
+
+            $.each(result, function(i, comment){
+                var wrapper = $('<div></div>').addClass('comment-wrapper panel panel-default');
+                var row = $('<div></div>').addClass('row');
+
+
+            });
+        });
+    }
 });

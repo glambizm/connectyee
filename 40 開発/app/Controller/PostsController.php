@@ -75,6 +75,7 @@ class PostsController extends AppController {
         if ($this->request->is('ajax') === false) {
             return;
         }
+        $initial_color = Configure::read('initial_color');
 
         $TargetComment = new OrgComment();
         $TargetComment->setSubmissionUser($this->LoginUser->getUserId());
@@ -101,6 +102,8 @@ class PostsController extends AppController {
             $commentInfo['fullName']        = $val->getSubmissionUser()->getFullName(true);
             $commentInfo['fullNameKana']    = $val->getSubmissionUser()->getFullNameKana(true);
             $commentInfo['canDelete']       = $val->checkUser($this->LoginUser->getUserId());
+            $commentInfo['initial']         = $val->getSubmissionUser()->getInitial();
+            $commentInfo['initialClass']    = $initial_color[$val->getSubmissionUser()->getInitial()];
 
             $ReturnJson[] = $commentInfo;
         }
@@ -110,6 +113,7 @@ class PostsController extends AppController {
         if ($this->request->is('ajax') === false) {
             return;
         }
+        $initial_color = Configure::read('initial_color');
 
         $TargetComment = new OrgComment();
         $TargetComment->init($this->request->data['id']);
@@ -133,6 +137,8 @@ class PostsController extends AppController {
             $commentInfo['fullName']        = $val->getSubmissionUser()->getFullName(true);
             $commentInfo['fullNameKana']    = $val->getSubmissionUser()->getFullNameKana(true);
             $commentInfo['canDelete']       = $val->checkUser($this->LoginUser->getUserId());
+            $commentInfo['initial']         = $val->getSubmissionUser()->getInitial();
+            $commentInfo['initialClass']    = $initial_color[$val->getSubmissionUser()->getInitial()];
 
             $ReturnJson[] = $commentInfo;
         }
