@@ -18,7 +18,7 @@ $initial_color = Configure::read('initial_color');
         <div class="container-fluid">
     <?php foreach ($PostList as $val): ?>
         <?php
-            $SendingUser = $val->getSendingUser();
+            $SendingUser = $val->getSubmissionUser();
             $initial = '&nbsp;';
             $initial_class = '';
             $fullName = '&nbsp';

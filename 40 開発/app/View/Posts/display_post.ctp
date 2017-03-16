@@ -37,7 +37,7 @@ $initial_color = Configure::read('initial_color');
         $initial_class = $initial_color[$SubmissionUser->getInitial()];
         $fullName = $SubmissionUser->getFullName(true);
     }
-    $SubmissionUser = $Post->getPostDate();
+    $SendingTime = $Post->getPostDate();
 ?>
     <div id="post-wrapper" class="panel panel-default">
         <div id="post-container" class="container-fluid">
@@ -97,7 +97,7 @@ $initial_color = Configure::read('initial_color');
             </div>
     <?php if ($val->checkUser($LoginUser->getUserId()) === true): ?>
             <div class="comment-delete col-sm-2 col-xs-2">
-                <a class="comment-delete-button btn btn-success glyphicon glyphicon-remove" data-toggle="tooltip"data-container="body" data-placement="top" data-comment-id="<?php echo $val->getId(); ?>" title="削除"></a>
+                <a class="comment-delete-button btn btn-success glyphicon glyphicon-remove" data-toggle="tooltip" data-container="body" data-placement="top" data-comment-id="<?php echo $val->getId(); ?>" title="削除"></a>
             </div>
     <?php endif; ?>
         </div>

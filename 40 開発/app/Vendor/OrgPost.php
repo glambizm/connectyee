@@ -127,6 +127,10 @@ class OrgPost {
         }
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function getSubmissionUser() {
         return $this->SubmissionUser;
     }

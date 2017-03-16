@@ -27,19 +27,19 @@ class PostsController extends AppController {
 
         $Target->init($this->params['pass'][0]);
         if ($Target->checkUser($this->LoginUser->getUserId()) === false ) {
-            $this->redirect(array('controller'=>'Post', 'action'=>'displayPostList'));
+            $this->redirect(array('controller'=>'Posts', 'action'=>'displayPostList'));
         }
     }
 
     public function displayPostList() {
-        $order = 'posts.post_date DESC, comments.post_date ASC';
+        $order = 'Post.post_date DESC';
         $this->PostList = new OrgPostList(NULL, $order);
         $this->set('PostList', $this->PostList->Items);
     }
 
     public function  displayPost($id) {
         $Target = new OrgPost();
-        $Target.init($id);
+        $Target->init($id);
         $this->set('Post', $Target);
     }
 
@@ -53,7 +53,7 @@ class PostsController extends AppController {
             $Target->setTitle($this->request->data['title']);
             $Target->setBody($this->request->data['body']);
             $Target->registPost();
-            $this->redirect(array('controller'=>'Post', 'action'=>'displayPostList'));
+            $this->redirect(array('controller'=>'Posts', 'action'=>'displayPostList'));
         }
     }
 
@@ -68,7 +68,7 @@ class PostsController extends AppController {
         $Target = new OrgPost();
         $Target->init($id);
         $Target->deletePost();
-        $this->redirect(array('controller'=>'Post', 'action'=>'displayPostList'));
+        $this->redirect(array('controller'=>'Posts', 'action'=>'displayPostList'));
     }
 
     public function submissionComment() {
@@ -107,6 +107,7 @@ class PostsController extends AppController {
 
             $ReturnJson[] = $commentInfo;
         }
+        return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));
     }
 
     public function deleteComment() {
@@ -142,6 +143,7 @@ class PostsController extends AppController {
 
             $ReturnJson[] = $commentInfo;
         }
+        return new CakeResponse(array('type' => 'json', 'body' => json_encode($ReturnJson)));
     }
 
 }
